@@ -10,12 +10,12 @@ SkillState::SkillState() :
 
 void SkillState::Update()
 {
-	RandomSkil();
+	state->Update();
 }
 
 void SkillState::Draw()
 {
-
+	state->Draw();
 }
 
 

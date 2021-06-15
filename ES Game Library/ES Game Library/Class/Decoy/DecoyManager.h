@@ -17,6 +17,7 @@ private:
 	DecoyBase decoy[6];
 
 	float ratio[6];
+
 	int wait_count[6];
 
 };

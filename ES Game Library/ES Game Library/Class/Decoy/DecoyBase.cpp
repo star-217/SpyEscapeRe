@@ -22,6 +22,7 @@ void DecoyBase::Initialize(Vector3 pos,float ratio,int count)
 	direction = 0;
 	move_count = 50;
 	flame = 3600;
+	fix_positon_y = 20;
 
 }
 
@@ -30,19 +31,12 @@ void DecoyBase::Update(ThreatMap map)
 	AIMap(map);
 	Move();
 	Animetion();
+
 }
 
 void DecoyBase::Draw()
 {
-	SpriteBatch.Draw(*decoy, decoy_pos,RectWH(50 * animetion_flame, 70 * direction,50,70));
-	for (int y = 0; y < 18; y++) {
-		for (int x = 0; x < ai_data[y].size(); x++)
-		{
-			SpriteBatch.DrawString(DefaultFont, Vector2(50 * x, 50 * y), Color(255, 0, 0), _T("%.4f"), ai_data[y][x]);
-		}
-	}
-	const int mx = (int)(decoy_pos.x / 50.0f);
-	const int my = (int)(decoy_pos.y / 50.0f);
+	SpriteBatch.Draw(*decoy,Vector3(decoy_pos.x, decoy_pos.y - fix_positon_y, decoy_pos.z),RectWH(50 * animetion_flame, 70 * direction,50,70));
 
 }
 
@@ -104,7 +98,7 @@ void DecoyBase::Move()
 
 	if (move_pattern >= 0) {
 		decoy_pos += move_direction[move_pattern] * speed;
-		direction = move_pattern;
+		FixDirection();
 	}
 	move_count += speed;
 }
@@ -114,6 +108,23 @@ void DecoyBase::Animetion()
 	flame--;
 	animetion_flame += 1.0f;
 	animetion_flame = (int)animetion_flame % 40;
+}
+
+void DecoyBase::FixDirection()
+{
+	switch (move_pattern)
+	{
+	case 0:
+		direction = 3; break;
+	case 1:
+		direction = 0; break;
+	case 2:
+		direction = 2; break;
+	case 3:
+		direction = 1; break;
+	default:
+		break;
+	}
 }
 
 

@@ -15,6 +15,7 @@ public:
 	void AIMap(ThreatMap);
 	void Move();
 	void Animetion();
+	void FixDirection();
 
 private:
 	enum MOVEPATTERN
@@ -42,6 +43,7 @@ private:
 	float _ratio;
 	float flame;
 	float animetion_flame;
+	float fix_positon_y;
 
 	std::vector<float> ai_data[18];
 

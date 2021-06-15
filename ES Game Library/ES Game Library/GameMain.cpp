@@ -32,57 +32,6 @@ bool GameMain::Initialize()
 	InputDevice.CreateGamePad(1);
 
 
-	for (int i = 0; i < 4; i++) {
-		mx_k[i] = 0;
-		my_k[i] = 0;
-		mx_i[i] = 0;
-		my_i[i] = 0;
-		mx_h[i] = 0;
-		my_h[i] = 0;
-		mx_g[i] = 0;
-		my_g[i] = 0;
-		mx_o[i] = 0;
-		my_o[i] = 0;
-		mx_p[i] = 0;
-		my_p[i] = 0;
-
-	}
-
-	direc5 = 0;
-	direc6 = 0;
-
-	k_count = 10;
-	j_count = 10;
-	h_count = 10;
-	g_count = 10;
-	o_count = 10;
-	p_count = 10;
-
-	j = 0;
-	h = 0;
-	g = 0;
-	k = 0;
-	o = 0;
-	p = 0;
-	fake_speed[0] = Vector3(0, -1, 0);
-	fake_speed[1] = Vector3(0, 1, 0);
-	fake_speed[2] = Vector3(1, 0, 0);
-	fake_speed[3] = Vector3(-1, 0, 0);
-	fake_dir[0] = 3;
-	fake_dir[1]	= 0;
-	fake_dir[2]	= 2;
-	fake_dir[3]	= 1;
-
-
-
-	fake_stop_count[0] = 16;
-	fake_stop_count[1] = 8;
-	fake_stop_count[2] = 22;
-	fake_stop_count[3] = 14;
-	fake_stop_count[4] = 28;
-	fake_stop_count[5] = 16;
-
-
 	int select = SelectScene::GetSelect();
 
 	Vector3 start_Pos[] = { Vector3(150,400,0),Vector3(800,100,0),Vector3(1250,150,0),Vector3(850, 700, 0),Vector3(50, 750, 0),Vector3(1500, 200, 0),Vector3(1500, 500, 0) };
@@ -154,8 +103,6 @@ bool GameMain::Initialize()
 
 
 
-	prev_mx = -1;
-	prev_my = -1;
 
 	map.Initialize(map_data);
 	track.Initialize(map_data);
@@ -163,20 +110,6 @@ bool GameMain::Initialize()
 	spy.Initialize(map_data, player_pos);
 	threatmap.Initialize(map_data);
 	decoy.Initialize(fake_pos);
-
-	for (int y = 0; y < 18; y++) {
-		for (int x = 0; x < map_data[y].size(); x++) {
-			dist[y].push_back(0);
-			dist_A[y].push_back(0);
-			dist2[y].push_back(0);
-			dist3[y].push_back(0);
-			dist4[y].push_back(0);
-			dist5[y].push_back(0);
-			dist6[y].push_back(0);
-			dist_player[y].push_back(0);
-			dist_AI[y].push_back(0);
-		}
-	}
 
 	return true;
 }
@@ -198,20 +131,13 @@ int GameMain::Update()
 
 
 
-	Player();
-	Tracker();
-	AI();
+	//Player();
+	//Tracker();
 	spy_pos = spy.Update();
 	tracker_pos = track.Update();
 	threatmap.Update(tracker_pos,"TRACKER");
 	threatmap.Update(spy_pos, "SPY");
 	decoy.Update(threatmap);
-	//Fake(fake_pos,k_count,k,direc2,mx_k,my_k,dist2,fake_stop_count[0]);
-	//Fake(fake2_pos, j_count, j, direc3, mx_i, my_i, dist_AI, fake_stop_count[1]);
-	//Fake(fake3_pos, h_count, h, direc5, mx_h, my_h, dist3, fake_stop_count[2]);
-	//Fake(fake4_pos, g_count, g, direc6, mx_g, my_g, dist4, fake_stop_count[3]);
-	//Fake(fake5_pos, p_count, p, direc7, mx_p, my_p, dist5, fake_stop_count[4]);
-	//Fake(fake6_pos, o_count, o, direc8, mx_o, my_o, dist6, fake_stop_count[5]);
 
 
 
@@ -289,8 +215,8 @@ int GameMain::Update()
 
 	//‹S‚Æ“¦‚°‚él‚Ì“–‚½‚è”»’è
 
-	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
-	GamePadBuffer pad_1_buffer = GamePad(1)->GetBuffer();
+	//KeyboardBuffer key_buffer = Keyboard->GetBuffer();
+	//GamePadBuffer pad_1_buffer = GamePad(1)->GetBuffer();
 
 	if (attack_state == 1)
 	{
@@ -421,7 +347,6 @@ void GameMain::Draw()
 	map.Draw();
 	track.Draw();
 	spy.Draw();
-	//threatmap.Draw();
 	decoy.Draw();
 	SpriteBatch.End();
 

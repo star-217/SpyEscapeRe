@@ -20,6 +20,7 @@ public:
 private:
 
 	CMove move;
+	SkillState skill;
 
 	SPRITE spy;
 

@@ -18,15 +18,25 @@ void Spy::Initialize(const std::vector<cstring> data, const Vector3 pos)
 
 Vector3 Spy::Update()
 {
+	KeyboardBuffer key = Keyboard->GetBuffer();
 	spy_pos = move.Move(spy_pos,map_data,5,0);
 	direction = move.GetDirection();
 	Animetion();
+	skill.Update();
+
+	if (key.IsPressed(Keys_Enter)) {
+		skill.RandomSkil();
+	}
+		auto a = 1;
+
 
 	return spy_pos;
 }
 
 void Spy::Draw()
 {
+
+	skill.Draw();
 	SpriteBatch.Draw(*spy, Vector3(spy_pos.x, spy_pos.y - 20, 0.0f), RectWH(50 * (int)animetion_flame, direction * 70, 50, 70), invisible_alpha);
 }
 
