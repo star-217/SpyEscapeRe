@@ -131,8 +131,6 @@ int GameMain::Update()
 
 
 
-	//Player();
-	//Tracker();
 	spy_pos = spy.Update();
 	tracker_pos = track.Update();
 	threatmap.Update(tracker_pos,"TRACKER");

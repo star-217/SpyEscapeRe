@@ -8,9 +8,10 @@ SkillState::SkillState() :
 {
 }
 
-void SkillState::Update()
+float SkillState::Update()
 {
 	state->Update();
+	return state->Update();
 }
 
 void SkillState::Draw()
@@ -32,16 +33,7 @@ void SkillState::RandomSkil()
 	skil_box[skil_count] = random_count;
 	skil_count++;
 
-	switch (random_count)
-	{
-	case BLACKOUT:
-		ChangeState(new BlackOut); break;
-	case INVISIBLE:
-		ChangeState(new Invisible); break;
-	default:
-		ChangeState(new NoSkill); break;
-		break;
-	}
+	ChangeState(factory.Create(random_count));
 }
 
 void SkillState::ChangeState(SkillBase* state)

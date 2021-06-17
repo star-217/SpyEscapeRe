@@ -3,6 +3,7 @@
 #include "../../ESGLib.h"
 #include "../Controller/Controller.h"
 #include "../Base/Move.h"
+#include "../Base/GameState.h"
 
 class Tracker
 {
@@ -12,6 +13,8 @@ public:
 	Vector3 Update();
 	void Draw();
 	void Animetion();
+	void WinAnimetion();
+	void LoseAnimetion();
 private:
 
 	CMove move;
@@ -37,6 +40,7 @@ private:
 	float lose_time;
 
 	bool stun_state;
+
 	int tracker_state;
 	int direc;
 	int pad_direction;

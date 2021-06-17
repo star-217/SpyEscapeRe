@@ -304,6 +304,9 @@
     <ClCompile Include="Class\Spy\Skill\Invisible.cpp">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
     </ClCompile>
+    <ClCompile Include="Class\Base\Collision.cpp">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -501,6 +504,15 @@
     </ClInclude>
     <ClInclude Include="Class\Spy\Skill\NoSkill.h">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Spy\Skill\SkillFactory.h">
+      <Filter>ソース ファイル\Class\Spy\Skil</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\Collision.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\GameState.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

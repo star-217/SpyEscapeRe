@@ -9,7 +9,7 @@ public:
 	BlackOut();
 	virtual ~BlackOut() {};
 
-	void Update();
+	float Update();
 	void Draw();
 
 private:

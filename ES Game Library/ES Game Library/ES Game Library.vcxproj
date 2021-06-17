@@ -112,6 +112,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Class\Base\Collision.cpp" />
     <ClCompile Include="Class\Base\Move.cpp" />
     <ClCompile Include="Class\Decoy\DecoyBase.cpp" />
     <ClCompile Include="Class\Decoy\DecoyManager.cpp" />
@@ -211,6 +212,8 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Class\Base\Collision.h" />
+    <ClInclude Include="Class\Base\GameState.h" />
     <ClInclude Include="Class\Base\Move.h" />
     <ClInclude Include="Class\Decoy\DecoyBase.h" />
     <ClInclude Include="Class\Decoy\DecoyManager.h" />
@@ -220,6 +223,7 @@
     <ClInclude Include="Class\Spy\Skill\Invisible.h" />
     <ClInclude Include="Class\Spy\Skill\NoSkill.h" />
     <ClInclude Include="Class\Spy\Skill\SkillBase.h" />
+    <ClInclude Include="Class\Spy\Skill\SkillFactory.h" />
     <ClInclude Include="Class\Spy\Skill\SkillState.h" />
     <ClInclude Include="Class\Spy\Spy.h" />
     <ClInclude Include="Class\Threatmap\Threatmap.h" />

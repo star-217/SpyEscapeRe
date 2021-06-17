@@ -7,7 +7,7 @@ class Invisible : public SkillBase
 {
 public:
 
-	void Update();
+	float Update();
 	void Draw();
 
 private:

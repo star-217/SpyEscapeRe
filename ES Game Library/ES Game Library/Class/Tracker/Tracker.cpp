@@ -7,10 +7,14 @@ bool Tracker::Initialize(std::vector<cstring> data)
 	tracker_win = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
 	tracker = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
 	tracker_attack = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
+
 	tracker_spd =5.0f;
 	tracker_pos = Vector3(1500, 800, 0);
 	tracker_state = 0;
 	tracker_flame_x = 0;
+	win_flame = 0;
+	lose_flame = 0;
+
 	direc = 0;
 	stun_state = false;
 	chara_size = 50;
@@ -40,4 +44,18 @@ void Tracker::Animetion()
 	tracker_flame_x++;
 
 	tracker_flame_x = (int)tracker_flame_x % 40;
+}
+
+void Tracker::WinAnimetion()
+{
+	win_flame += 0.8f;
+	win_flame = max(win_flame, 50);
+
+}
+
+void Tracker::LoseAnimetion()
+{
+	lose_flame += 0.8f;
+	lose_flame = max(lose_flame, 30);
+
 }

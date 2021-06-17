@@ -1,7 +1,7 @@
 #include "Invisible.h"
 
 
-void Invisible::Update()
+float Invisible::Update()
 {
 	if (flag == true)
 	{
@@ -20,6 +20,7 @@ void Invisible::Update()
 		alpha = 255.0f;
 	}
 
+	return alpha;
 }
 
 void Invisible::Draw()
