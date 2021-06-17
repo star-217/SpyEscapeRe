@@ -12,6 +12,7 @@ public:
 	void Initialize(Vector3* positions);
 	void Update(ThreatMap);
 	void Draw();
+	DecoyBase* GetBase() { return decoy; }
 
 private:
 	DecoyBase decoy[6];

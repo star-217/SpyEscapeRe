@@ -15,10 +15,11 @@ public:
 	void Initialize(const std::vector<cstring>, const Vector3);
 	Vector3 Update();
 	void Draw();
-	Rect GetCollision(){return }
+	Rect GetCollision() { return collision; }
 	void Animetion();
 	void WinAnimetion();
 	void LoseAnimetion();
+	void AttackHit();
 
 private:
 

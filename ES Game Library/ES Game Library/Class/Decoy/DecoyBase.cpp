@@ -30,6 +30,7 @@ void DecoyBase::Update(ThreatMap map)
 {
 	AIMap(map);
 	Move();
+	collision = Rect(decoy_pos.x, decoy_pos.y, decoy_pos.x + 50, decoy_pos.y + 70);
 	Animetion();
 
 }

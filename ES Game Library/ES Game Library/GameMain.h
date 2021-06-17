@@ -8,6 +8,7 @@
 #include "Class/Sound/Sound.h"
 #include "Class/Threatmap/Threatmap.h"
 #include "Class/Decoy/DecoyManager.h"
+#include "Class/Base/Collision.h"
 
 class GameMain : public CGameScene {
 public:
@@ -70,6 +71,7 @@ private:
 	LoadSound sound;
 	ThreatMap threatmap;
 	DecoyManager decoy;
+	Collision collision;
 
 	Vector3 spy_pos;
 

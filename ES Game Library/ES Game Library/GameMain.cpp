@@ -136,6 +136,7 @@ int GameMain::Update()
 	threatmap.Update(tracker_pos,"TRACKER");
 	threatmap.Update(spy_pos, "SPY");
 	decoy.Update(threatmap);
+	collision.Update(spy, track, decoy);
 
 
 

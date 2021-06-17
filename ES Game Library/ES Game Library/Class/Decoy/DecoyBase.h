@@ -16,6 +16,7 @@ public:
 	void Move();
 	void Animetion();
 	void FixDirection();
+	Rect GetCollision() { return collision; }
 
 private:
 	enum MOVEPATTERN
@@ -32,6 +33,7 @@ private:
 	Vector3 decoy_pos;
 	const Vector3 move_direction[4]{Vector3_Up, Vector3_Down,Vector3_Right,Vector3_Left};
 
+	Rect collision;
 	int speed;
 	int direction;
 	int old_pos_x[4];

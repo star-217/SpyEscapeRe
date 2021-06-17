@@ -15,6 +15,7 @@ public:
 	void Animetion();
 	void WinAnimetion();
 	void LoseAnimetion();
+	Rect GetCollision() { return collision; }
 private:
 
 	CMove move;
@@ -25,6 +26,8 @@ private:
 	SPRITE tracker_attack;
 	SPRITE tracker_win;
 	SPRITE lose;
+
+	Rect collision;
 	Vector3 tracker_pos;
 
 

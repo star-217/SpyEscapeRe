@@ -32,7 +32,7 @@ Vector3 Spy::Update()
 	invisible_alpha = skill.Update();
 	direction = move.GetDirection();
 
-	collision = Rect(spy_pos.x, spy_pos.y, 50, 70);
+	collision = Rect(spy_pos.x, spy_pos.y, spy_pos.x + 50, spy_pos.y +70);
 
 	Animetion();
 
@@ -81,4 +81,8 @@ void Spy::LoseAnimetion()
 	lose_flame += 0.8f;
 	lose_flame = max(lose_flame, 30);
 
+}
+
+void Spy::AttackHit()
+{
 }
