@@ -1,50 +1,50 @@
 #include "Move.h"
 
-void CMove::Initialize()
+void Move::Initialize()
 {
 	InputDevice.CreateGamePad(2);
-	block_size = 50;
-	direction = 0;
-	pad_direction = 0;
+	_block_size = 50;
+	_direction = 0;
+	_pad_direction = 0;
 }
 
-Vector3 CMove::Move(Vector3 pos, std::vector<cstring> map_data,float speed,int pad_number)
+Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring> map_data,float speed,int pad_number)
 {
-	pad = GamePad(pad_number)->GetState();
+	_pad = GamePad(pad_number)->GetState();
 
 
-	if (pad_direction == 0)
+	if (_pad_direction == 0)
 	{
-		if (pad.X != 0 || pad.Y != 0) {
+		if (_pad.X != 0 || _pad.Y != 0) {
 			int mx = (int)(pos.x / 50);
 			int my = (int)(pos.y / 50);
-			float axis_x = Math_Abs(pad.X);
-			float axis_y = Math_Abs(pad.Y);
+			float axis_x = Math_Abs(_pad.X);
+			float axis_y = Math_Abs(_pad.Y);
 			if (axis_x > axis_y) {
-				if (pad.X > 0) {
+				if (_pad.X > 0) {
 					if (map_data[my][mx + 1] == ' ' || map_data[my][mx + 1] == '%') {
-						pad_direction = 6;
-						count = 0;
+						_pad_direction = 6;
+						_count = 0;
 					}
 				}
-				else if (pad.X < 0) {
+				else if (_pad.X < 0) {
 					if (map_data[my][mx - 1] == ' ' || map_data[my][mx - 1] == '%') {
-						pad_direction = 4;
-						count = 0;
+						_pad_direction = 4;
+						_count = 0;
 					}
 				}
 			}
 			else {
-				if (pad.Y > 0) {
+				if (_pad.Y > 0) {
 					if (map_data[my + 1][mx] == ' ' || map_data[my + 1][mx] == '%') {
-						pad_direction = 2;
-						count = 0;
+						_pad_direction = 2;
+						_count = 0;
 					}
 				}
-				else if (pad.Y < 0) {
+				else if (_pad.Y < 0) {
 					if (map_data[my - 1][mx] == ' ' || map_data[my - 1][mx] == '%') {
-						pad_direction = 8;
-						count = 0;
+						_pad_direction = 8;
+						_count = 0;
 					}
 				}
 			}
@@ -52,44 +52,44 @@ Vector3 CMove::Move(Vector3 pos, std::vector<cstring> map_data,float speed,int p
 	}
 
 	//ƒLƒƒƒ‰‚ÌˆÚ“®AˆÚ“®§ŒÀ
-	if (pad_direction == 6) {
+	if (_pad_direction == 6) {
 		pos.x += speed;
-		direction = 2;
-		count += speed;
-		if (count >= 50) {
-			pad_direction = 0;
+		_direction = 2;
+		_count += speed;
+		if (_count >= 50) {
+			_pad_direction = 0;
 		}
 
 	}
-	else if (pad_direction == 4) {
+	else if (_pad_direction == 4) {
 		pos.x -= speed;
-		direction = 1;
+		_direction = 1;
 
-		count += speed;
+		_count += speed;
 
-		if (count >= 50) {
-			pad_direction = 0;
+		if (_count >= 50) {
+			_pad_direction = 0;
 		}
 	}
-	else if (pad_direction == 2) {
+	else if (_pad_direction == 2) {
 		pos.y += speed;
-		direction = 0;
+		_direction = 0;
 
-		count += speed;
+		_count += speed;
 
-		if (count >= 50) {
-			pad_direction = 0;
+		if (_count >= 50) {
+			_pad_direction = 0;
 		}
 
 	}
-	else if (pad_direction == 8) {
+	else if (_pad_direction == 8) {
 		pos.y -= speed;
-		direction = 3;
+		_direction = 3;
 
-		count += speed;
+		_count += speed;
 
-		if (count >= 50) {
-			pad_direction = 0;
+		if (_count >= 50) {
+			_pad_direction = 0;
 		}
 
 	}

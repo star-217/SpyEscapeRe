@@ -19,7 +19,7 @@ bool Tracker::Initialize(std::vector<cstring> data)
 	_chara_size_height = 70;
 
 	_direc = 0;
-	_stun_state = false;
+	_stun_flag = false;
 	_move.Initialize();
 
 	return false;
@@ -60,5 +60,10 @@ void Tracker::LoseAnimetion()
 {
 	_lose_flame += 0.8f;
 	_lose_flame = max(_lose_flame, 30);
+
+}
+
+void Tracker::Stun()
+{
 
 }

@@ -87,4 +87,5 @@ void Spy::LoseAnimetion()
 
 void Spy::AttackHit()
 {
+
 }

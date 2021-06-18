@@ -12,13 +12,15 @@ public:
 	bool Initialize(std::vector<cstring>);
 	Vector3 Update();
 	void Draw();
-	void Animetion();
-	void WinAnimetion();
-	void LoseAnimetion();
+	void Stun();
 	Rect GetCollision() { return _collision; }
 private:
 
-	CMove _move;
+	void Animetion();
+	void WinAnimetion();
+	void LoseAnimetion();
+
+	Move _move;
 
 	std::vector<cstring> _map_data;
 
@@ -44,7 +46,7 @@ private:
 	float _lose_flame;
 	float _lose_time;
 
-	bool _stun_state;
+	bool _stun_flag;
 
 	int _tracker_state;
 	int _direc;

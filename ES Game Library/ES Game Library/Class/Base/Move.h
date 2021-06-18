@@ -3,11 +3,11 @@
 #include "../../ESGLib.h"
 #include "../Controller/Controller.h"
 
-class CMove
+class Move
 {
 public:
 	void Initialize();
-	virtual Vector3 Move(Vector3 pos, std::vector<cstring> map_data, float speed,int pad_number);
+	Vector3 MovePostion(Vector3 pos, std::vector<cstring> map_data, float speed,int pad_number);
 	//Vector3 GetPosition() { return position; }
 	int GetDirection() { return _direction; }
 

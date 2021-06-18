@@ -16,14 +16,15 @@ public:
 	Vector3 Update();
 	void Draw();
 	Rect GetCollision() { return _collision; }
-	void Animetion();
-	void WinAnimetion();
-	void LoseAnimetion();
 	void AttackHit();
 
 private:
 
-	CMove _move;
+	void Animetion();
+	void WinAnimetion();
+	void LoseAnimetion();
+
+	Move _move;
 	SkillState _skill;
 
 	SPRITE _spy;
