@@ -15,7 +15,7 @@ public:
 	void Initialize(const std::vector<cstring>, const Vector3);
 	Vector3 Update();
 	void Draw();
-	Rect GetCollision() { return collision; }
+	Rect GetCollision() { return _collision; }
 	void Animetion();
 	void WinAnimetion();
 	void LoseAnimetion();
@@ -23,41 +23,42 @@ public:
 
 private:
 
-	CMove move;
-	SkillState skill;
+	CMove _move;
+	SkillState _skill;
 
-	SPRITE spy;
-	SPRITE attack;
-	SPRITE win;
-	SPRITE lose;
+	SPRITE _spy;
+	SPRITE _attack;
+	SPRITE _win;
+	SPRITE _lose;
 
-	Vector3 spy_pos;
-	Vector3 draw_spy_pos;
+	Vector3 _spy_pos;
+	Vector3 _draw_spy_pos;
 
-	Rect collision;
+	Rect _collision;
 
 
-	std::vector<cstring> map_data;
+	std::vector<cstring> _map_data;
 
-	enum State
+	enum
 	{
 		DEFAULT,
 		WIN,
 		LOSE
 	};
 
-	int state;
-	int direction;
-	int pad_direction;
-	int chara_size;
-	int player_count;
-	int player_speed;
+	int _state;
+	int _direction;
+	int _chara_size_width;
+	int _chara_size_height;
+	int _fix_pos_y;
+	int _player_count;
+	int _speed;
 
-	float animetion_flame;
-	float animetion_flame_max;
-	float win_flame;
-	float lose_flame;
-	float invisible_alpha;
+	float _animetion_flame;
+	float _animetion_flame_max;
+	float _win_flame;
+	float _lose_flame;
+	float _invisible_alpha;
 
 
 };

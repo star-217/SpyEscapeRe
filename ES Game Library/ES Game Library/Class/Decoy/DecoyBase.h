@@ -16,10 +16,10 @@ public:
 	void Move();
 	void Animetion();
 	void FixDirection();
-	Rect GetCollision() { return collision; }
+	Rect GetCollision() { return _collision; }
 
 private:
-	enum MOVEPATTERN
+	enum
 	{
 		UP,
 		DOWN,
@@ -28,25 +28,25 @@ private:
 	};
 	FONT DefaultFont;
 
-	SPRITE decoy;
+	SPRITE _decoy;
 
-	Vector3 decoy_pos;
-	const Vector3 move_direction[4]{Vector3_Up, Vector3_Down,Vector3_Right,Vector3_Left};
+	Vector3 _decoy_pos;
+	const Vector3 _move_direction[4];
 
-	Rect collision;
-	int speed;
-	int direction;
-	int old_pos_x[4];
-	int old_pos_y[4];
-	int stop_count;
-	int move_count;
-	int move_pattern;
+	Rect _collision;
+	int _speed;
+	int _direction;
+	int _old_pos_x[4];
+	int _old_pos_y[4];
+	int _stop_count;
+	int _move_count;
+	int _move_pattern;
 
 	float _ratio;
-	float flame;
-	float animetion_flame;
-	float fix_positon_y;
+	float _flame;
+	float _animetion_flame;
+	float _fix_positon_y;
 
-	std::vector<float> ai_data[18];
+	std::vector<float> _ai_data[18];
 
 };

@@ -15,39 +15,39 @@ public:
 	void Animetion();
 	void WinAnimetion();
 	void LoseAnimetion();
-	Rect GetCollision() { return collision; }
+	Rect GetCollision() { return _collision; }
 private:
 
-	CMove move;
+	CMove _move;
 
-	std::vector<cstring> map_data;
+	std::vector<cstring> _map_data;
 
-	SPRITE tracker;
-	SPRITE tracker_attack;
-	SPRITE tracker_win;
-	SPRITE lose;
+	SPRITE _tracker;
+	SPRITE _tracker_attack;
+	SPRITE _tracker_win;
+	SPRITE _lose;
 
-	Rect collision;
-	Vector3 tracker_pos;
+	Rect _collision;
+	Vector3 _tracker_pos;
 
 
-	float tracker_alpha;
-	float tracker_spd;
-	float stun_time;
-	float tracker_count;
-	float tracker_flame_x;
-	float attack_state;
-	float win_flame;
-	float win_time;
-	float lose_flame;
-	float lose_time;
+	int _chara_size_width;
+	int _chara_size_height;
 
-	bool stun_state;
+	float _tracker_alpha;
+	float _tracker_spd;
+	float _stun_time;
+	float _tracker_flame_x;
+	float _attack_state;
+	float _win_flame;
+	float _win_time;
+	float _lose_flame;
+	float _lose_time;
 
-	int tracker_state;
-	int direc;
-	int pad_direction;
-	int chara_size;
+	bool _stun_state;
+
+	int _tracker_state;
+	int _direc;
 
 
 };

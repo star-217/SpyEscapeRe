@@ -3,60 +3,62 @@
 
 bool Tracker::Initialize(std::vector<cstring> data)
 {
-	map_data = data;
-	tracker_win = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
-	tracker = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
-	tracker_attack = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
+	_map_data = data;
+	_tracker_win = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
+	_tracker = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
+	_tracker_attack = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
 
-	tracker_spd =5.0f;
-	tracker_pos = Vector3(1500, 800, 0);
-	tracker_state = 0;
-	tracker_flame_x = 0;
-	win_flame = 0;
-	lose_flame = 0;
+	_tracker_spd =5.0f;
+	_tracker_pos = Vector3(1500, 800, 0);
+	_tracker_state = 0;
+	_tracker_flame_x = 0;
+	_win_flame = 0;
+	_lose_flame = 0;
 
-	direc = 0;
-	stun_state = false;
-	chara_size = 50;
-	move.Initialize();
+	_chara_size_width = 50;
+	_chara_size_height = 70;
+
+	_direc = 0;
+	_stun_state = false;
+	_move.Initialize();
 
 	return false;
 }
 
 Vector3 Tracker::Update()
 {
-	tracker_pos = move.Move(tracker_pos,map_data,tracker_spd,1);
-	collision = Rect(tracker_pos.x, tracker_pos.y, tracker_pos.x + 50, tracker_pos.y + 70);
-	direc = move.GetDirection();
+	_tracker_pos = _move.Move(_tracker_pos,_map_data,_tracker_spd,1);
+	_collision = Rect(_tracker_pos.x, _tracker_pos.y, _tracker_pos.x + _chara_size_width, _tracker_pos.y + _chara_size_height);
+	_direc = _move.GetDirection();
 	Animetion();
 
-	return tracker_pos;
+	return _tracker_pos;
 }
 
 void Tracker::Draw()
 {
-	SpriteBatch.Draw(*tracker, Vector3(tracker_pos.x, tracker_pos.y - 20, 0), RectWH(chara_size * tracker_flame_x, 70 * direc, 50, 70));
+	SpriteBatch.Draw(*_tracker, Vector3(_tracker_pos.x, _tracker_pos.y - 20, 0), RectWH(_chara_size_width * _tracker_flame_x, _chara_size_height * _direc, _chara_size_width, _chara_size_height));
 }
 
 
 
 void Tracker::Animetion()
 {
-	tracker_flame_x++;
+	_tracker_flame_x++;
 
-	tracker_flame_x = (int)tracker_flame_x % 40;
+	_tracker_flame_x = (int)_tracker_flame_x % 40;
 }
 
 void Tracker::WinAnimetion()
 {
-	win_flame += 0.8f;
-	win_flame = max(win_flame, 50);
+	_win_flame += 0.8f;
+	_win_flame = max(_win_flame, 50);
 
 }
 
 void Tracker::LoseAnimetion()
 {
-	lose_flame += 0.8f;
-	lose_flame = max(lose_flame, 30);
+	_lose_flame += 0.8f;
+	_lose_flame = max(_lose_flame, 30);
 
 }

@@ -5,7 +5,7 @@
 class GameState
 {
 public:
-	GameState() : game_state(0) {}
+	GameState() : _game_state(0) {}
 	~GameState(){}
 
 	static GameState GetInstance()
@@ -16,9 +16,9 @@ public:
 
 	int SetGameState(int state)
 	{
-		game_state = state;
+		_game_state = state;
 	}
-	int GetGameState() {return game_state ; }
+	int GetGameState() {return _game_state ; }
 private:
-	int game_state;
+	int _game_state;
 };

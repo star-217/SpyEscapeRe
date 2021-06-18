@@ -144,27 +144,9 @@ private:
 	std::vector<cstring> map_data;
 	FONT newfont;
 
-	SPRITE wall;
-	SPRITE floar;
-	SPRITE fake;
-
-	SPRITE down;
-	SPRITE oniwin;
-	SPRITE isu;
 	Vector3 change;
 
 	float anime;
-
-	//direction
-	float direc;
-	float direc2;
-	float direc3;
-	float direc4;
-	float direc5;
-	float direc6;
-	float direc7;
-	float direc8;
-
 
 	float a_alpha;
 	float b_alpha;
@@ -178,50 +160,6 @@ private:
 	Vector3 fake4_pos;
 	Vector3 fake5_pos;
 	Vector3 fake6_pos;
-	int k,k_count;
-	int j, j_count;
-	int h, h_count;
-	int g, g_count;
-	int p, p_count;
-	int o, o_count;
-	int a,b;
-	int fake_stop_count[6];
-	int AI_count;
 
 
-
-	std::vector<float> dist[18];
-	std::vector<float> dist_A[18];
-	std::vector<float> dist2[18];
-	std::vector<float> dist3[18];
-	std::vector<float> dist4[18];
-	std::vector<float> dist5[18];
-	std::vector<float> dist6[18];
-	std::vector<float> dist_player[18];
-	std::vector<float> dist_AI[18];
-
-	// ä÷êîêÈåæ
-	/*string map_data[18];*/
-	float max,max2;
-	float min, min2;
-	float normal;
-	float normal2;
-	float sw_f = 0;
-
-
-	int mx_k[4],my_k[4];
-	int  mx_i[4], my_i[4];
-	int  mx_h[4], my_h[4];
-	int  mx_g[4], my_g[4];
-	int  mx_p[4], my_p[4];
-	int  mx_o[4], my_o[4];
-
-	int prev_mx, prev_my;
-	int prev_mx2, prev_my2;
-
-	int pad2_direction;
-	int pad_direction;
-
-	Vector3 fake_speed[4];
-	int fake_dir[4];
 };

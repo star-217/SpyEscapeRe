@@ -12,13 +12,13 @@ public:
 	void Initialize(Vector3* positions);
 	void Update(ThreatMap);
 	void Draw();
-	DecoyBase* GetBase() { return decoy; }
+	DecoyBase* GetBase() { return _decoy; }
 
 private:
-	DecoyBase decoy[6];
+	DecoyBase _decoy[6];
 
-	float ratio[6];
+	float _ratio[6];
 
-	int wait_count[6];
+	int _wait_count[6];
 
 };

@@ -6,7 +6,7 @@ class LoadSound
 {
 public:
 	void Initialize();
-	MEDIA* GetBGM() { return bgm; }
+	MEDIA* GetBGM() { return _bgm; }
 
 
 	enum
@@ -16,11 +16,9 @@ public:
 
 private:
 
-	
 
-	MEDIA bgm[MAX];
-	MEDIA skil;
-	MEDIA mission;
-	SOUND se;
+
+	MEDIA _bgm[MAX];
+	SOUND _se;
 
 };

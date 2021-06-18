@@ -246,7 +246,6 @@ int GameMain::Update()
 	if (anime >= 40) {
 		anime = 0;
 	}
-	AI_count++;
 	return 0;
 }
 

@@ -30,8 +30,13 @@
 //------------------------------------------------------------------------------
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nShowCmd)
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 	if(GameApp().Initialize(hInstance) == false)
 		return -1;
 
-	return GameApp().Run();
+	const int return_code = GameApp().Run();
+	_CrtDumpMemoryLeaks();
+
+	return return_code;
 }

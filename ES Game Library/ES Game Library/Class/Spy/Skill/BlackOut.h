@@ -13,7 +13,9 @@ public:
 	void Draw();
 
 private:
-	SPRITE black;
-	float  alpha;
-	Vector3 position;
+	SPRITE _black;
+
+	Vector3 _position;
+
+	float  _alpha;
 };

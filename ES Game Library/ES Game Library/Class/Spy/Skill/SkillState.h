@@ -23,10 +23,10 @@ private:
 		MAX
 	};
 
-	SkillBase* state;
-	SkillFactory factory;
+	SkillBase* _state;
+	SkillFactory _factory;
 
-	int skil_box[MAX];
-	int skil_count;
-	int skil_count_max;
+	int _skil_box[MAX];
+	int _skil_count;
+	int _skil_count_max;
 };

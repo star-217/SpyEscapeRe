@@ -14,8 +14,8 @@ public:
 
 private:
 
-	std::vector<cstring> map_data;
-	SPRITE bg;
-	SPRITE wallhide;
-	Color cl;
+	std::vector<cstring> _map_data;
+	SPRITE _bg;
+	SPRITE _wallhide;
+	Color _color;
 };

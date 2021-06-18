@@ -11,7 +11,7 @@ public:
 	void Draw();
 
 private:
-	float alpha;
-	bool flag;
-	int time;
+	float _alpha;
+	bool _flag;
+	int _time;
 };

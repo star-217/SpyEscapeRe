@@ -9,17 +9,17 @@ public:
 	void Initialize();
 	virtual Vector3 Move(Vector3 pos, std::vector<cstring> map_data, float speed,int pad_number);
 	//Vector3 GetPosition() { return position; }
-	int GetDirection() { return direction; }
+	int GetDirection() { return _direction; }
 
 private:
 
-	Vector3 position;
+	GamePadState _pad;
 
-	int block_size;
-	int pad_direction;
-	int count;
-	int direction;
+	Vector3 _position;
 
+	int _block_size;
+	int _pad_direction;
+	int _count;
+	int _direction;
 
-	GamePadState pad;
 };
