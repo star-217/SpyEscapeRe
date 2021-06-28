@@ -31,7 +31,7 @@ void Spy::Initialize(const std::vector<cstring> data, const Vector3 pos)
 Vector3 Spy::Update()
 {
 	KeyboardBuffer key = Keyboard->GetBuffer();
-	_spy_pos = _move.Move(_spy_pos,_map_data, _speed,0);
+	_spy_pos = _move.MovePostion(_spy_pos,_map_data, _speed,0);
 	_invisible_alpha = _skill.Update();
 	_direction = _move.GetDirection();
 

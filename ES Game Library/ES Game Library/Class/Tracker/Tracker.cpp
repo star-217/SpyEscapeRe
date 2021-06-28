@@ -27,7 +27,7 @@ bool Tracker::Initialize(std::vector<cstring> data)
 
 Vector3 Tracker::Update()
 {
-	_tracker_pos = _move.Move(_tracker_pos,_map_data,_tracker_spd,1);
+	_tracker_pos = _move.MovePostion(_tracker_pos,_map_data,_tracker_spd,1);
 	_collision = Rect(_tracker_pos.x, _tracker_pos.y, _tracker_pos.x + _chara_size_width, _tracker_pos.y + _chara_size_height);
 	_direc = _move.GetDirection();
 	Animetion();
