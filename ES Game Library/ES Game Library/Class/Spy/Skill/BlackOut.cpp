@@ -8,10 +8,12 @@ BlackOut::BlackOut() :	_black(GraphicsDevice.CreateSpriteFromFile(_T("skill.png"
 
 float BlackOut::Update()
 {
-	_alpha -= 0.008f;
+	float alpha_speed = 0.008f;
+
+	_alpha -= alpha_speed;
 	_alpha = std::clamp(_alpha, 0.0f, 255.0f);
 
-	return 1.0f;
+	return _alpha;
 }
 
 void BlackOut::Draw()

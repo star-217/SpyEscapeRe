@@ -19,7 +19,12 @@ void SkillState::Draw()
 	_state->Draw();
 }
 
-
+/**
+ * @fn
+ * プレイヤーのスキルをランダムで使うプログラム一度使ったスキルは使えない
+ * @detail ランダム関数で０～MAXまでの好きな値を取得して使用しているかチェックして
+ * 使用されてた場合もう一度ランダムを繰り返すようになっている
+ */
 void SkillState::RandomSkil()
 {
 	auto random_count = MathHelper_Random(0, _skil_count_max);

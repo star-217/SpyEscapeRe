@@ -6,19 +6,35 @@
 class Move
 {
 public:
-	void Initialize();
-	Vector3 MovePostion(Vector3 pos, std::vector<cstring> map_data, float speed,int pad_number);
-	int GetDirection() { return _direction; }
+	enum class Direction
+	{
+		None,
+		Down,
+		Left,
+		Right,
+		Up,
+		Max
+	};
+
+	Move() = default;
+	virtual ~Move() {}
+
+	void      Initialize();
+	Vector3   MovePostion(Vector3 pos, std::vector<cstring>& map_data, float speed,int pad_number);
+	Direction GetDirection() const { return _direction; }
 
 private:
+	enum class Direction
+	{
+		None,
+		Down,
+		Left,
+		Right,
+		Up
+	};
 
-	GamePadState _pad;
-
-	Vector3 _position;
-
-	int _block_size;
-	int _pad_direction;
-	int _count;
-	int _direction;
-
+	int       _block_size;
+	Direction _pad_direction;
+	int       _count;
+	Direction _direction;
 };

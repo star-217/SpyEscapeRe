@@ -3,14 +3,14 @@
 
 bool Tracker::Initialize(std::vector<cstring> data)
 {
-	_map_data = data;
-	_tracker_win = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
-	_tracker = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
-	_tracker_attack = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
+	_map_data        = data;
+	_tracker_win     = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
+	_tracker         = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
+	_tracker_attack  = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
 
-	_tracker_spd =5.0f;
-	_tracker_pos = Vector3(1500, 800, 0);
-	_tracker_state = 0;
+	_tracker_spd     = 5.0f;
+	_tracker_pos     = Vector3(1500, 800, 0);
+	_tracker_state   = 0;
 	_tracker_flame_x = 0;
 	_win_flame = 0;
 	_lose_flame = 0;
@@ -37,33 +37,34 @@ Vector3 Tracker::Update()
 
 void Tracker::Draw()
 {
-	SpriteBatch.Draw(*_tracker, Vector3(_tracker_pos.x, _tracker_pos.y - 20, 0), RectWH(_chara_size_width * _tracker_flame_x, _chara_size_height * _direc, _chara_size_width, _chara_size_height));
+	SpriteBatch.Draw(
+		*_tracker, Vector3(_tracker_pos.x, _tracker_pos.y - 20, 0),
+		RectWH(_chara_size_width * _tracker_flame_x, _chara_size_height * _direc, _chara_size_width, _chara_size_height)
+	);
 }
 
 
 
 void Tracker::Animetion()
 {
-	_tracker_flame_x++;
-
-	_tracker_flame_x = (int)_tracker_flame_x % 40;
+	_tracker_flame_x = int(_tracker_flame_x + 1) % 40;
 }
 
 void Tracker::WinAnimetion()
 {
 	_win_flame += 0.8f;
-	_win_flame = max(_win_flame, 50);
+	_win_flame  = max(_win_flame, 50.0f);
 
 }
 
 void Tracker::LoseAnimetion()
 {
 	_lose_flame += 0.8f;
-	_lose_flame = max(_lose_flame, 30);
+	_lose_flame  = max(_lose_flame, 30.0f);
 
 }
 
 void Tracker::Stun()
 {
-
+	_stun_flag = true;
 }

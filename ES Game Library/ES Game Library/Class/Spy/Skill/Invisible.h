@@ -8,10 +8,10 @@ class Invisible : public SkillBase
 public:
 
 	float Update();
-	void Draw();
+	void  Draw() {};
 
 private:
 	float _alpha;
-	bool _flag;
-	int _time;
+	bool  _flag;
+	int	  _time;
 };

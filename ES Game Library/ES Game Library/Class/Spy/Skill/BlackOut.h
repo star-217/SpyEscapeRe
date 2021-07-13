@@ -10,12 +10,10 @@ public:
 	virtual ~BlackOut() {};
 
 	float Update();
-	void Draw();
+	void  Draw();
 
 private:
-	SPRITE _black;
-
+	SPRITE  _black;
 	Vector3 _position;
-
-	float  _alpha;
+	float   _alpha;
 };

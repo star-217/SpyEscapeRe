@@ -213,7 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class\Base\Collision.h" />
-    <ClInclude Include="Class\Base\GameState.h" />
     <ClInclude Include="Class\Base\Move.h" />
     <ClInclude Include="Class\Decoy\DecoyBase.h" />
     <ClInclude Include="Class\Decoy\DecoyManager.h" />

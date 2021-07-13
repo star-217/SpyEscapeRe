@@ -20,11 +20,9 @@ public:
 			state = new Invisible; break;
 		default:
 			state = new NoSkill; break;
-			break;
 		}
 
 		return state;
-
 	};
 
 private:

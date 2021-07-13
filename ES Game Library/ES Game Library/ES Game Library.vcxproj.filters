@@ -511,9 +511,6 @@
     <ClInclude Include="Class\Base\Collision.h">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Base\GameState.h">
-      <Filter>ソース ファイル\Class\Base</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resource\DirectX.ico">

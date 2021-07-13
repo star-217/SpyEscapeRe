@@ -9,16 +9,21 @@ public:
 	DecoyManager();
 	virtual ~DecoyManager() {};
 
-	void Initialize(Vector3* positions);
+	void Initialize(std::vector<cstring>& ,Vector3* positions);
 	void Update(ThreatMap);
 	void Draw();
 	DecoyBase* GetBase() { return _decoy; }
 
 private:
-	DecoyBase _decoy[6];
+	enum
+	{
+		DECOY_MAX = 6
+	};
 
-	float _ratio[6];
+	DecoyBase _decoy[DECOY_MAX];
 
-	int _wait_count[6];
+	float _ratio[DECOY_MAX];
+
+	int _wait_count[DECOY_MAX];
 
 };

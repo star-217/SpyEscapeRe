@@ -8,14 +8,13 @@ public:
 	Map();
 	virtual ~Map() {}
 
-	void Initialize(std::vector<cstring>&);
+	std::vector<cstring> Initialize();
 	void Update();
 	void Draw();
 
 private:
-
 	std::vector<cstring> _map_data;
-	SPRITE _bg;
-	SPRITE _wallhide;
-	Color _color;
+	SPRITE               _bg;
+	SPRITE               _wallhide;
+	Color                _color;
 };

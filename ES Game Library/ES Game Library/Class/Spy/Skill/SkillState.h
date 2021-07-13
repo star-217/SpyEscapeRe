@@ -11,9 +11,9 @@ public:
 	virtual ~SkillState() {};
 
 	float  Update();
-	void  Draw();
-	void  RandomSkil();
-	void  ChangeState(SkillBase* state);
+	void   Draw();
+	void   RandomSkil();
+	void   ChangeState(SkillBase* state);
 
 private:
 	enum
@@ -23,10 +23,10 @@ private:
 		MAX
 	};
 
-	SkillBase* _state;
+	SkillBase*   _state;
 	SkillFactory _factory;
 
-	int _skil_box[MAX];
-	int _skil_count;
-	int _skil_count_max;
+	int          _skil_box[MAX];
+	int          _skil_count;
+	int          _skil_count_max;
 };

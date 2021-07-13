@@ -9,7 +9,7 @@
 class Spy
 {
 public:
-	Spy() {}
+	Spy();
 	virtual ~Spy() {}
 
 	void Initialize(const std::vector<cstring>, const Vector3);
@@ -37,7 +37,6 @@ private:
 
 	Rect _collision;
 
-
 	std::vector<cstring> _map_data;
 
 	enum
@@ -56,10 +55,7 @@ private:
 	int _speed;
 
 	float _animetion_flame;
-	float _animetion_flame_max;
 	float _win_flame;
 	float _lose_flame;
 	float _invisible_alpha;
-
-
 };

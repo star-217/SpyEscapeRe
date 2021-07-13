@@ -41,7 +41,7 @@ int resultScene::Update()
     // TODO: Add your update logic here
 	KeyboardBuffer keys = Keyboard->GetBuffer();
 	GamePadBuffer pad_2 = GamePad(1)->GetBuffer();
-	if (keys.IsPressed(Keys_Return)||pad_2.IsPressed(GamePad_Button10)) 
+	if (keys.IsPressed(Keys_Return)||pad_2.IsPressed(GamePad_Button10))
 	{
 		return GAME_SCENE(new titleScene);
 	}
@@ -64,7 +64,7 @@ void resultScene::Draw()
 	SpriteBatch.Draw(*owari, Vector3(0, 0, 0));
 
 	SpriteBatch.DrawString(original, Vector2(960, 0),
-		Color(0, 0, 255), _T("Žc‚è:%d"), GameMain::GetTime());
+		Color(0, 0, 255), _T("Žc‚è:%d"),1);
 
 
 

@@ -9,7 +9,7 @@ public:
 	~SkillBase() {};
 
 	virtual float Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Draw()    = 0;
 
 private:
 

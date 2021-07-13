@@ -9,44 +9,50 @@ public:
 	DecoyBase();
 	virtual ~DecoyBase() {};
 
-	void Initialize(Vector3 pos,float ratio,int count);
-	void Update(ThreatMap);
+	void Initialize(std::vector<cstring>&,Vector3 pos, float ratio, int count);
+	void Update(ThreatMap&);
 	void Draw();
-	void AIMap(ThreatMap);
+	void AIMap(ThreatMap&);
 	void Move();
 	void Animetion();
 	void FixDirection();
-	Rect GetCollision() { return _collision; }
+	Rect GetCollision() const { return _collision; }
 
 private:
-	enum
+	enum class Direction
 	{
-		UP,
-		DOWN,
-		RIGHT,
-		LEFT
+		None,
+		Down,
+		Left,
+		Right,
+		Up,
+		Max
 	};
+
 	FONT DefaultFont;
 
-	SPRITE _decoy;
-
-	Vector3 _decoy_pos;
-	const Vector3 _move_direction[4];
+	SPRITE        _decoy;
+	Vector3       _decoy_pos;
+	const Vector3 _move_direction[4];	// 4ï˚å¸Ç‘ÇÒ
 
 	Rect _collision;
-	int _speed;
-	int _direction;
-	int _old_pos_x[4];
-	int _old_pos_y[4];
+	int  _speed;
+	int  _direction;
+
+	enum { PREV_MAX = 4 };	// ëkÇÈï‡êî
+	int _old_pos_x[PREV_MAX];
+	int _old_pos_y[PREV_MAX];
+
 	int _stop_count;
 	int _move_count;
-	int _move_pattern;
+	Direction _move_pattern;
 
 	float _ratio;
+	float _ratio2;
 	float _flame;
 	float _animetion_flame;
 	float _fix_positon_y;
 
-	std::vector<float> _ai_data[18];
-
+	enum { MAP_MAX_HEIGHT = 18 };
+	std::vector<float> _ai_data[MAP_MAX_HEIGHT];
 };
