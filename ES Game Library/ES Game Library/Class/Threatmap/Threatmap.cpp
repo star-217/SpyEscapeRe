@@ -3,15 +3,16 @@
 void ThreatMap::Initialize(const std::vector<cstring>& data)
 {
 	_default_font = GraphicsDevice.CreateDefaultFont();
-	_map_data = data;
+	_map_data	  = data;
+	_prev_mx	  = 0;
+	_prev_my	  = 0;
+
 	for (int y = 0; y < 18; y++) {
 		for (int x = 0; x < _map_data[y].size(); x++) {
 			_threat_data_tracker[y].push_back(0);
 			_threat_data_spy[y].push_back(0);
 		}
 	}
-	_prev_mx = 0;
-	_prev_my = 0;
 
 }
 

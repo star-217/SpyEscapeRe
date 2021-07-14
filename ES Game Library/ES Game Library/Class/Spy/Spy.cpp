@@ -1,5 +1,10 @@
 #include "Spy.h"
 
+Spy() : 
+{
+
+}
+
 void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 {
 	_spy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
@@ -29,12 +34,12 @@ void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 
 Vector3 Spy::Update()
 {
-	KeyboardBuffer key = Keyboard->GetBuffer();
-	_spy_pos = _move.MovePostion(_spy_pos,_map_data, _speed,0);
-	_invisible_alpha = _skill.Update();
-	_direction = _move.GetDirection();
+	KeyboardBuffer key	= Keyboard->GetBuffer();
+	_spy_pos			= _move.MovePostion(_spy_pos,_map_data, _speed,0);
+	_invisible_alpha	= _skill.Update();
+	_direction			= _move.GetDirection();
 
-	_collision = Rect(_spy_pos.x, _spy_pos.y, _spy_pos.x + _chara_size_width, _spy_pos.y + _chara_size_height);
+	_collision			= Rect(_spy_pos.x, _spy_pos.y, _spy_pos.x + _chara_size_width, _spy_pos.y + _chara_size_height);
 
 	Animetion();
 
@@ -74,8 +79,8 @@ void Spy::Animetion()
 
 void Spy::WinAnimetion()
 {
-	float flame_speed = 0.8f;
-	int max_flame = 50;
+	float flame_speed	= 0.8f;
+	int max_flame		= 50;
 	_win_flame += flame_speed;
 	_win_flame = max(_win_flame, max_flame);
 
@@ -83,8 +88,8 @@ void Spy::WinAnimetion()
 
 void Spy::LoseAnimetion()
 {
-	float flame_speed = 0.8f;
-	int max_flame = 30;
+	float flame_speed	= 0.8f;
+	int max_flame		= 30;
 
 	_lose_flame += flame_speed;
 	_lose_flame = max(_lose_flame, max_flame);

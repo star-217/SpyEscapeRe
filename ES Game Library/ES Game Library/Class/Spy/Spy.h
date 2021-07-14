@@ -12,7 +12,7 @@ public:
 	Spy();
 	virtual ~Spy() {}
 
-	void Initialize(const std::vector<cstring>, const Vector3);
+	void Initialize(const std::vector<cstring>&, const Vector3);
 	Vector3 Update();
 	void Draw();
 	Rect GetCollision() { return _collision; }
