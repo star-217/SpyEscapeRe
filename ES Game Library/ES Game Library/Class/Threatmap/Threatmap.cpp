@@ -1,9 +1,9 @@
 #include "Threatmap.h"
 
-void ThreatMap::Initialize(const std::vector<cstring>& data)
+void ThreatMap::Initialize()
 {
 	_default_font = GraphicsDevice.CreateDefaultFont();
-	_map_data	  = data;
+	_map_data	  = Map::GetMapData();
 	_prev_mx	  = 0;
 	_prev_my	  = 0;
 

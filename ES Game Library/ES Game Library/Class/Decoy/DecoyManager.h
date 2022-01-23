@@ -12,7 +12,7 @@ public:
 	void Initialize(std::vector<cstring>& ,Vector3* positions);
 	void Update(ThreatMap);
 	void Draw();
-	DecoyBase* GetBase() { return _decoy; }
+	std::vector<DecoyBase*> GetBase() { return _decoy; }
 
 private:
 	enum
@@ -20,7 +20,7 @@ private:
 		DECOY_MAX = 6
 	};
 
-	DecoyBase _decoy[DECOY_MAX];
+	std::vector<DecoyBase*> _decoy;
 
 	float _ratio[DECOY_MAX];
 

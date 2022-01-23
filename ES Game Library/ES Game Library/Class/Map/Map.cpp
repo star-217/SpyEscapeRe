@@ -6,7 +6,7 @@ Map::Map() : _bg(nullptr), _wallhide(nullptr)
 {
 }
 
-std::vector<cstring> Map::Initialize()
+void Map::Initialize()
 {
 	_bg       = GraphicsDevice.CreateSpriteFromFile(_T("deza.png"));
 	_wallhide = GraphicsDevice.CreateSpriteFromFile(_T("ton.png"));
@@ -23,29 +23,28 @@ std::vector<cstring> Map::Initialize()
 		_map_data.push_back(line_buffer);
 	}
 
-	return _map_data;
-}
-
-void Map::Update()
-{
 }
 
 void Map::Draw()
 {
+
 	for (int y = 0; y < _map_data.size(); ++y) {
 		for (int x = 0; x < _map_data[y].size(); ++x) {
+			Vector3 bg_pos = Vector3(x * BLOCK_SIZE, y * BLOCK_SIZE, 0);
+			Vector3 hide_bg_pos = Vector3(x * BLOCK_SIZE, y * BLOCK_SIZE, -1);
+
 			switch (_map_data[y][x]) {
 			case '#':
-				SpriteBatch.Draw(*_bg,		 Vector3(x * 50, y * 50,  0), RectWH(  0, 150, 50, 50), _color);
+				SpriteBatch.Draw(*_bg, bg_pos, WALL_RECT, _color);
 				break;
 			case '$':
-				SpriteBatch.Draw(*_bg,		 Vector3(x * 50, y * 50,  0), RectWH(100, 700, 50, 50), _color);
+				SpriteBatch.Draw(*_bg, bg_pos, DEST_RECT, _color);
 				break;
 			case '%':
-				SpriteBatch.Draw(*_wallhide, Vector3(x * 50, y * 50, -1), RectWH(  0,   0, 50, 50), _color);
+				SpriteBatch.Draw(*_wallhide, hide_bg_pos, HIDE_BLOCK_RECT, _color);
 				break;
 			default:
-				SpriteBatch.Draw(*_bg,		 Vector3(x * 50, y * 50,  0), RectWH(  0,  50, 50, 50), _color);
+				SpriteBatch.Draw(*_bg, bg_pos, FLOOR_RECT, _color);
 				break;
 			}
 		}

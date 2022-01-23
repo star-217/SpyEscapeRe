@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../ESGLib.h"
+#include "../Map/Map.h"
 
 class ThreatMap
 {
@@ -8,7 +9,7 @@ public:
 	ThreatMap();
 	virtual ~ThreatMap();
 
-	void Initialize(const std::vector<cstring>&);
+	void Initialize();
 	void Update(Vector3 positon,std::string tag);
 	void CreateThreatMap(Vector3,std::vector<float>*);
 	std::vector<float>* GetSpyData() { return _threat_data_spy; }

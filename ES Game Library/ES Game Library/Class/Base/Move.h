@@ -37,4 +37,6 @@ private:
 	Direction _pad_direction;
 	int       _count;
 	Direction _direction;
+
+	const int MAXBLOCKCOUNT = 50;
 };

@@ -1,10 +1,5 @@
 #include "Spy.h"
 
-Spy() : 
-{
-
-}
-
 void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 {
 	_spy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
@@ -13,14 +8,10 @@ void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 	_lose = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
 
 	_spy_pos = pos;
-	_map_data = data;
+	_map_data = Map::GetMapData();
 
 	_direction = 0;
 	_player_count = 0;
-	_chara_size_width = 50;
-	_chara_size_height = 70;
-	_fix_pos_y = 20;
-	_speed = 5;
 
 	_animetion_flame = 0;
 	_win_flame = 0;
@@ -32,12 +23,12 @@ void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 
 }
 
-Vector3 Spy::Update()
+void Spy::Update()
 {
 	KeyboardBuffer key	= Keyboard->GetBuffer();
 	_spy_pos			= _move.MovePostion(_spy_pos,_map_data, _speed,0);
 	_invisible_alpha	= _skill.Update();
-	_direction			= _move.GetDirection();
+	_direction			= (int)_move.GetDirection();
 
 	_collision			= Rect(_spy_pos.x, _spy_pos.y, _spy_pos.x + _chara_size_width, _spy_pos.y + _chara_size_height);
 
@@ -47,7 +38,6 @@ Vector3 Spy::Update()
 		_skill.RandomSkil();
 	}
 
-	return _spy_pos;
 }
 
 void Spy::Draw()
@@ -72,15 +62,17 @@ void Spy::Draw()
 
 void Spy::Animetion()
 {
-	int animetion_flame_max = 40;
+	const int animetion_flame_max = 40;
+
 	_animetion_flame = int(_animetion_flame + 1) % animetion_flame_max;
 }
 
 
 void Spy::WinAnimetion()
 {
-	float flame_speed	= 0.8f;
-	int max_flame		= 50;
+	const float flame_speed	= 0.8f;
+	const int max_flame		= 50;
+
 	_win_flame += flame_speed;
 	_win_flame = max(_win_flame, max_flame);
 
@@ -88,8 +80,8 @@ void Spy::WinAnimetion()
 
 void Spy::LoseAnimetion()
 {
-	float flame_speed	= 0.8f;
-	int max_flame		= 30;
+	const float flame_speed	= 0.8f;
+	const int max_flame		= 30;
 
 	_lose_flame += flame_speed;
 	_lose_flame = max(_lose_flame, max_flame);

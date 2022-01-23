@@ -5,6 +5,7 @@
 #include "../Controller/Controller.h"
 #include "../Base/Move.h"
 #include "../Base/GameState.h"
+#include "../Map/Map.h"
 
 class Spy
 {
@@ -13,9 +14,10 @@ public:
 	virtual ~Spy() {}
 
 	void Initialize(const std::vector<cstring>&, const Vector3);
-	Vector3 Update();
+	void Update();
 	void Draw();
 	Rect GetCollision() { return _collision; }
+	Vector3 GetPostiion() { return _spy_pos; }
 	void AttackHit();
 
 private:
@@ -46,13 +48,14 @@ private:
 		LOSE
 	};
 
+	const int _chara_size_width = 50.0f;
+	const int _chara_size_height = 70.0f;
+	const int _fix_pos_y  = 20.0f;
+	const int _speed = 5.0f;
+
 	int _state;
 	int _direction;
-	int _chara_size_width;
-	int _chara_size_height;
-	int _fix_pos_y;
 	int _player_count;
-	int _speed;
 
 	float _animetion_flame;
 	float _win_flame;

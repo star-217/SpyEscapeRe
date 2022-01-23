@@ -64,7 +64,7 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 		_direction = Direction::Right;
 		pos.x     += speed;
 		_count    += speed;
-		if (_count >= 50) {
+		if (_count >= MAXBLOCKCOUNT) {
 			_pad_direction = Direction::None;
 		}
 		break;
@@ -73,7 +73,7 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 		_direction = Direction::Left;
 		pos.x     -= speed;
 		_count    += speed;
-		if (_count >= 50) {
+		if (_count >= MAXBLOCKCOUNT) {
 			_pad_direction = Direction::None;
 		}
 		break;
@@ -82,7 +82,7 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 		_direction = Direction::Down;
 		pos.y     += speed;
 		_count    += speed;
-		if (_count >= 50) {
+		if (_count >= MAXBLOCKCOUNT) {
 			_pad_direction = Direction::None;
 		}
 		break;
@@ -91,7 +91,7 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 		_direction = Direction::Up;
 		pos.y     -= speed;
 		_count    += speed;
-		if (_count >= 50) {
+		if (_count >= MAXBLOCKCOUNT) {
 			_pad_direction = Direction::None;
 		}
 		break;

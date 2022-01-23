@@ -2,18 +2,21 @@
 
 #include "../../ESGLib.h"
 
-class LoadSound
+class SoundResource
 {
 public:
 	void Initialize();
-	MEDIA* GetBGM() { return _bgm; }
+	MEDIA& GetBGM(std::string name) { return _bgm[name]; }
 
-	enum
+	static SoundResource& GetInstance()
 	{
-		MAIN, SKILSE, LIMIT, MAX
-	};
+		static SoundResource sound;
+		return sound;
+	}
 
 private:
-	MEDIA _bgm[MAX];
+	std::map<std::string, MEDIA> _bgm;
 	SOUND _se;
 };
+
+#define SEResource SoundResource::GetInstance();
