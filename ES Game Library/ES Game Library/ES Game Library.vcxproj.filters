@@ -256,10 +256,7 @@
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <Filter>ソース ファイル\拡張\Direct2D</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Base\Move.cpp">
-      <Filter>ソース ファイル\Class\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Class\Decoy\DecoyBase.cpp">
+    <ClCompile Include="Class\Decoy\Decoy.cpp">
       <Filter>ソース ファイル\Class\Decoy</Filter>
     </ClCompile>
     <ClCompile Include="Class\Decoy\DecoyManager.cpp">
@@ -298,7 +295,13 @@
     <ClCompile Include="Class\Spy\Skill\Invisible.cpp">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Base\Collision.cpp">
+    <ClCompile Include="Class\Base\HumanBase\HumanBase.cpp">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Base\Collision\Collision.cpp">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Base\Move\Move.cpp">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClCompile>
   </ItemGroup>
@@ -448,10 +451,7 @@
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp">
       <Filter>ヘッダー ファイル\拡張\Direct2D</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Base\Move.h">
-      <Filter>ソース ファイル\Class\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Class\Decoy\DecoyBase.h">
+    <ClInclude Include="Class\Decoy\Decoy.h">
       <Filter>ソース ファイル\Class\Decoy</Filter>
     </ClInclude>
     <ClInclude Include="Class\Decoy\DecoyManager.h">
@@ -499,13 +499,19 @@
     <ClInclude Include="Class\Spy\Skill\SkillFactory.h">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Base\Collision.h">
-      <Filter>ソース ファイル\Class\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Class\Base\ConstantList.h">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
     <ClInclude Include="Class\Base\FontData.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\HumanBase\HumanBase.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\Collision\Collision.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\Move\Move.h">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
   </ItemGroup>

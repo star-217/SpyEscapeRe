@@ -8,7 +8,7 @@
 #include "Class/Sound/Sound.h"
 #include "Class/Threatmap/Threatmap.h"
 #include "Class/Decoy/DecoyManager.h"
-#include "Class/Base/Collision.h"
+#include "Class/Base/Collision/Collision.h"
 
 class GameMain : public CGameScene {
 public:
@@ -62,13 +62,13 @@ private:
 
 private:
 	// •Ï”éŒ¾
-	Tracker   _track;
-	Spy       _spy;
-	Map       _map;
-	SoundResource _sound;
-	ThreatMap _threatmap;
-	DecoyManager _decoy;
-	Collision _collision;
+	Tracker*   _tracker;
+	Spy*       _spy;
+	Map*       _map;
+	SoundResource* _sound;
+	ThreatMap* _threatmap;
+	DecoyManager* _decoy;
+	Collision* _collision;
 
 	Vector3 _spy_pos;
 	Vector3 _tracker_pos;

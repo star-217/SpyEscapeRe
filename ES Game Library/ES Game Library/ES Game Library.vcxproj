@@ -112,9 +112,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Class\Base\Collision.cpp" />
-    <ClCompile Include="Class\Base\Move.cpp" />
-    <ClCompile Include="Class\Decoy\DecoyBase.cpp" />
+    <ClCompile Include="Class\Base\Collision\Collision.cpp" />
+    <ClCompile Include="Class\Base\HumanBase\HumanBase.cpp" />
+    <ClCompile Include="Class\Base\Move\Move.cpp" />
+    <ClCompile Include="Class\Decoy\Decoy.cpp" />
     <ClCompile Include="Class\Decoy\DecoyManager.cpp" />
     <ClCompile Include="Class\Map\Map.cpp" />
     <ClCompile Include="Class\Spy\Skill\BlackOut.cpp" />
@@ -211,11 +212,12 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Class\Base\Collision.h" />
+    <ClInclude Include="Class\Base\Collision\Collision.h" />
     <ClInclude Include="Class\Base\ConstantList.h" />
     <ClInclude Include="Class\Base\FontData.h" />
-    <ClInclude Include="Class\Base\Move.h" />
-    <ClInclude Include="Class\Decoy\DecoyBase.h" />
+    <ClInclude Include="Class\Base\HumanBase\HumanBase.h" />
+    <ClInclude Include="Class\Base\Move\Move.h" />
+    <ClInclude Include="Class\Decoy\Decoy.h" />
     <ClInclude Include="Class\Decoy\DecoyManager.h" />
     <ClInclude Include="Class\Map\Map.h" />
     <ClInclude Include="Class\Spy\Skill\BlackOut.h" />

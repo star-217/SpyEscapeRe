@@ -18,7 +18,7 @@ void DecoyManager::Initialize(std::vector<cstring>& map_data,Vector3* positions)
 {
 	for (int i = 0; i < 6; i++)
 	{
-		_decoy.push_back(new DecoyBase);
+		_decoy.push_back(new Decoy);
 		_decoy[i]->SetPriorityRatio(_ratio[i]);
 		_decoy[i]->SetWaitCount(_wait_count[i]);
 	}

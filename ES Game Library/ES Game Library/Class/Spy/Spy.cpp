@@ -1,13 +1,11 @@
 #include "Spy.h"
 
-void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
+void Spy::Initialize()
 {
 	_spy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
-	_attack = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
 	_win = GraphicsDevice.CreateSpriteFromFile(_T("playerwin.png"));
 	_lose = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
 
-	_spy_pos = pos;
 	_map_data = Map::GetMapData();
 
 	_direction = 0;
@@ -16,7 +14,6 @@ void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 	_animetion_flame = 0;
 	_win_flame = 0;
 	_lose_flame = 0;
-
 
 	_invisible_alpha = 1.0f;
 	_move.Initialize();
@@ -88,7 +85,7 @@ void Spy::LoseAnimetion()
 
 }
 
-void Spy::AttackHit()
+void Spy::OnCollisionEnter(std::string tag)
 {
 	_state = LOSE;
 }

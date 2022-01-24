@@ -1,21 +1,14 @@
-#include "DecoyBase.h"
+#include "Decoy.h"
 
-DecoyBase::DecoyBase()  : _old_pos_x {}, _old_pos_y {}
+Decoy::Decoy()  : _old_pos_x {}, _old_pos_y {}
 {
 }
 
-void DecoyBase::Initialize(Vector3 pos)
+void Decoy::Initialize()
 {
 
 	DefaultFont = GraphicsDevice.CreateDefaultFont();
 	_decoy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
-
-	auto map_data = Map::GetMapData();
-	for (int y = 0; y < map_data.size(); ++y) {
-		for (int x = 0; x < map_data[y].size(); ++x) {
-			_ai_data[y].push_back(0);
-		}
-	}
 
 	_decoy_pos = pos;
 	_animetion_flame = 0;
@@ -26,43 +19,26 @@ void DecoyBase::Initialize(Vector3 pos)
 
 }
 
-void DecoyBase::Update(ThreatMap& map)
+void Decoy::Update()
 {
+	constexpr float block_size = 50.0f;
+	//_threatmap;
+	
+	if (_move_count >= block_size) {
+		_threat_data = _threatmap.CreateTheatData(_ratio);
+	}
 
-
-	AIMap(map);
 	Move();
 	_collision = Rect(_decoy_pos.x, _decoy_pos.y, _decoy_pos.x + CHARA_SIZE.x, _decoy_pos.y + CHARA_SIZE.y);
 	Animetion();
 
 }
 
-void DecoyBase::Draw()
+void Decoy::Draw()
 {
 
 	SpriteBatch.Draw(*_decoy,Vector3(_decoy_pos.x, _decoy_pos.y - _fix_positon_y, _decoy_pos.z),
 					RectWH(CHARA_SIZE.x * _animetion_flame, CHARA_SIZE.y * _direction, CHARA_SIZE.x, CHARA_SIZE.y));
-
-}
-
-
-void DecoyBase::AIMap(ThreatMap& threatmap)
-{
-	float block_size = 50.0f;
-	int data_size = 18;
-
-	if (_move_count >= block_size) {
-		auto spy_data = threatmap.GetSpyData();
-		auto tracker_data = threatmap.GetTrackerData();
-		for (int y = 0; y < data_size; y++) {
-			for (int x = 0; x < spy_data[y].size(); x++) {
-				_ai_data[y][x] = spy_data[y][x] * _ratio + tracker_data[y][x] * _ratio2;
-				for (int i = PREV_MAX - 1 ; i > 0; i--) {
-					_ai_data[_old_pos_y[i]][_old_pos_x[i]] = 0;//直前に通った場所にいかないようにするため
-				}
-			}
-		}
-	}
 
 }
 
@@ -72,9 +48,9 @@ void DecoyBase::AIMap(ThreatMap& threatmap)
  * @sa 参照すべき関数を書けばリンクが貼れる
  * @detail 一ブロック動くたびに脅威マップをもとに数値が大きいほうに移動するようにしたプログラムです。
  */
-void DecoyBase::Move()
+void Decoy::Move()
 {
-	float block_size = 50.0f;
+	constexpr float block_size = 50.0f;
 	if (_move_count >= block_size) {
 		//キャラの場所のブロック分け
 		const int mx = (int)(_decoy_pos.x / block_size);
@@ -83,20 +59,20 @@ void DecoyBase::Move()
 		//
 		float max = 0;
 		_move_pattern = Direction::None;
-		if (_ai_data[my - 1][mx] > max) {
-			max = _ai_data[my - 1][mx];
+		if (_threat_data[my - 1][mx] > max) {
+			max = _threat_data[my - 1][mx];
 			_move_pattern = Direction::Up;
 		}
-		if (_ai_data[my + 1][mx] > max) {
-			max = _ai_data[my + 1][mx];
+		if (_threat_data[my + 1][mx] > max) {
+			max = _threat_data[my + 1][mx];
 			_move_pattern = Direction::Down;
 		}
-		if (_ai_data[my][mx + 1] > max) {
-			max = _ai_data[my][mx + 1];
+		if (_threat_data[my][mx + 1] > max) {
+			max = _threat_data[my][mx + 1];
 			_move_pattern = Direction::Right;
 		}
-		if (_ai_data[my][mx - 1] > max) {
-			max = _ai_data[my][mx - 1];
+		if (_threat_data[my][mx - 1] > max) {
+			max = _threat_data[my][mx - 1];
 			_move_pattern = Direction::Left;
 		}
 
@@ -118,12 +94,12 @@ void DecoyBase::Move()
 	_move_count += SPEED;
 }
 
-void DecoyBase::Animetion()
+void Decoy::Animetion()
 {
-	const int max_flame = 40;
+	constexpr int max_flame = 40;
 
 	_flame--;
-	_animetion_flame += 1.0f;
+	_animetion_flame++;
 	_animetion_flame = (int)_animetion_flame % max_flame;
 }
 
@@ -131,7 +107,7 @@ void DecoyBase::Animetion()
  * @fn
  * キャラクターの画像と動きのパターンに違いがあるため修正するためのプログラムです。
  */
-void DecoyBase::FixDirection()
+void Decoy::FixDirection()
 {
 	switch (_move_pattern)
 	{

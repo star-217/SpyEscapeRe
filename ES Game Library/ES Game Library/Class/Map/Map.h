@@ -16,10 +16,16 @@ public:
 
 	void Initialize();
 	void Draw();
-	static std::vector<cstring>& GetMapData() { return _map_data; }
+	std::vector<cstring>& GetMapData() { return _map_data; }
+
+	static Map& GetInstance()
+	{
+		static Map map;
+		return map;
+	}
 
 private:
-	static std::vector<cstring> _map_data;
+	std::vector<cstring> _map_data;
 
 	SPRITE               _bg;
 	SPRITE               _wallhide;

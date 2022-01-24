@@ -7,7 +7,7 @@
 #pragma once
 
 #include "../../ESGLib.h"
-#include "DecoyBase.h"
+#include "Decoy.h"
 
 class DecoyManager
 {
@@ -18,7 +18,7 @@ public:
 	void Initialize(std::vector<cstring>& ,Vector3* positions);
 	void Update(ThreatMap&);
 	void Draw();
-	std::vector<DecoyBase*> GetBase() { return _decoy; }
+	std::vector<Decoy*> GetBase() { return _decoy; }
 
 private:
 	enum
@@ -26,7 +26,7 @@ private:
 		DECOY_MAX = 6
 	};
 
-	std::vector<DecoyBase*> _decoy;
+	std::vector<Decoy*> _decoy;
 
 	float _ratio[DECOY_MAX];
 

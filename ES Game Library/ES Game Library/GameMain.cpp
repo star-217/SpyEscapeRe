@@ -87,13 +87,26 @@ bool GameMain::Initialize()
 		_fake_pos[4] = start_Pos[5];
 		_fake_pos[5] = start_Pos[2];
 	}
+	_map = new Map();
+	_spy = new Spy();
+	_tracker = new Tracker();
+	_sound = new SoundResource();
+	_threatmap = new ThreatMap();
+	_decoy = new DecoyManager();
+	_collision = new Collision();
 
-	_map.Initialize();
-	_track.Initialize(_map_data);
-	_sound.Initialize();
-	_spy.Initialize(_map_data, _spy_pos);
-	_threatmap.Initialize(_map_data);
-	_decoy.Initialize(_map_data,_fake_pos);
+	_map->Initialize();
+	_tracker->Initialize();
+	_sound->Initialize();
+	_spy->Initialize();
+	_threatmap->Initialize();
+	_decoy->Initialize(_map_data,_fake_pos);
+
+	_collision->AddListener("SPY", _spy);
+	_collision->AddListener("TRACKER", _tracker);
+	for (int i = 0; i < _decoy->GetBase().size(); i++) {
+		_collision->AddListener("DECOY", _decoy->GetBase()[i]);
+	}
 
 	return true;
 }
@@ -113,13 +126,14 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 
-	_spy.Update();
-	_spy_pos = _spy.GetPostiion();
-	_tracker_pos = _track.Update();
-	_threatmap.Update(_tracker_pos, "TRACKER");
-	_threatmap.Update(_spy_pos, "SPY");
-	_decoy.Update(_threatmap);
-	_collision.Update(_spy, _track, _decoy);
+	_spy->Update();
+	_spy->GetPostiion();
+	_tracker->Update();
+	_threatmap->Update(_tracker_pos, "TRACKER");
+	_threatmap->Update(_spy_pos, "SPY");
+	_decoy->Update();
+	_collision->CheckCollision("SPY","TRACKER");
+	_collision->CheckCollision("DECOY", "TRACKER");
 
 	return 0;
 }
@@ -138,10 +152,10 @@ void GameMain::Draw()
 	GraphicsDevice.Clear(Color_CornflowerBlue);
 	GraphicsDevice.BeginScene();
 	SpriteBatch.Begin();
-	_map.Draw();
-	_track.Draw();
-	_spy.Draw();
-	_decoy.Draw();
+	_map->Draw();
+	_tracker->Draw();
+	_spy->Draw();
+	_decoy->Draw();
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();

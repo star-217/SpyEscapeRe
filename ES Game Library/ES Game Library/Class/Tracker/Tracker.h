@@ -7,22 +7,27 @@
 #pragma once
 
 #include "../../ESGLib.h"
-#include "../Controller/Controller.h"
-#include "../Base/Move.h"
+#include "../Base/Move/Move.h"
+#include "../Base/ConstantList.h"
 #include "../Base/GameState.h"
+#include "../Base/HumanBase/HumanBase.h"
+#include "../Map/Map.h"
 
-class Tracker
+class Tracker : public HumanBase
 {
 public:
 	Tracker();
 	~Tracker() {};
 
-	bool Initialize(std::vector<cstring>&);
-	Vector3 Update();
+	void Initialize();
+	void Update();
 	void Draw();
-	void Stun();
 	void Attack();
+	void OnCollisionEnter(std::string tag) override;
+
+	Vector3 GetPosition() { return _tracker_pos; }
 	Rect GetCollision() { return _collision; }
+
 private:
 
 	void StunTime();

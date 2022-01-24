@@ -16,9 +16,9 @@ Tracker::Tracker() :_tracker(nullptr),_tracker_win(nullptr),_tracker_lose(nullpt
 }
 
 
-bool Tracker::Initialize(std::vector<cstring>& data)
+void Tracker::Initialize()
 {
-	_map_data        = data;
+	_map_data        = Map::GetMapData();
 	_tracker		 = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
 	_tracker_win     = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
 	_tracker_lose	 = GraphicsDevice.CreateSpriteFromFile(_T("onilose.png"));
@@ -41,10 +41,9 @@ bool Tracker::Initialize(std::vector<cstring>& data)
 
 	_move.Initialize();
 
-	return false;
 }
 
-Vector3 Tracker::Update()
+void Tracker::Update()
 {
 	KeyboardBuffer key = Keyboard->GetBuffer();
 	_tracker_pos = _move.MovePostion(_tracker_pos,_map_data,_tracker_spd,1);
@@ -74,7 +73,6 @@ Vector3 Tracker::Update()
 		break;
 	}
 
-	return _tracker_pos;
 }
 
 void Tracker::Draw()
@@ -163,12 +161,12 @@ void Tracker::AttackAnimetion()
 	}
 }
 
-void Tracker::Stun()
-{
-	_stun_flag = true;
-}
-
 void Tracker::Attack()
 {
 	_collision = Rect(_tracker_pos.x, _tracker_pos.y, _tracker_pos.x + CHARA_SIZE_X, _tracker_pos.y + CHARA_SIZE_Y);
+}
+
+void Tracker::OnCollisionEnter(std::string tag)
+{
+	_stun_flag = true;
 }

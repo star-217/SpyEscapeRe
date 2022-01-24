@@ -2,23 +2,24 @@
 
 #include "../../ESGLib.h"
 #include "Skill/SkillState.h"
-#include "../Controller/Controller.h"
-#include "../Base/Move.h"
+#include "../Base/Move/Move.h"
 #include "../Base/GameState.h"
 #include "../Map/Map.h"
+#include "../Base/HumanBase/HumanBase.h"
 
-class Spy
+class Spy : public HumanBase
 {
 public:
 	Spy();
 	virtual ~Spy() {}
 
-	void Initialize(const std::vector<cstring>&, const Vector3);
-	void Update();
-	void Draw();
-	Rect GetCollision() { return _collision; }
+	void SetStartPos(Vector3& pos) { _spy_pos = pos; }
+	void Initialize() override;
+	void Update() override;
+	void Draw() override;
+
 	Vector3 GetPostiion() { return _spy_pos; }
-	void AttackHit();
+	void OnCollisionEnter(std::string tag) override;
 
 private:
 
@@ -30,14 +31,12 @@ private:
 	SkillState _skill;
 
 	SPRITE _spy;
-	SPRITE _attack;
 	SPRITE _win;
 	SPRITE _lose;
 
 	Vector3 _spy_pos;
 	Vector3 _draw_spy_pos;
 
-	Rect _collision;
 
 	std::vector<cstring> _map_data;
 

@@ -3,32 +3,29 @@
 #include "../../ESGLib.h"
 #include "../Threatmap/Threatmap.h"
 #include "../Map/Map.h"
+#include "../Base/HumanBase/HumanBase.h"
 
-class DecoyBase
+class Decoy : public HumanBase
 {
 public:
-	DecoyBase();
-	virtual ~DecoyBase() {};
+	Decoy();
+	virtual ~Decoy() {};
 
-	void Initialize(Vector3 pos);
-	void Update(ThreatMap&);
-	void Draw();
+	void Initialize() override;
+	void Update() override;
+	void Draw() override;
 	void Move();
+	void OnCollisionEnter(std::string tag) override {};
 
+	void SetDecoyPos(Vector3 pos) { _decoy_pos = pos; }
 	void SetWaitCount(int& wait_count) { _wait_count = wait_count; }
-	void SetPriorityRatio(float& ratio)
-	{
-		_ratio = ratio;
-		_ratio2 = 1.0f - _ratio;
-	}
+	void SetPriorityRatio(float& ratio) { _ratio = ratio; }
 
-	Rect GetCollision() const { return _collision; }
 
 private:
 
 	void FixDirection();
 	void Animetion();
-	void AIMap(ThreatMap&);
 
 	enum class Direction
 	{
@@ -39,6 +36,7 @@ private:
 		Up,
 		Max
 	};
+	ThreatMap _threatmap;
 
 	const Vector2 CHARA_SIZE = Vector2(50, 70);
 	const int  SPEED = 5;
@@ -50,8 +48,6 @@ private:
 		 Vector3_Left
 	};	// 4ï˚å¸Ç‘ÇÒ
 
-	FONT DefaultFont;
-
 	SPRITE        _decoy;
 	Vector3       _decoy_pos;
 
@@ -60,19 +56,20 @@ private:
 	Rect _collision;
 	int  _direction;
 
-	enum { PREV_MAX = 4 };	// ëkÇÈï‡êî
-	int _old_pos_x[PREV_MAX];
-	int _old_pos_y[PREV_MAX];
-
 	int _wait_count;
 	int _move_count;
 
 	float _ratio;
-	float _ratio2;
+
 	float _flame;
 	float _animetion_flame;
 	float _fix_positon_y;
 
-	enum { MAP_MAX_HEIGHT = 18 };
-	std::vector<float> _ai_data[MAP_MAX_HEIGHT];
+	enum { PREV_MAX = 4 };	// ëkÇÈï‡êî
+	int _old_pos_x[PREV_MAX];
+	int _old_pos_y[PREV_MAX];
+
+	std::vector<float>* _threat_data;
+
+	FONT DefaultFont;
 };
