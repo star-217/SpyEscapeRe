@@ -1,4 +1,14 @@
+/**
+ * @file  SkillState.cpp
+ * @brief Spyのスキルのランダム化とStateパターンでのスキルの切り替えプログラム
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #include "SkillState.h"
+
+#include <numeric>
+#include <algorithm>
+#include <random>
 
 SkillState::SkillState() :
 	_skil_box{},
@@ -6,11 +16,15 @@ SkillState::SkillState() :
 	_state(new NoSkill),
 	_skil_count_max(1)
 {
+	std::iota(std::begin(_skil_box), std::end(_skil_box), 0);
+
+	std::random_device seed_gen;
+	std::mt19937 engine(seed_gen());
+	std::shuffle(std::begin(_skil_box), std::end(_skil_box), engine);
 }
 
 float SkillState::Update()
 {
-	_state->Update();
 	return _state->Update();
 }
 
@@ -20,25 +34,14 @@ void SkillState::Draw()
 }
 
 /**
- * @fn
- * プレイヤーのスキルをランダムで使うプログラム一度使ったスキルは使えない
- * @detail ランダム関数で０～MAXまでの好きな値を取得して使用しているかチェックして
- * 使用されてた場合もう一度ランダムを繰り返すようになっている
+ * @detail コンストラクタ配列の中身をシャッフルして
+ *		   先頭からスキルを出すようにする。
  */
 void SkillState::RandomSkil()
 {
-	auto random_count = MathHelper_Random(0, _skil_count_max);
-	for (int i = 0; i < MAX; i++) {
-		if (_skil_box[i] == random_count)
-		{
-			random_count = MathHelper_Random(0, _skil_count_max);
-			i = 0;
-		}
-	}
-	_skil_box[_skil_count] = random_count;
-	_skil_count++;
 
-	ChangeState(_factory.Create(random_count));
+	ChangeState(_factory.Create(_skil_box[_skil_count]));
+	_skil_count++;
 }
 
 void SkillState::ChangeState(SkillBase* state)

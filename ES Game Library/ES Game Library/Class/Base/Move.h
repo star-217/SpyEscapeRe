@@ -1,20 +1,18 @@
+/**
+ * @file  Move.h
+ * @brief Move.cppのヘッダーファイル
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../ESGLib.h"
 #include "../Controller/Controller.h"
+#include "ConstantList.h"
 
 class Move
 {
 public:
-	enum class Direction
-	{
-		None,
-		Down,
-		Left,
-		Right,
-		Up,
-		Max
-	};
 
 	Move() = default;
 	virtual ~Move() {}
@@ -24,16 +22,7 @@ public:
 	Direction GetDirection() const { return _direction; }
 
 private:
-	enum class Direction
-	{
-		None,
-		Down,
-		Left,
-		Right,
-		Up
-	};
 
-	int       _block_size;
 	Direction _pad_direction;
 	int       _count;
 	Direction _direction;

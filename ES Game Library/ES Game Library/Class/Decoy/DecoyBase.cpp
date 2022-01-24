@@ -1,14 +1,21 @@
+/**
+ * @file  DecoyBase.cpp
+ * @brief デコイのAIプログラム
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #include "DecoyBase.h"
 
-DecoyBase::DecoyBase()  : _move_direction{ -Vector3_Up, -Vector3_Down,Vector3_Right,Vector3_Left },
-						  _old_pos_x {}, _old_pos_y {}
+DecoyBase::DecoyBase() :_move_direction{ -Vector3_Up, -Vector3_Down,Vector3_Right,Vector3_Left },
+						_old_pos_x {0,0,0,0}, _old_pos_y {0,0,0,0}, _speed(0),_direction(0),
+						_animetion_flame(0),_decoy(nullptr),_move_count(0),_ratio(0.0f),_ratio2(0.0f),
+						_flame(0.0f),_fix_positon_y(0.0f),_move_pattern(Direction::None)
 {
 }
 
 void DecoyBase::Initialize(std::vector<cstring>& map_data,Vector3 pos,float ratio,int count)
 {
 
-	DefaultFont = GraphicsDevice.CreateDefaultFont();
 	_decoy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
 
 	for (int y = 0; y < map_data.size(); ++y) {
@@ -17,48 +24,47 @@ void DecoyBase::Initialize(std::vector<cstring>& map_data,Vector3 pos,float rati
 		}
 	}
 
-	_stop_count = count;
-	_ratio = ratio;
-	_ratio2 = 1.0f - _ratio;
-	_decoy_pos = pos;
-	_speed = 5;
+	_move_pattern	 = Direction::None;
+	_ratio			 = ratio;
+	_ratio2			 = 1.0f - _ratio;
+	_decoy_pos		 = pos;
+	_speed			 = 5;
 	_animetion_flame = 0;
-	_direction = 0;
-	_move_count = 50;
-	_flame = 3600;
-	_fix_positon_y = 20;
+	_direction		 = 0;
+	_flame			 = 3600;
+	_fix_positon_y	 = 20;
 
 }
 
 void DecoyBase::Update(ThreatMap& map)
 {
-	Vector2 chara_size = Vector2(50, 70);
 
 	AIMap(map);
 	Move();
-	_collision = Rect(_decoy_pos.x, _decoy_pos.y, _decoy_pos.x + chara_size.x, _decoy_pos.y + chara_size.y);
+	_collision = Rect(_decoy_pos.x, _decoy_pos.y, _decoy_pos.x + CHARA_SIZE_X, _decoy_pos.y + CHARA_SIZE_Y);
 	Animetion();
 
 }
 
 void DecoyBase::Draw()
 {
-	Vector2 chara_size = Vector2(50, 70);
 	SpriteBatch.Draw(*_decoy,Vector3(_decoy_pos.x, _decoy_pos.y - _fix_positon_y, _decoy_pos.z),
-					RectWH(chara_size.x * _animetion_flame, chara_size.y * _direction,chara_size.x,chara_size.y));
-
+					RectWH(CHARA_SIZE_X * _animetion_flame, CHARA_SIZE_Y * _direction, CHARA_SIZE_X, CHARA_SIZE_Y));
 }
 
-
+/**
+ * @fn
+ * デコイのAIの脅威マップ作成プログラムです。
+ * @param (threatmap) spyとtrackerの距離データを生成しているクラスです
+ * @detail spyとtrackerへの距離データをもとにブロックごとの脅威値を生成するプログラムです。
+ * _ratioに応じてspyとの距離が変わります。_old_posの配列分前に通った場所を通らなくなります。
+ */
 void DecoyBase::AIMap(ThreatMap& threatmap)
 {
-	float block_size = 50.0f;
-	int data_size = 18;
-
-	if (_move_count >= block_size) {
+	if (_move_count >= BLOCK_SIZE) {
 		auto spy_data = threatmap.GetSpyData();
 		auto tracker_data = threatmap.GetTrackerData();
-		for (int y = 0; y < data_size; y++) {
+		for (int y = 0; y < MAP_MAX_HEIGHT; y++) {
 			for (int x = 0; x < spy_data[y].size(); x++) {
 				_ai_data[y][x] = spy_data[y][x] * _ratio + tracker_data[y][x] * _ratio2;
 				for (int i = PREV_MAX - 1 ; i > 0; i--) {
@@ -73,7 +79,6 @@ void DecoyBase::AIMap(ThreatMap& threatmap)
 /**
  * @fn
  * デコイの移動プログラムです。
- * @sa 参照すべき関数を書けばリンクが貼れる
  * @detail 一ブロック動くたびに脅威マップをもとに数値が大きいほうに移動するようにしたプログラムです。
  */
 void DecoyBase::Move()
@@ -84,7 +89,6 @@ void DecoyBase::Move()
 		const int mx = (int)(_decoy_pos.x / block_size);
 		const int my = (int)(_decoy_pos.y / block_size);
 
-		//
 		float max = 0;
 		_move_pattern = Direction::None;
 		if (_ai_data[my - 1][mx] > max) {

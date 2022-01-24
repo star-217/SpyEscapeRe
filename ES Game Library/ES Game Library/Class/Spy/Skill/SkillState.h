@@ -1,3 +1,9 @@
+/**
+ * @file  SkillState.h
+ * @brief SkillState.cppのヘッダーファイル
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../../ESGLib.h"
@@ -20,13 +26,13 @@ private:
 	{
 		BLACKOUT,
 		INVISIBLE,
-		MAX
+		SKILL_MAX
 	};
 
 	SkillBase*   _state;
 	SkillFactory _factory;
 
-	int          _skil_box[MAX];
+	int          _skil_box[SKILL_MAX];
 	int          _skil_count;
 	int          _skil_count_max;
 };

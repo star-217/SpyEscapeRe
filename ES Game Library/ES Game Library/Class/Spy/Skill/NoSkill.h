@@ -1,3 +1,9 @@
+/**
+ * @file  Noskill.h
+ * @brief Spy‚ªƒXƒLƒ‹‚ğg‚Á‚Ä‚¢‚È‚¢‚Æ‚«
+ * @author ¯Š°•¶
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../../ESGLib.h"

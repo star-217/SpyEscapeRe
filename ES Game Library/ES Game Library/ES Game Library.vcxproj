@@ -117,7 +117,6 @@
     <ClCompile Include="Class\Decoy\DecoyBase.cpp" />
     <ClCompile Include="Class\Decoy\DecoyManager.cpp" />
     <ClCompile Include="Class\Map\Map.cpp" />
-    <ClCompile Include="Class\Sound\Sound.cpp" />
     <ClCompile Include="Class\Spy\Skill\BlackOut.cpp" />
     <ClCompile Include="Class\Spy\Skill\Invisible.cpp" />
     <ClCompile Include="Class\Spy\Skill\SkillState.cpp" />
@@ -213,11 +212,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class\Base\Collision.h" />
+    <ClInclude Include="Class\Base\ConstantList.h" />
+    <ClInclude Include="Class\Base\FontData.h" />
     <ClInclude Include="Class\Base\Move.h" />
     <ClInclude Include="Class\Decoy\DecoyBase.h" />
     <ClInclude Include="Class\Decoy\DecoyManager.h" />
     <ClInclude Include="Class\Map\Map.h" />
-    <ClInclude Include="Class\Sound\Sound.h" />
     <ClInclude Include="Class\Spy\Skill\BlackOut.h" />
     <ClInclude Include="Class\Spy\Skill\Invisible.h" />
     <ClInclude Include="Class\Spy\Skill\NoSkill.h" />

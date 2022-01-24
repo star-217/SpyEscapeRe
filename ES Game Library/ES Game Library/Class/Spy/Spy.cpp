@@ -1,33 +1,36 @@
+/**
+ * @file  Spy.cpp
+ * @brief SpyÇÃìÆçÏÇ∑Ç◊Çƒ
+ * @author êØä∞ï∂
+ * @date 2021/04/20
+ */
 #include "Spy.h"
 
-Spy() : 
+Spy::Spy() :_spy(nullptr), _win(nullptr), _lose(nullptr),
+			_spy_pos(Vector3_Zero),_draw_spy_pos(Vector3_Zero),
+			_direction(Direction::None),_speed(0),_animetion_flame(0),_win_flame(0),
+			_lose_flame(0),_invisible_alpha(0.0f),_state(SpyState::Default),
+			_collision(Rect(0,0,0,0))
 {
 
 }
 
 void Spy::Initialize(const std::vector<cstring>& data, const Vector3 pos)
 {
-	_spy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
-	_attack = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
-	_win = GraphicsDevice.CreateSpriteFromFile(_T("playerwin.png"));
-	_lose = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
+	_spy			 = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
+	_win			 = GraphicsDevice.CreateSpriteFromFile(_T("playerwin.png"));
+	_lose			 = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
 
-	_spy_pos = pos;
-	_map_data = data;
+	_spy_pos		 = pos;
+	_map_data		 = data;
 
-	_direction = 0;
-	_player_count = 0;
-	_chara_size_width = 50;
-	_chara_size_height = 70;
-	_fix_pos_y = 20;
-	_speed = 5;
-
+	_direction		 = Direction::None;
+	_speed			 = 5;
 	_animetion_flame = 0;
-	_win_flame = 0;
-	_lose_flame = 0;
-
-
+	_win_flame		 = 0;
+	_lose_flame		 = 0;
 	_invisible_alpha = 1.0f;
+
 	_move.Initialize();
 
 }
@@ -39,9 +42,14 @@ Vector3 Spy::Update()
 	_invisible_alpha	= _skill.Update();
 	_direction			= _move.GetDirection();
 
-	_collision			= Rect(_spy_pos.x, _spy_pos.y, _spy_pos.x + _chara_size_width, _spy_pos.y + _chara_size_height);
+	_collision			= Rect(_spy_pos.x, _spy_pos.y, _spy_pos.x + CHARA_SIZE_X, _spy_pos.y + CHARA_SIZE_Y);
 
-	Animetion();
+	switch (_state)
+	{
+	case SpyState::Default: Animetion();     break;
+	case SpyState::Win:     WinAnimetion();  break;
+	case SpyState::Lose:    LoseAnimetion(); break;
+	}
 
 	if (key.IsPressed(Keys_Enter)) {
 		_skill.RandomSkil();
@@ -52,35 +60,34 @@ Vector3 Spy::Update()
 
 void Spy::Draw()
 {
-	constexpr int fix_postion_y = 20;
-
-	_draw_spy_pos = Vector3(_spy_pos.x, _spy_pos.y - fix_postion_y, 0.0f);
+	_draw_spy_pos = Vector3(_spy_pos.x, _spy_pos.y - FIXED_POS_Y, 0.0f);
 
 	_skill.Draw();
 	switch (_state) {
-	case DEFAULT:
-		SpriteBatch.Draw(*_spy, _draw_spy_pos, RectWH(_chara_size_width * (int)_animetion_flame, _direction * _chara_size_height, _chara_size_width, _chara_size_height), _invisible_alpha);
+	case SpyState::Default:
+		SpriteBatch.Draw(*_spy,  _draw_spy_pos,
+			RectWH(CHARA_SIZE_X * (int)_animetion_flame, ((int)_direction - 1) * CHARA_SIZE_Y, CHARA_SIZE_X, CHARA_SIZE_Y), _invisible_alpha);
 		break;
-	case WIN:
-		SpriteBatch.Draw(*_win, _draw_spy_pos, RectWH(_chara_size_width * (int)_win_flame, 0, _chara_size_width, _chara_size_height));
+	case SpyState::Win:
+		SpriteBatch.Draw(*_win,  _draw_spy_pos, RectWH(CHARA_SIZE_X * (int)_win_flame, 0, CHARA_SIZE_X, CHARA_SIZE_Y));
 		break;
-	case LOSE:
-		SpriteBatch.Draw(*_lose, _draw_spy_pos, RectWH(_chara_size_width * (int)_lose_flame, 0, _chara_size_width, _chara_size_height));
+	case SpyState::Lose:
+		SpriteBatch.Draw(*_lose, _draw_spy_pos, RectWH(CHARA_SIZE_X * (int)_lose_flame, 0, CHARA_SIZE_X, CHARA_SIZE_Y));
 		break;
 	}
 }
 
 void Spy::Animetion()
 {
-	int animetion_flame_max = 40;
+	constexpr int animetion_flame_max = 40;
 	_animetion_flame = int(_animetion_flame + 1) % animetion_flame_max;
 }
 
 
 void Spy::WinAnimetion()
 {
-	float flame_speed	= 0.8f;
-	int max_flame		= 50;
+	constexpr float flame_speed	= 0.8f;
+	constexpr int	max_flame	= 50;
 	_win_flame += flame_speed;
 	_win_flame = max(_win_flame, max_flame);
 
@@ -88,8 +95,8 @@ void Spy::WinAnimetion()
 
 void Spy::LoseAnimetion()
 {
-	float flame_speed	= 0.8f;
-	int max_flame		= 30;
+	constexpr float flame_speed	= 0.8f;
+	constexpr int   max_flame	= 30;
 
 	_lose_flame += flame_speed;
 	_lose_flame = max(_lose_flame, max_flame);
@@ -98,5 +105,5 @@ void Spy::LoseAnimetion()
 
 void Spy::AttackHit()
 {
-	_state = LOSE;
+	_state = SpyState::Lose;
 }

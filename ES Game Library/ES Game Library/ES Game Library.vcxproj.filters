@@ -109,9 +109,6 @@
     <Filter Include="ソース ファイル\Class\Map">
       <UniqueIdentifier>{55a53221-0ef7-4471-9d54-5b012946eae8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Class\Sound">
-      <UniqueIdentifier>{f41cea4f-1c97-48d6-8a00-700765c90ff2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Class\Spy">
       <UniqueIdentifier>{8dc6981f-5956-4192-8763-ad0ae066e0c7}</UniqueIdentifier>
     </Filter>
@@ -270,9 +267,6 @@
     </ClCompile>
     <ClCompile Include="Class\Map\Map.cpp">
       <Filter>ソース ファイル\Class\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Class\Sound\Sound.cpp">
-      <Filter>ソース ファイル\Class\Sound</Filter>
     </ClCompile>
     <ClCompile Include="Class\Spy\Spy.cpp">
       <Filter>ソース ファイル\Class\Spy</Filter>
@@ -466,9 +460,6 @@
     <ClInclude Include="Class\Map\Map.h">
       <Filter>ソース ファイル\Class\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Sound\Sound.h">
-      <Filter>ソース ファイル\Class\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="Class\Spy\Spy.h">
       <Filter>ソース ファイル\Class\Spy</Filter>
     </ClInclude>
@@ -509,6 +500,12 @@
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
     </ClInclude>
     <ClInclude Include="Class\Base\Collision.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\ConstantList.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\FontData.h">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
   </ItemGroup>

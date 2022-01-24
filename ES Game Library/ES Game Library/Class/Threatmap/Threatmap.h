@@ -1,12 +1,20 @@
+/**
+ * @file  Threatmap.h
+ * @brief Threatmap.cppのヘッダーファイル
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../ESGLib.h"
+#include "../Base/ConstantList.h"
+#include "../Base/FontData.h"
 
 class ThreatMap
 {
 public:
 	ThreatMap();
-	virtual ~ThreatMap();
+	virtual ~ThreatMap() {};
 
 	void Initialize(const std::vector<cstring>&);
 	void Update(Vector3 positon,std::string tag);
@@ -17,11 +25,10 @@ public:
 
 private:
 	std::vector<cstring>  _map_data;
-	std::vector<float>	  _threat_data_tracker[18];
-	std::vector<float>	  _threat_data_spy[18];
+	std::vector<float>	  _threat_data_tracker[MAP_MAX_HEIGHT];
+	std::vector<float>	  _threat_data_spy[MAP_MAX_HEIGHT];
 
 	int _prev_mx;
 	int _prev_my;
 
-	FONT _default_font;
 };

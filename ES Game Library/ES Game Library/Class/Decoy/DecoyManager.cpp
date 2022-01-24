@@ -1,3 +1,9 @@
+/**
+ * @file  DecoyManager.cpp
+ * @brief デコイを複数管理するためのマネージャー
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #include "DecoyManager.h"
 
 DecoyManager::DecoyManager() :
@@ -16,7 +22,7 @@ void DecoyManager::Initialize(std::vector<cstring>& map_data,Vector3* positions)
 
 }
 
-void DecoyManager::Update(ThreatMap map)
+void DecoyManager::Update(ThreatMap& map)
 {
 	for (int i = 0; i < DECOY_MAX; i++) {
 		_decoy[i].Update(map);

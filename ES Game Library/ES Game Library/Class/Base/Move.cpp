@@ -1,8 +1,13 @@
+/**
+ * @file  Move.cpp
+ * @brief spyとtrackerのコントローラの移動プログラム
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #include "Move.h"
 
 void Move::Initialize()
 {
-	_block_size    = 50;
 	_direction     = Direction::None;
 	_pad_direction = Direction::None;
 }
@@ -23,19 +28,26 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 	if (_pad_direction == Direction::None)
 	{
 		if (_pad.X != 0 || _pad.Y != 0) {
-			int mx = (int)(pos.x / _block_size);
-			int my = (int)(pos.y / _block_size);
+			auto isPassing = [&](const int x, const int y)
+			{
+				if (map_data[y][x] == ' ' || map_data[y][x] == '%')
+					return true;
+				return false;
+			};
+
+			int mx = (int)(pos.x / BLOCK_SIZE);
+			int my = (int)(pos.y / BLOCK_SIZE);
 			float axis_x = Math_Abs(_pad.X);
 			float axis_y = Math_Abs(_pad.Y);
 			if (axis_x > axis_y) {
 				if (_pad.X > 0) {
-					if (map_data[my][mx + 1] == ' ' || map_data[my][mx + 1] == '%') {
+					if (isPassing(mx + 1, my)) {
 						_pad_direction = Direction::Right;
 						_count = 0;
 					}
 				}
 				else if (_pad.X < 0) {
-					if (map_data[my][mx - 1] == ' ' || map_data[my][mx - 1] == '%') {
+					if (isPassing(mx - 1, my)) {
 						_pad_direction = Direction::Left;
 						_count = 0;
 					}
@@ -43,13 +55,13 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 			}
 			else {
 				if (_pad.Y > 0) {
-					if (map_data[my + 1][mx] == ' ' || map_data[my + 1][mx] == '%') {
+					if (isPassing(mx, my + 1)) {
 						_pad_direction = Direction::Down;
 						_count = 0;
 					}
 				}
 				else if (_pad.Y < 0) {
-					if (map_data[my - 1][mx] == ' ' || map_data[my - 1][mx] == '%') {
+					if (isPassing(mx, my - 1)) {
 						_pad_direction = Direction::Up;
 						_count = 0;
 					}
@@ -59,41 +71,37 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 	}
 
 	//キャラの移動、移動制限
+	auto _count_clamp = [&](const int delta)
+	{
+		_count += delta;
+		if (_count >= BLOCK_SIZE) {
+			_pad_direction = Direction::None;
+		}
+	};
+
 	switch (_pad_direction) {
 	case Direction::Right:
 		_direction = Direction::Right;
 		pos.x     += speed;
-		_count    += speed;
-		if (_count >= 50) {
-			_pad_direction = Direction::None;
-		}
+		_count_clamp(speed);
 		break;
 
 	case Direction::Left:
 		_direction = Direction::Left;
 		pos.x     -= speed;
-		_count    += speed;
-		if (_count >= 50) {
-			_pad_direction = Direction::None;
-		}
+		_count_clamp(speed);
 		break;
 
 	case Direction::Down:
 		_direction = Direction::Down;
 		pos.y     += speed;
-		_count    += speed;
-		if (_count >= 50) {
-			_pad_direction = Direction::None;
-		}
+		_count_clamp(speed);
 		break;
 
 	case Direction::Up:
 		_direction = Direction::Up;
 		pos.y     -= speed;
-		_count    += speed;
-		if (_count >= 50) {
-			_pad_direction = Direction::None;
-		}
+		_count_clamp(speed);
 		break;
 	}
 

@@ -1,3 +1,9 @@
+/**
+ * @file Collision.cpp
+ * @brief “–‚½‚è”»’è‚ğobserverƒpƒ^[ƒ“‚ÅÀ‘•‚µ‚½‚à‚Ì
+ * @author ¯Š°•¶
+ * @date 2021/04/20
+ */
 #include "Collision.h"
 
 #include "../Spy/Spy.h"

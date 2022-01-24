@@ -1,3 +1,9 @@
+/**
+ * @file  Spy.h
+ * @brief Spy.cppのヘッダーファイル
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../ESGLib.h"
@@ -27,8 +33,10 @@ private:
 	Move _move;
 	SkillState _skill;
 
+	SpyState _state;
+	std::vector<cstring> _map_data;
+
 	SPRITE _spy;
-	SPRITE _attack;
 	SPRITE _win;
 	SPRITE _lose;
 
@@ -37,21 +45,7 @@ private:
 
 	Rect _collision;
 
-	std::vector<cstring> _map_data;
-
-	enum
-	{
-		DEFAULT,
-		WIN,
-		LOSE
-	};
-
-	int _state;
-	int _direction;
-	int _chara_size_width;
-	int _chara_size_height;
-	int _fix_pos_y;
-	int _player_count;
+	Direction _direction;
 	int _speed;
 
 	float _animetion_flame;

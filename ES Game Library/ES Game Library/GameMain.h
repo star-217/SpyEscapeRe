@@ -12,7 +12,6 @@
 
 class GameMain : public CGameScene {
 public:
-	const int PLAYER_MAX = 2;
 
 	GameMain() : DefaultFont(nullptr)
 	{

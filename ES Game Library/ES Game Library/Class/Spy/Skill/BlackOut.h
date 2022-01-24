@@ -1,3 +1,9 @@
+/**
+ * @file  BlackOut.h
+ * @brief BlackOut.cppのヘッダーファイル
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../../ESGLib.h"

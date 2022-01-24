@@ -1,3 +1,9 @@
+/**
+ * @file  SkillFactory.h
+ * @brief Spyのスキルの生成をファクトリーパターンで
+ * @author 星寛文
+ * @date 2021/04/20
+ */
 #pragma once
 
 #include "../../../ESGLib.h"
@@ -8,21 +14,22 @@
 class SkillFactory
 {
 public:
+	/**
+	* @detail スキルを生成する
+	* @param  count 番号
+	* @return 生成したスキルのクラスを返す
+	*/
 	SkillBase* Create(int count)
 	{
-		SkillBase* state = new NoSkill;
 
 		switch (count)
 		{
-		case BLACKOUT:
-			state = new BlackOut; break;
-		case INVISIBLE:
-			state = new Invisible; break;
-		default:
-			state = new NoSkill; break;
+		case BLACKOUT:	return new BlackOut;
+		case INVISIBLE: return new Invisible;
+		default:		return new NoSkill;
 		}
 
-		return state;
+		return nullptr;
 	};
 
 private:
