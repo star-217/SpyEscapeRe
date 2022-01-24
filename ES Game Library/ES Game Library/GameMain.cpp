@@ -88,7 +88,7 @@ bool GameMain::Initialize()
 		_fake_pos[5] = start_Pos[2];
 	}
 
-	_map_data = _map.Initialize();
+	_map.Initialize();
 	_track.Initialize(_map_data);
 	_sound.Initialize();
 	_spy.Initialize(_map_data, _spy_pos);
@@ -113,9 +113,8 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 
-
-
-	_spy_pos = _spy.Update();
+	_spy.Update();
+	_spy_pos = _spy.GetPostiion();
 	_tracker_pos = _track.Update();
 	_threatmap.Update(_tracker_pos, "TRACKER");
 	_threatmap.Update(_spy_pos, "SPY");

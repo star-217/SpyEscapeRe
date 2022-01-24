@@ -16,23 +16,27 @@ DecoyManager::DecoyManager() :
 
 void DecoyManager::Initialize(std::vector<cstring>& map_data,Vector3* positions)
 {
-	for (int i = 0; i < DECOY_MAX; i++) {
-		_decoy[i].Initialize(map_data, positions[i], _ratio[i], _wait_count[i]);
+	for (int i = 0; i < 6; i++)
+	{
+		_decoy.push_back(new DecoyBase);
+		_decoy[i]->SetPriorityRatio(_ratio[i]);
+		_decoy[i]->SetWaitCount(_wait_count[i]);
 	}
-
 }
 
 void DecoyManager::Update(ThreatMap& map)
 {
-	for (int i = 0; i < DECOY_MAX; i++) {
-		_decoy[i].Update(map);
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->Update(map);
 	}
 }
 
 void DecoyManager::Draw()
 {
-	for (int i = 0; i < DECOY_MAX; i++) {
-		_decoy[i].Draw();
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->Draw();
 	}
 }
 

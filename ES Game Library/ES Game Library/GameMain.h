@@ -65,7 +65,7 @@ private:
 	Tracker   _track;
 	Spy       _spy;
 	Map       _map;
-	LoadSound _sound;
+	SoundResource _sound;
 	ThreatMap _threatmap;
 	DecoyManager _decoy;
 	Collision _collision;
