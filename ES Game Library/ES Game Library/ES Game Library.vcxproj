@@ -113,7 +113,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Class\Base\Collision\Collision.cpp" />
-    <ClCompile Include="Class\Base\HumanBase\HumanBase.cpp" />
     <ClCompile Include="Class\Base\Move\Move.cpp" />
     <ClCompile Include="Class\Decoy\Decoy.cpp" />
     <ClCompile Include="Class\Decoy\DecoyManager.cpp" />
@@ -213,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class\Base\Collision\Collision.h" />
-    <ClInclude Include="Class\Base\ConstantList.h" />
     <ClInclude Include="Class\Base\FontData.h" />
     <ClInclude Include="Class\Base\HumanBase\HumanBase.h" />
     <ClInclude Include="Class\Base\Move\Move.h" />

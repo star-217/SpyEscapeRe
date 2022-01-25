@@ -10,15 +10,13 @@
 class Spy : public HumanBase
 {
 public:
-	Spy();
+	Spy() {};
 	virtual ~Spy() {}
 
-	void SetStartPos(Vector3& pos) { _spy_pos = pos; }
+	void SetStartPos(Vector3& pos) { _pos = pos; }
 	void Initialize() override;
 	void Update() override;
 	void Draw() override;
-
-	Vector3 GetPostiion() { return _spy_pos; }
 	void OnCollisionEnter(std::string tag) override;
 
 private:
@@ -33,10 +31,6 @@ private:
 	SPRITE _spy;
 	SPRITE _win;
 	SPRITE _lose;
-
-	Vector3 _spy_pos;
-	Vector3 _draw_spy_pos;
-
 
 	std::vector<cstring> _map_data;
 

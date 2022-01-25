@@ -5,6 +5,7 @@
 class SoundResource
 {
 public:
+	~SoundResource() {};
 	void Initialize();
 	MEDIA& GetBGM(std::string name) { return _bgm[name]; }
 
@@ -15,6 +16,8 @@ public:
 	}
 
 private:
+	SoundResource();
+
 	std::map<std::string, MEDIA> _bgm;
 	SOUND _se;
 };

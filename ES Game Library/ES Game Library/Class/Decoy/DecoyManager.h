@@ -15,9 +15,12 @@ public:
 	DecoyManager();
 	virtual ~DecoyManager() {};
 
-	void Initialize(std::vector<cstring>& ,Vector3* positions);
-	void Update(ThreatMap&);
+	void Initialize();
+	void Update();
 	void Draw();
+	void SetSpy(HumanBase* spy);
+	void SetTracker(HumanBase* tracker);
+
 	std::vector<Decoy*> GetBase() { return _decoy; }
 
 private:

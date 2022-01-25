@@ -14,21 +14,22 @@ DecoyManager::DecoyManager() :
 }
 
 
-void DecoyManager::Initialize(std::vector<cstring>& map_data,Vector3* positions)
+void DecoyManager::Initialize()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < DECOY_MAX; i++)
 	{
 		_decoy.push_back(new Decoy);
+		_decoy[i]->Initialize();
 		_decoy[i]->SetPriorityRatio(_ratio[i]);
 		_decoy[i]->SetWaitCount(_wait_count[i]);
 	}
 }
 
-void DecoyManager::Update(ThreatMap& map)
+void DecoyManager::Update()
 {
 	for (int i = 0; i < _decoy.size(); i++)
 	{
-		_decoy[i]->Update(map);
+		_decoy[i]->Update();
 	}
 }
 
@@ -37,6 +38,22 @@ void DecoyManager::Draw()
 	for (int i = 0; i < _decoy.size(); i++)
 	{
 		_decoy[i]->Draw();
+	}
+}
+
+void DecoyManager::SetSpy(HumanBase* spy)
+{
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->SetSpyPos(spy->GetPosition());
+	}
+}
+
+void DecoyManager::SetTracker(HumanBase* tracker)
+{
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->SetTrackerPos(tracker->GetPosition());
 	}
 }
 

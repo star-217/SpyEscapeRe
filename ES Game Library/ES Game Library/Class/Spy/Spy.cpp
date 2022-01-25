@@ -6,7 +6,7 @@ void Spy::Initialize()
 	_win = GraphicsDevice.CreateSpriteFromFile(_T("playerwin.png"));
 	_lose = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
 
-	_map_data = Map::GetMapData();
+	_map_data = Map::GetInstance().GetMapData();
 
 	_direction = 0;
 	_player_count = 0;
@@ -16,6 +16,8 @@ void Spy::Initialize()
 	_lose_flame = 0;
 
 	_invisible_alpha = 1.0f;
+
+	_tag = "SPY";
 	_move.Initialize();
 
 }
@@ -23,11 +25,11 @@ void Spy::Initialize()
 void Spy::Update()
 {
 	KeyboardBuffer key	= Keyboard->GetBuffer();
-	_spy_pos			= _move.MovePostion(_spy_pos,_map_data, _speed,0);
+	_pos			= _move.MovePostion(_pos,_map_data, _speed,0);
 	_invisible_alpha	= _skill.Update();
 	_direction			= (int)_move.GetDirection();
 
-	_collision			= Rect(_spy_pos.x, _spy_pos.y, _spy_pos.x + _chara_size_width, _spy_pos.y + _chara_size_height);
+	_collision			= Rect(_pos.x, _pos.y, _pos.x + _chara_size_width, _pos.y + _chara_size_height);
 
 	Animetion();
 
@@ -41,18 +43,18 @@ void Spy::Draw()
 {
 	constexpr int fix_postion_y = 20;
 
-	_draw_spy_pos = Vector3(_spy_pos.x, _spy_pos.y - fix_postion_y, 0.0f);
+	const Vector3 _draw_spy_pos = Vector3(_pos.x, _pos.y - fix_postion_y, 0.0f);
 
 	_skill.Draw();
 	switch (_state) {
 	case DEFAULT:
-		SpriteBatch.Draw(*_spy, _draw_spy_pos, RectWH(_chara_size_width * (int)_animetion_flame, _direction * _chara_size_height, _chara_size_width, _chara_size_height), _invisible_alpha);
+		SpriteBatch.Draw(*_spy, _draw_spy_pos, RectWH(CHARA_SIZE_X * (int)_animetion_flame, _direction * CHARA_SIZE_Y, CHARA_SIZE_X, CHARA_SIZE_Y), _invisible_alpha);
 		break;
 	case WIN:
-		SpriteBatch.Draw(*_win, _draw_spy_pos, RectWH(_chara_size_width * (int)_win_flame, 0, _chara_size_width, _chara_size_height));
+		SpriteBatch.Draw(*_win, _draw_spy_pos, RectWH(CHARA_SIZE_X * (int)_win_flame, 0, CHARA_SIZE_X, CHARA_SIZE_Y));
 		break;
 	case LOSE:
-		SpriteBatch.Draw(*_lose, _draw_spy_pos, RectWH(_chara_size_width * (int)_lose_flame, 0, _chara_size_width, _chara_size_height));
+		SpriteBatch.Draw(*_lose, _draw_spy_pos, RectWH(CHARA_SIZE_X * (int)_lose_flame, 0, CHARA_SIZE_X, CHARA_SIZE_Y));
 		break;
 	}
 }

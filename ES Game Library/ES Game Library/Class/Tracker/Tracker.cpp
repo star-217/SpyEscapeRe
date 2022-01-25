@@ -7,9 +7,9 @@
 #include "Tracker.h"
 
 Tracker::Tracker() :_tracker(nullptr),_tracker_win(nullptr),_tracker_lose(nullptr),
-					_tracker_attack(nullptr),_collision(Rect(0,0,0,0)),_tracker_pos(Vector3_Zero),
+					_tracker_attack(nullptr),_collision(Rect(0,0,0,0)),
 					_tracker_spd(0.0f),_stun_time(0.0f),_tracker_flame_x(0.0f),_win_flame(0.0f),
-					_lose_flame(0.0f),_attack_flame(0.0f),_stun_flag(false),_direc(Direction::None),
+					_lose_flame(0.0f),_attack_flame(0.0f),_stun_flag(false),
 					_tracker_state(TrackerState::Default)
 {
 
@@ -18,13 +18,13 @@ Tracker::Tracker() :_tracker(nullptr),_tracker_win(nullptr),_tracker_lose(nullpt
 
 void Tracker::Initialize()
 {
-	_map_data        = Map::GetMapData();
+	_map_data        = Map::GetInstance().GetMapData();
 	_tracker		 = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
 	_tracker_win     = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
 	_tracker_lose	 = GraphicsDevice.CreateSpriteFromFile(_T("onilose.png"));
 	_tracker_attack  = GraphicsDevice.CreateSpriteFromFile(_T("punch.png"));
 
-	_tracker_pos = Vector3(1500, 800, 0);
+	_pos = Vector3(1500, 800, 0);
 	_tracker_state = TrackerState::Default;
 
 	_tracker_spd     = 5.0f;
@@ -33,11 +33,12 @@ void Tracker::Initialize()
 	_win_flame		 = 0;
 	_lose_flame		 = 0;
 	_attack_flame	 = 0;
-	_collision = Rect(_tracker_pos.x, _tracker_pos.y, _tracker_pos.x + CHARA_SIZE_X, _tracker_pos.y + CHARA_SIZE_Y);
+	_collision = Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE_X, _pos.y + CHARA_SIZE_Y);
 
 
-	_direc			 = Direction::None;
+	_direc			 = Move::Direction::None;
 	_stun_flag		 = false;
+	_tag = "TRACKER";
 
 	_move.Initialize();
 
@@ -46,7 +47,7 @@ void Tracker::Initialize()
 void Tracker::Update()
 {
 	KeyboardBuffer key = Keyboard->GetBuffer();
-	_tracker_pos = _move.MovePostion(_tracker_pos,_map_data,_tracker_spd,1);
+	_pos = _move.MovePostion(_pos,_map_data,_tracker_spd,1);
 	_direc = _move.GetDirection();
 
 
@@ -83,24 +84,24 @@ void Tracker::Draw()
 	{
 	case TrackerState::Default:
 		SpriteBatch.Draw(
-			*_tracker, Vector3(_tracker_pos.x, _tracker_pos.y - FIXED_POS_Y, 0),
+			*_tracker, Vector3(_pos.x, _pos.y - FIX_POS_Y, _pos.z),
 			RectWH(CHARA_SIZE_X * _tracker_flame_x, CHARA_SIZE_Y * ((int)_direc - 1), CHARA_SIZE_X, CHARA_SIZE_Y)
 		);
 		break;
 	case TrackerState::Win:
 		SpriteBatch.Draw(
-			*_tracker_win, Vector3(_tracker_pos.x, _tracker_pos.y - FIXED_POS_Y, 0),
+			*_tracker_win, Vector3(_pos.x, _pos.y - FIX_POS_Y, _pos.z),
 			RectWH(CHARA_SIZE_X * _win_flame, CHARA_SIZE_Y, CHARA_SIZE_X, CHARA_SIZE_Y)
 		);
 		break;
 	case TrackerState::Lose:
 		SpriteBatch.Draw(
-			*_tracker_lose, Vector3(_tracker_pos.x, _tracker_pos.y - FIXED_POS_Y, 0),
+			*_tracker_lose, Vector3(_pos.x, _pos.y - FIX_POS_Y, _pos.z),
 			RectWH(CHARA_SIZE_X * _lose_flame, CHARA_SIZE_Y, CHARA_SIZE_X, CHARA_SIZE_Y)
 		);
 	case TrackerState::Attack:
 		SpriteBatch.Draw(
-			*_tracker_attack, Vector3(_tracker_pos.x, _tracker_pos.y - FIXED_POS_Y, 0),
+			*_tracker_attack, Vector3(_pos.x, _pos.y - FIX_POS_Y, _pos.z),
 			RectWH(CHARA_SIZE_X * _attack_flame, CHARA_SIZE_Y * ((int)_direc - 1), CHARA_SIZE_X, CHARA_SIZE_Y)
 		);
 		break;
@@ -163,7 +164,7 @@ void Tracker::AttackAnimetion()
 
 void Tracker::Attack()
 {
-	_collision = Rect(_tracker_pos.x, _tracker_pos.y, _tracker_pos.x + CHARA_SIZE_X, _tracker_pos.y + CHARA_SIZE_Y);
+	_collision = Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE_X, _pos.y + CHARA_SIZE_Y);
 }
 
 void Tracker::OnCollisionEnter(std::string tag)

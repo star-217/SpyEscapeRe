@@ -13,6 +13,7 @@ bool GameMain::Initialize()
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
 
+	constexpr int PLAYER_MAX = 2;
 	InputDevice.CreateGamePad(PLAYER_MAX);
 	DefaultFont = GraphicsDevice.CreateDefaultFont();
 
@@ -87,25 +88,28 @@ bool GameMain::Initialize()
 		_fake_pos[4] = start_Pos[5];
 		_fake_pos[5] = start_Pos[2];
 	}
-	_map = new Map();
 	_spy = new Spy();
 	_tracker = new Tracker();
-	_sound = new SoundResource();
-	_threatmap = new ThreatMap();
 	_decoy = new DecoyManager();
 	_collision = new Collision();
 
-	_map->Initialize();
-	_tracker->Initialize();
-	_sound->Initialize();
-	_spy->Initialize();
-	_threatmap->Initialize();
-	_decoy->Initialize(_map_data,_fake_pos);
+	Map::GetInstance().Initialize();
 
-	_collision->AddListener("SPY", _spy);
-	_collision->AddListener("TRACKER", _tracker);
+	_tracker->Initialize();
+
+	_spy->Initialize();
+	_spy->SetStartPos(_spy_pos);
+
+	auto a = _spy->GetPosition();
+
+	_decoy->Initialize();
+	_decoy->SetSpy(_spy);
+	_decoy->SetTracker(_tracker);
+
+	_collision->AddListener(_spy->GetTag(), _spy);
+	_collision->AddListener(_tracker->GetTag(), _tracker);
 	for (int i = 0; i < _decoy->GetBase().size(); i++) {
-		_collision->AddListener("DECOY", _decoy->GetBase()[i]);
+		_collision->AddListener(_decoy->GetBase()[i]->GetTag(), _decoy->GetBase()[i]);
 	}
 
 	return true;
@@ -127,10 +131,9 @@ int GameMain::Update()
 {
 
 	_spy->Update();
-	_spy->GetPostiion();
 	_tracker->Update();
-	_threatmap->Update(_tracker_pos, "TRACKER");
-	_threatmap->Update(_spy_pos, "SPY");
+	_decoy->SetSpy(_spy);
+	_decoy->SetTracker(_tracker);
 	_decoy->Update();
 	_collision->CheckCollision("SPY","TRACKER");
 	_collision->CheckCollision("DECOY", "TRACKER");
@@ -152,7 +155,7 @@ void GameMain::Draw()
 	GraphicsDevice.Clear(Color_CornflowerBlue);
 	GraphicsDevice.BeginScene();
 	SpriteBatch.Begin();
-	_map->Draw();
+	Map::GetInstance().Draw();
 	_tracker->Draw();
 	_spy->Draw();
 	_decoy->Draw();

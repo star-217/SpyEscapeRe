@@ -295,9 +295,6 @@
     <ClCompile Include="Class\Spy\Skill\Invisible.cpp">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Base\HumanBase\HumanBase.cpp">
-      <Filter>ソース ファイル\Class\Base</Filter>
-    </ClCompile>
     <ClCompile Include="Class\Base\Collision\Collision.cpp">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClCompile>
@@ -498,9 +495,6 @@
     </ClInclude>
     <ClInclude Include="Class\Spy\Skill\SkillFactory.h">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
-    </ClInclude>
-    <ClInclude Include="Class\Base\ConstantList.h">
-      <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
     <ClInclude Include="Class\Base\FontData.h">
       <Filter>ソース ファイル\Class\Base</Filter>

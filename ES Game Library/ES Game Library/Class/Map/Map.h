@@ -11,7 +11,6 @@
 class Map
 {
 public:
-	Map();
 	virtual ~Map() {}
 
 	void Initialize();
@@ -25,6 +24,8 @@ public:
 	}
 
 private:
+	Map();
+
 	std::vector<cstring> _map_data;
 
 	SPRITE               _bg;

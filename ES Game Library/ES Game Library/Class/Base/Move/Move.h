@@ -6,13 +6,21 @@
  */
 #pragma once
 
-#include "../../ESGLib.h"
-#include "../Controller/Controller.h"
-#include "ConstantList.h"
+#include "../../../ESGLib.h"
+
 
 class Move
 {
 public:
+
+	enum class Direction //ƒLƒƒƒ‰‚ªi‚Ş•ûŒü
+	{
+		None,
+		Down,
+		Left,
+		Right,
+		Up
+	};
 
 	Move() = default;
 	virtual ~Move() {}
@@ -28,4 +36,5 @@ private:
 	Direction _direction;
 
 	const int MAXBLOCKCOUNT = 50;
+	const int BLOCK_SIZE = 50;
 };

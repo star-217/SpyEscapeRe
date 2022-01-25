@@ -8,7 +8,6 @@
 
 #include "../../ESGLib.h"
 #include "../Base/Move/Move.h"
-#include "../Base/ConstantList.h"
 #include "../Base/GameState.h"
 #include "../Base/HumanBase/HumanBase.h"
 #include "../Map/Map.h"
@@ -19,16 +18,21 @@ public:
 	Tracker();
 	~Tracker() {};
 
-	void Initialize();
-	void Update();
-	void Draw();
-	void Attack();
+	void Initialize() override;
+	void Update() override;
+	void Draw() override;
 	void OnCollisionEnter(std::string tag) override;
 
-	Vector3 GetPosition() { return _tracker_pos; }
-	Rect GetCollision() { return _collision; }
+	void Attack();
 
 private:
+	enum class TrackerState
+	{
+		Default,
+		Win,
+		Lose,
+		Attack
+	};
 
 	void StunTime();
 	void Animetion();
@@ -39,7 +43,7 @@ private:
 	Move _move;
 
 	TrackerState		 _tracker_state;
-	Direction			 _direc;
+	Move::Direction			 _direc;
 
 	std::vector<cstring> _map_data;
 
@@ -49,7 +53,6 @@ private:
 	SPRITE _tracker_attack;
 
 	Rect	_collision;
-	Vector3 _tracker_pos;
 
 	float	_tracker_spd;
 	float	_stun_time;
@@ -59,7 +62,5 @@ private:
 	float   _attack_flame;
 
 	bool	_stun_flag;
-
-
 
 };

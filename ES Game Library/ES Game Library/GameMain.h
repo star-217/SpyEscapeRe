@@ -6,7 +6,6 @@
 #include "Class/Spy/Spy.h"
 #include "Class/Map/Map.h"
 #include "Class/Sound/Sound.h"
-#include "Class/Threatmap/Threatmap.h"
 #include "Class/Decoy/DecoyManager.h"
 #include "Class/Base/Collision/Collision.h"
 
@@ -64,19 +63,11 @@ private:
 	// •Ï”éŒ¾
 	Tracker*   _tracker;
 	Spy*       _spy;
-	Map*       _map;
-	SoundResource* _sound;
-	ThreatMap* _threatmap;
 	DecoyManager* _decoy;
 	Collision* _collision;
 
 	Vector3 _spy_pos;
 	Vector3 _tracker_pos;
 	Vector3 _fake_pos[6];
-
-	std::vector<cstring> _map_data;
-
-
-
 
 };
