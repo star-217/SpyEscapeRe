@@ -65,9 +65,7 @@ private:
 	Spy*       _spy;
 	DecoyManager* _decoy;
 	Collision* _collision;
-
-	Vector3 _spy_pos;
-	Vector3 _tracker_pos;
-	Vector3 _fake_pos[6];
+	CheckMove* _check_move;
+	Map* _map;
 
 };

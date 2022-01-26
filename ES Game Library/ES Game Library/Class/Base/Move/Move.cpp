@@ -8,7 +8,7 @@
 
 void Move::Initialize()
 {
-	_direction     = Direction::None;
+	_direction     = Direction::Down;
 	_pad_direction = Direction::None;
 }
 
@@ -22,7 +22,7 @@ void Move::Initialize()
  * @return キャラクターのポジションを返す
  * @detail
  */
-Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float speed,int pad_number)
+Vector3 Move::MovePostion(Vector3 pos,float speed,int pad_number)
 {
 	GamePadState _pad = GamePad(pad_number)->GetState();
 	if (_pad_direction == Direction::None)
@@ -30,7 +30,7 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 		if (_pad.X != 0 || _pad.Y != 0) {
 			auto isPassing = [&](const int x, const int y)
 			{
-				if (map_data[y][x] == ' ' || map_data[y][x] == '%')
+				if (_map_data[y][x] == ' ' || _map_data[y][x] == '%')
 					return true;
 				return false;
 			};
@@ -74,8 +74,10 @@ Vector3 Move::MovePostion(Vector3 pos, std::vector<cstring>& map_data,float spee
 	auto _count_clamp = [&](const int delta)
 	{
 		_count += delta;
+		_flag = false;
 		if (_count >= BLOCK_SIZE) {
 			_pad_direction = Direction::None;
+			_flag = true;
 		}
 	};
 

@@ -18,7 +18,6 @@ Tracker::Tracker() :_tracker(nullptr),_tracker_win(nullptr),_tracker_lose(nullpt
 
 void Tracker::Initialize()
 {
-	_map_data        = Map::GetInstance().GetMapData();
 	_tracker		 = GraphicsDevice.CreateSpriteFromFile(_T("oni2.png"));
 	_tracker_win     = GraphicsDevice.CreateSpriteFromFile(_T("oniwin.png"));
 	_tracker_lose	 = GraphicsDevice.CreateSpriteFromFile(_T("onilose.png"));
@@ -36,20 +35,25 @@ void Tracker::Initialize()
 	_collision = Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE_X, _pos.y + CHARA_SIZE_Y);
 
 
-	_direc			 = Move::Direction::None;
+	_direc			 = Move::Direction::Down;
 	_stun_flag		 = false;
 	_tag = "TRACKER";
 
-	_move.Initialize();
+	_move = new Move();
+	_move->Initialize();
 
 }
 
 void Tracker::Update()
 {
 	KeyboardBuffer key = Keyboard->GetBuffer();
-	_pos = _move.MovePostion(_pos,_map_data,_tracker_spd,1);
-	_direc = _move.GetDirection();
-
+	_pos = _move->MovePostion(_pos,_tracker_spd,1);
+	_direc = _move->GetDirection();
+	
+	if (_move->GetMoveCmp())
+	{
+		_check_move->Notify(this);
+	}
 
 	if (_stun_flag)
 	{
@@ -171,3 +175,4 @@ void Tracker::OnCollisionEnter(std::string tag)
 {
 	_stun_flag = true;
 }
+

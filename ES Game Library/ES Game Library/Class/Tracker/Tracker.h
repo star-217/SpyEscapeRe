@@ -8,8 +8,8 @@
 
 #include "../../ESGLib.h"
 #include "../Base/Move/Move.h"
-#include "../Base/GameState.h"
 #include "../Base/HumanBase/HumanBase.h"
+#include "../Base/CheckMove/CheckMove.h"
 #include "../Map/Map.h"
 
 class Tracker : public HumanBase
@@ -22,7 +22,10 @@ public:
 	void Update() override;
 	void Draw() override;
 	void OnCollisionEnter(std::string tag) override;
+	void DoMove(HumanBase* human) override {};
 
+
+	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
 	void Attack();
 
 private:
@@ -40,12 +43,11 @@ private:
 	void LoseAnimetion();
 	void AttackAnimetion();
 
-	Move _move;
+	Move* _move;
+	CheckMove* _check_move;
 
 	TrackerState		 _tracker_state;
 	Move::Direction			 _direc;
-
-	std::vector<cstring> _map_data;
 
 	SPRITE _tracker;
 	SPRITE _tracker_win;

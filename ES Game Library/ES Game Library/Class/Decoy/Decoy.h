@@ -14,6 +14,7 @@ public:
 	void Update() override;
 	void Draw() override;
 	void OnCollisionEnter(std::string tag) override {};
+	void DoMove(HumanBase* human) override;
 
 	void SetSpyPos(Vector3 pos) { _spy_pos = pos; }
 	void SetTrackerPos(Vector3 pos) { _tracker_pos = pos; }
@@ -53,10 +54,10 @@ private:
 	//上下左右の方向の値
 	const Vector3 _move_direction[4] =
 	{
-		 Vector3_Down,
-		 Vector3_Up,
+		 -Vector3_Down,
+		 Vector3_Left,
 		 Vector3_Right,
-		 Vector3_Left
+		 -Vector3_Up
 	};	// 4方向ぶん
 
 	//キャラのポジションy軸修正値

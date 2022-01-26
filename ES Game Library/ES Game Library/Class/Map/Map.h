@@ -11,20 +11,14 @@
 class Map
 {
 public:
+	Map();
 	virtual ~Map() {}
 
 	void Initialize();
 	void Draw();
 	std::vector<cstring>& GetMapData() { return _map_data; }
 
-	static Map& GetInstance()
-	{
-		static Map map;
-		return map;
-	}
-
 private:
-	Map();
 
 	std::vector<cstring> _map_data;
 

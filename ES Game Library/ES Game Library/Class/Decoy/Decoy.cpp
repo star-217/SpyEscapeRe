@@ -16,6 +16,8 @@ void Decoy::Initialize()
 
 	_pos = Vector3_Zero;
 	_old_pos.assign(PREV_MAX, Vector2_Zero);
+	_move_pattern = Direction::None;
+
 	_animetion_flame = 0;
 	_sprite_direction = 0;
 	_move_count = 50; //50ドット単位のブロック
@@ -26,12 +28,10 @@ void Decoy::Initialize()
 
 void Decoy::Update()
 {
-	constexpr float block_size = 50.0f;
+	constexpr float BLOCK_SIZE = 50.0f;
 	
-	_threatmap->SetSpyPosData(_spy_pos);
-	_threatmap->SetTrackerPosData(_tracker_pos);
 	_threatmap->Update();
-	if (_move_count >= block_size) {
+	if (_move_count >= BLOCK_SIZE) {
 		_threat_data = _threatmap->CreateTheatData(_ratio, _old_pos);
 	}
 
@@ -47,6 +47,14 @@ void Decoy::Draw()
 					RectWH(CHARA_SIZE.x * _animetion_flame, CHARA_SIZE.y * _sprite_direction, CHARA_SIZE.x, CHARA_SIZE.y));
 }
 
+void Decoy::DoMove(HumanBase* human)
+{
+	if(human->GetTag() == "SPY")
+	_threatmap->SetSpyPosData(human->GetPosition());
+	if(human->GetTag() == "TRACKER")
+	_threatmap->SetTrackerPosData(human->GetPosition());
+}
+
 /**
  * @fn
  * デコイの移動プログラムです。
@@ -54,29 +62,29 @@ void Decoy::Draw()
  */
 void Decoy::Move()
 {
-	constexpr float block_size = 50.0f;
-	if (_move_count >= block_size) {
+	constexpr float BLOCK_SIZE = 50.0f;
+	if (_move_count >= BLOCK_SIZE) {
 		//キャラの場所のブロック分け
-		const int mx = (int)(_pos.x / block_size);
-		const int my = (int)(_pos.y / block_size);
+		const int MX = (int)(_pos.x / BLOCK_SIZE);
+		const int MY = (int)(_pos.y / BLOCK_SIZE);
 
 		float max = 0;
 		_move_pattern = Direction::None;
 		//今いる場所から全ての方向のブロックにある値を調べ高い方へ移動する
-		if (_threat_data[my - 1][mx] > max) {
-			max = _threat_data[my - 1][mx];
+		if (_threat_data[MY - 1][MX] > max) {
+			max = _threat_data[MY - 1][MX];
 			_move_pattern = Direction::Up;
 		}
-		if (_threat_data[my + 1][mx] > max) {
-			max = _threat_data[my + 1][mx];
+		if (_threat_data[MY + 1][MX] > max) {
+			max = _threat_data[MY + 1][MX];
 			_move_pattern = Direction::Down;
 		}
-		if (_threat_data[my][mx + 1] > max) {
-			max = _threat_data[my][mx + 1];
+		if (_threat_data[MY][MX + 1] > max) {
+			max = _threat_data[MY][MX + 1];
 			_move_pattern = Direction::Right;
 		}
-		if (_threat_data[my][mx - 1] > max) {
-			max = _threat_data[my][mx - 1];
+		if (_threat_data[MY][MX - 1] > max) {
+			max = _threat_data[MY][MX - 1];
 			_move_pattern = Direction::Left;
 		}
 
@@ -85,14 +93,14 @@ void Decoy::Move()
 				_old_pos[i].x = _old_pos[i - 1].x;
 				_old_pos[i].y = _old_pos[i - 1].y;
 			}
-			_old_pos[0].x = mx;
-			_old_pos[0].y = my;
+			_old_pos[0].x = MX;
+			_old_pos[0].y = MY;
 			_move_count = 0;
 		}
 	}
 
 	if (_move_pattern > Direction::None) {
-		_pos += _move_direction[(int)_move_pattern] * SPEED;
+		_pos += _move_direction[(int)_move_pattern - 1] * SPEED;
 		FixDirection();
 	}
 	_move_count += SPEED;
@@ -100,11 +108,11 @@ void Decoy::Move()
 
 void Decoy::Animetion()
 {
-	constexpr int max_flame = 40;
+	constexpr int MAX_FLAME = 40;
 
 	_flame--;
 	_animetion_flame++;
-	_animetion_flame = (int)_animetion_flame % max_flame;
+	_animetion_flame = (int)_animetion_flame % MAX_FLAME;
 }
 
 /**

@@ -14,103 +14,47 @@ bool GameMain::Initialize()
 	WindowTitle(_T("ES Game Library"));
 
 	constexpr int PLAYER_MAX = 2;
+	constexpr int DECOY_MAX = 1;
+
 	InputDevice.CreateGamePad(PLAYER_MAX);
 	DefaultFont = GraphicsDevice.CreateDefaultFont();
 
 	int select = SelectScene::GetSelect();
 
-	Vector3 start_Pos[] = { Vector3( 150, 400, 0), Vector3( 800, 100, 0),
+	std::vector<Vector3> startPos = { Vector3( 150, 400, 0), Vector3( 800, 100, 0),
 							Vector3(1250, 150, 0), Vector3( 850, 700, 0),
 							Vector3(  50, 750, 0), Vector3(1500, 200, 0),
 							Vector3(1500, 500, 0) };
 
-	//選択シーンでの選択によっての分岐
-	if (select == 0) {
-		_spy_pos     = start_Pos[0];
-		_fake_pos[0] = start_Pos[1];
-		_fake_pos[1] = start_Pos[2];
-		_fake_pos[2] = start_Pos[3];
-		_fake_pos[3] = start_Pos[4];
-		_fake_pos[4] = start_Pos[5];
-		_fake_pos[5] = start_Pos[6];
-	}
-	if (select == 1) {
-		_spy_pos     = start_Pos[1];
-		_fake_pos[0] = start_Pos[2];
-		_fake_pos[1] = start_Pos[0];
-		_fake_pos[2] = start_Pos[3];
-		_fake_pos[3] = start_Pos[4];
-		_fake_pos[4] = start_Pos[5];
-		_fake_pos[5] = start_Pos[6];
-	}
-	if (select == 2) {
-		_spy_pos = start_Pos[2];
-		_fake_pos[0] = start_Pos[0];
-		_fake_pos[1] = start_Pos[1];
-		_fake_pos[2] = start_Pos[3];
-		_fake_pos[3] = start_Pos[4];
-		_fake_pos[4] = start_Pos[5];
-		_fake_pos[5] = start_Pos[6];
-	}
-	if (select == 3) {
-		_spy_pos = start_Pos[3];
-		_fake_pos[0] = start_Pos[0];
-		_fake_pos[1] = start_Pos[1];
-		_fake_pos[2] = start_Pos[2];
-		_fake_pos[3] = start_Pos[4];
-		_fake_pos[4] = start_Pos[5];
-		_fake_pos[5] = start_Pos[6];
-	}
-	if (select == 4) {
-		_spy_pos = start_Pos[4];
-		_fake_pos[0] = start_Pos[0];
-		_fake_pos[1] = start_Pos[1];
-		_fake_pos[2] = start_Pos[3];
-		_fake_pos[3] = start_Pos[2];
-		_fake_pos[4] = start_Pos[5];
-		_fake_pos[5] = start_Pos[6];
-	}
-	if (select == 5) {
-		_spy_pos = start_Pos[5];
-		_fake_pos[0] = start_Pos[0];
-		_fake_pos[1] = start_Pos[1];
-		_fake_pos[2] = start_Pos[3];
-		_fake_pos[3] = start_Pos[4];
-		_fake_pos[4] = start_Pos[2];
-		_fake_pos[5] = start_Pos[6];
-	}
-	if (select == 6) {
-		_spy_pos = start_Pos[6];
-		_fake_pos[0] = start_Pos[0];
-		_fake_pos[1] = start_Pos[1];
-		_fake_pos[2] = start_Pos[3];
-		_fake_pos[3] = start_Pos[4];
-		_fake_pos[4] = start_Pos[5];
-		_fake_pos[5] = start_Pos[2];
-	}
+	_map = new Map();
 	_spy = new Spy();
 	_tracker = new Tracker();
 	_decoy = new DecoyManager();
 	_collision = new Collision();
+	_check_move = new CheckMove();
 
-	Map::GetInstance().Initialize();
 
+	_map->Initialize();
 	_tracker->Initialize();
 
 	_spy->Initialize();
-	_spy->SetStartPos(_spy_pos);
+	_spy->SetStartPos(startPos[select]);
+	startPos.erase(startPos.begin() + select);
 
-	auto a = _spy->GetPosition();
-
-	_decoy->Initialize();
+	_decoy->Initialize(DECOY_MAX);
 	_decoy->SetSpy(_spy);
 	_decoy->SetTracker(_tracker);
+	_decoy->SetDecoyPosition(startPos);
 
 	_collision->AddListener(_spy->GetTag(), _spy);
 	_collision->AddListener(_tracker->GetTag(), _tracker);
 	for (int i = 0; i < _decoy->GetBase().size(); i++) {
 		_collision->AddListener(_decoy->GetBase()[i]->GetTag(), _decoy->GetBase()[i]);
+		_check_move->AddListener(_decoy->GetBase()[i]);
 	}
+
+	_spy->SetCheckMoveClass(_check_move);
+	_tracker->SetCheckMoveClass(_check_move);
 
 	return true;
 }
@@ -129,12 +73,13 @@ void GameMain::Finalize()
 
 int GameMain::Update()
 {
-
 	_spy->Update();
 	_tracker->Update();
+
 	_decoy->SetSpy(_spy);
 	_decoy->SetTracker(_tracker);
 	_decoy->Update();
+
 	_collision->CheckCollision("SPY","TRACKER");
 	_collision->CheckCollision("DECOY", "TRACKER");
 
@@ -155,7 +100,7 @@ void GameMain::Draw()
 	GraphicsDevice.Clear(Color_CornflowerBlue);
 	GraphicsDevice.BeginScene();
 	SpriteBatch.Begin();
-	Map::GetInstance().Draw();
+	_map->Draw();
 	_tracker->Draw();
 	_spy->Draw();
 	_decoy->Draw();

@@ -6,22 +6,23 @@
  */
 #include "DecoyManager.h"
 
-DecoyManager::DecoyManager() :
-	_wait_count{ 7, 10, 10, 10, 10, 10 },
-	_ratio{ 0.3f, 0.4f, 0.5f, 0.2f, 0.1f, 0.3f }
+DecoyManager::DecoyManager()
 {
 
 }
 
 
-void DecoyManager::Initialize()
+void DecoyManager::Initialize(int num_decoy)
 {
-	for (int i = 0; i < DECOY_MAX; i++)
+	std::vector<int>   waitCount = { 7, 10, 10, 10, 10, 10 };
+	std::vector<float> ratio = { 0.3f, 0.4f, 0.5f, 0.2f, 0.1f, 0.3f };
+
+	for (int i = 0; i < num_decoy; i++)
 	{
 		_decoy.push_back(new Decoy);
 		_decoy[i]->Initialize();
-		_decoy[i]->SetPriorityRatio(_ratio[i]);
-		_decoy[i]->SetWaitCount(_wait_count[i]);
+		_decoy[i]->SetPriorityRatio(ratio[i]);
+		_decoy[i]->SetWaitCount(waitCount[i]);
 	}
 }
 
@@ -54,6 +55,14 @@ void DecoyManager::SetTracker(HumanBase* tracker)
 	for (int i = 0; i < _decoy.size(); i++)
 	{
 		_decoy[i]->SetTrackerPos(tracker->GetPosition());
+	}
+}
+
+void DecoyManager::SetDecoyPosition(std::vector<Vector3>& positions)
+{
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->SetDecoyPos(positions[i]);
 	}
 }
 

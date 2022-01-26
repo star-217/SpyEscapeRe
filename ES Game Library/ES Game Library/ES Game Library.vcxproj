@@ -112,6 +112,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Class\Base\CheckMove\CheckMove.cpp" />
     <ClCompile Include="Class\Base\Collision\Collision.cpp" />
     <ClCompile Include="Class\Base\Move\Move.cpp" />
     <ClCompile Include="Class\Decoy\Decoy.cpp" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Class\Base\CheckMove\CheckMove.h" />
     <ClInclude Include="Class\Base\Collision\Collision.h" />
     <ClInclude Include="Class\Base\FontData.h" />
     <ClInclude Include="Class\Base\HumanBase\HumanBase.h" />

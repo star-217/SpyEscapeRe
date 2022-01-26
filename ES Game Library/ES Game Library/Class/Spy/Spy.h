@@ -3,9 +3,9 @@
 #include "../../ESGLib.h"
 #include "Skill/SkillState.h"
 #include "../Base/Move/Move.h"
-#include "../Base/GameState.h"
 #include "../Map/Map.h"
 #include "../Base/HumanBase/HumanBase.h"
+#include "../Base/CheckMove/CheckMove.h"
 
 class Spy : public HumanBase
 {
@@ -18,6 +18,9 @@ public:
 	void Update() override;
 	void Draw() override;
 	void OnCollisionEnter(std::string tag) override;
+	void DoMove(HumanBase* human) override {};
+
+	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
 
 private:
 
@@ -25,14 +28,14 @@ private:
 	void WinAnimetion();
 	void LoseAnimetion();
 
-	Move _move;
+	Move* _move;
+	CheckMove* _check_move;
+
 	SkillState _skill;
 
 	SPRITE _spy;
 	SPRITE _win;
 	SPRITE _lose;
-
-	std::vector<cstring> _map_data;
 
 	enum
 	{
@@ -54,4 +57,6 @@ private:
 	float _win_flame;
 	float _lose_flame;
 	float _invisible_alpha;
+
+	Vector3 _old_pos;
 };

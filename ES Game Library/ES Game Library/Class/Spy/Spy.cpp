@@ -6,8 +6,6 @@ void Spy::Initialize()
 	_win = GraphicsDevice.CreateSpriteFromFile(_T("playerwin.png"));
 	_lose = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
 
-	_map_data = Map::GetInstance().GetMapData();
-
 	_direction = 0;
 	_player_count = 0;
 
@@ -18,25 +16,33 @@ void Spy::Initialize()
 	_invisible_alpha = 1.0f;
 
 	_tag = "SPY";
-	_move.Initialize();
+
+	_state = DEFAULT;
+
+	_move = new Move();
+	_move->Initialize();
 
 }
 
 void Spy::Update()
 {
 	KeyboardBuffer key	= Keyboard->GetBuffer();
-	_pos			= _move.MovePostion(_pos,_map_data, _speed,0);
-	_invisible_alpha	= _skill.Update();
-	_direction			= (int)_move.GetDirection();
 
+	_pos			    = _move->MovePostion(_pos,_speed,0);
+	_invisible_alpha	= _skill.Update();
+	_direction			= (int)_move->GetDirection();
 	_collision			= Rect(_pos.x, _pos.y, _pos.x + _chara_size_width, _pos.y + _chara_size_height);
+
+	if (_move->GetMoveCmp())
+	{
+		_check_move->Notify(this);
+	}
 
 	Animetion();
 
 	if (key.IsPressed(Keys_Enter)) {
 		_skill.RandomSkil();
 	}
-
 }
 
 void Spy::Draw()

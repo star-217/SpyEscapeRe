@@ -3,7 +3,6 @@
 void ThreatMap::Initialize()
 {
 	_default_font = GraphicsDevice.CreateDefaultFont();
-	_map_data	  = Map::GetInstance().GetMapData();
 	_prev_mx	  = 0;
 	_prev_my	  = 0;
 
@@ -48,7 +47,7 @@ std::vector<std::vector<float>> ThreatMap::CreateTheatData(float ratio, std::vec
 	for (int y = 0; y < _map_data.size(); y++) {
 		for (int x = 0; x < _map_data[y].size(); x++) {
 			_threat_data[y][x] = _threat_data_spy[y][x] * ratio + _threat_data_tracker[y][x] * ratio2;
-			for (int i = 4 - 1; i > 0; i--) {
+			for (int i = 3; i > 0; i--) {
 				_threat_data[old_pos[i].x][old_pos[i].y] = 0;//’¼‘O‚É’Ê‚Á‚½êŠ‚É‚¢‚©‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß
 			}
 		}
