@@ -124,6 +124,9 @@
     <Filter Include="ソース ファイル\Class\Base\Observer">
       <UniqueIdentifier>{7e7132fa-f95b-4364-94b4-b3c0cdc014b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Class\Tracker\TrackerState">
+      <UniqueIdentifier>{8c2b209a-f212-42fc-b13d-59ad5c417ede}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -306,6 +309,21 @@
     </ClCompile>
     <ClCompile Include="Class\Base\CheckMove\CheckMove.cpp">
       <Filter>ソース ファイル\Class\Base\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Tracker\TrackerState\LoseState.cpp">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Tracker\TrackerState\WinState.cpp">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Tracker\TrackerState\AttackState.cpp">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Tracker\TrackerState\DefaultState.cpp">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Tracker\TrackerState\TrackerState.cpp">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -516,6 +534,24 @@
     </ClInclude>
     <ClInclude Include="Class\Base\ConstantList.h">
       <Filter>ソース ファイル\Class\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerStateBase.h">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Tracker\TrackerState\DefaultState.h">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Tracker\TrackerState\LoseState.h">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Tracker\TrackerState\WinState.h">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Tracker\TrackerState\AttackState.h">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerState.h">
+      <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

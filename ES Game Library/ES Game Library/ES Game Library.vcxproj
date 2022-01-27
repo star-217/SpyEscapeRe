@@ -124,6 +124,11 @@
     <ClCompile Include="Class\Spy\Spy.cpp" />
     <ClCompile Include="Class\Threatmap\Threatmap.cpp" />
     <ClCompile Include="Class\Tracker\Tracker.cpp" />
+    <ClCompile Include="Class\Tracker\TrackerState\AttackState.cpp" />
+    <ClCompile Include="Class\Tracker\TrackerState\DefaultState.cpp" />
+    <ClCompile Include="Class\Tracker\TrackerState\LoseState.cpp" />
+    <ClCompile Include="Class\Tracker\TrackerState\TrackerState.cpp" />
+    <ClCompile Include="Class\Tracker\TrackerState\WinState.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -229,6 +234,12 @@
     <ClInclude Include="Class\Spy\Spy.h" />
     <ClInclude Include="Class\Threatmap\Threatmap.h" />
     <ClInclude Include="Class\Tracker\Tracker.h" />
+    <ClInclude Include="Class\Tracker\TrackerState\AttackState.h" />
+    <ClInclude Include="Class\Tracker\TrackerState\DefaultState.h" />
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerState.h" />
+    <ClInclude Include="Class\Tracker\TrackerState\LoseState.h" />
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerStateBase.h" />
+    <ClInclude Include="Class\Tracker\TrackerState\WinState.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\Effekseer\Effekseer.hpp" />
     <ClInclude Include="Extension\Effekseer\EffekseerEffect.hpp" />
