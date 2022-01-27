@@ -13,7 +13,7 @@ class NoSkill : public SkillBase
 {
 public:
 
-	float Update() { return 1.0f; }
+	void Update() {};
 	void Draw() {};
 
 private:

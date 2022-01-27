@@ -1,7 +1,15 @@
+/**
+ * @file  Threatmap.cpp
+ * @brief 脅威マップを生成するクラス
+ * @author 星寛文
+ * @date 2021/04/20
+ */
+
 #pragma once
 
 #include "../../ESGLib.h"
 #include "../Map/Map.h"
+#include "../Base/HumanBase/HumanBase.h"
 
 class ThreatMap
 {
@@ -13,8 +21,13 @@ public:
 	void Update();
 	void Draw();
 
-	void SetSpyPosData(Vector3 pos) { _spy_pos = pos; }
-	void SetTrackerPosData(Vector3 pos) { _tracker_pos = pos; }
+	void SetPosData(HumanBase* human) 
+	{
+		if (human->GetTag() == "SPY")
+			_spy_pos = human->GetPosition();
+		if (human->GetTag() == "SPY")
+			_tracker_pos = human->GetPosition();
+	}
 
 	std::vector<std::vector<float>> CreateTheatData(float ratio, std::vector<Vector2>& old_pos);
 
@@ -30,6 +43,7 @@ private:
 	Vector3 _spy_pos;
 	Vector3 _tracker_pos;
 
+	//過去の座標
 	int _prev_mx;
 	int _prev_my;
 

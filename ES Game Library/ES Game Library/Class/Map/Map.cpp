@@ -1,6 +1,6 @@
 /**
  * @file  Map.cpp
- * @brief txtデータからMapデータを生成して描画する
+ * @brief txtデータからMapデータを生成して描画するクラス
  * @author 星寛文
  * @date 2021/04/20
  */

@@ -1,19 +1,13 @@
 /**
  * @file Collision.h
- * @brief Collision.cppのヘッダーファイル
+ * @brief 当たり判定クラス
  * @author 星寛文
  * @date 2021/04/20
  */
 #pragma once
 
 #include "../../../ESGLib.h"
-#include "../../Spy/Spy.h"
-#include "../../Tracker/Tracker.h"
-#include "../../Decoy/DecoyManager.h"
-
-class Spy;
-class Tracker;
-class DecoyManager;
+#include "../../Base/HumanBase/HumanBase.h"
 
 class Collision
 {

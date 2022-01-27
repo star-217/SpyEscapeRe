@@ -1,6 +1,6 @@
 /**
  * @file  DecoyManager.h
- * @brief DecoyManager.cppのヘッダーファイル
+ * @brief デコイを複数管理するためのマネージャークラス
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -18,14 +18,13 @@ public:
 	void Initialize(int num_decoy);
 	void Update();
 	void Draw();
-	void SetSpy(HumanBase* spy);
-	void SetTracker(HumanBase* tracker);
-	void SetDecoyPosition(std::vector<Vector3>& positions);
+	void SetOtherPositionInit(HumanBase* human);
+	void SetPosition(std::vector<Vector3>& positions);
 
+	//Decoyクラスを取る関数
 	std::vector<Decoy*> GetBase() { return _decoy; }
 
 private:
-
 	std::vector<Decoy*> _decoy;
 
 };

@@ -1,6 +1,6 @@
 /**
  * @file  DecoyManager.cpp
- * @brief デコイを複数管理するためのマネージャー
+ * @brief デコイを複数管理するためのマネージャークラス
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -41,24 +41,25 @@ void DecoyManager::Draw()
 		_decoy[i]->Draw();
 	}
 }
-
-void DecoyManager::SetSpy(HumanBase* spy)
+/**
+ * @fn
+ * 脅威マップの初期化をするためのデータを渡す
+ * @param (human) 渡したいキャラクタークラス
+ */
+void DecoyManager::SetOtherPositionInit(HumanBase* human)
 {
 	for (int i = 0; i < _decoy.size(); i++)
 	{
-		_decoy[i]->SetSpyPos(spy->GetPosition());
+		_decoy[i]->SetPosDataInit(human);
 	}
 }
 
-void DecoyManager::SetTracker(HumanBase* tracker)
-{
-	for (int i = 0; i < _decoy.size(); i++)
-	{
-		_decoy[i]->SetTrackerPos(tracker->GetPosition());
-	}
-}
-
-void DecoyManager::SetDecoyPosition(std::vector<Vector3>& positions)
+/**
+ * @fn
+ * デコイが最初にいる座標を設定する
+ * @param (positions) 座標データ
+ */
+void DecoyManager::SetPosition(std::vector<Vector3>& positions)
 {
 	for (int i = 0; i < _decoy.size(); i++)
 	{

@@ -1,6 +1,6 @@
 /**
  * @file  Map.h
- * @brief Map.cppのヘッダーファイル
+ * @brief txtデータからMapデータを生成して描画するクラス
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -16,6 +16,7 @@ public:
 
 	void Initialize();
 	void Draw();
+
 	std::vector<cstring>& GetMapData() { return _map_data; }
 
 private:

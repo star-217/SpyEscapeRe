@@ -502,9 +502,6 @@
     <ClInclude Include="Class\Spy\Skill\SkillFactory.h">
       <Filter>ソース ファイル\Class\Spy\Skil</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Base\FontData.h">
-      <Filter>ソース ファイル\Class\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Class\Base\HumanBase\HumanBase.h">
       <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
@@ -516,6 +513,9 @@
     </ClInclude>
     <ClInclude Include="Class\Base\CheckMove\CheckMove.h">
       <Filter>ソース ファイル\Class\Base\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Base\ConstantList.h">
+      <Filter>ソース ファイル\Class\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,10 +16,12 @@ public:
 	SkillState();
 	virtual ~SkillState() {};
 
-	float  Update();
+	void   Update();
 	void   Draw();
 	void   RandomSkil();
 	void   ChangeState(SkillBase* state);
+
+	float GetAlpfa();
 
 private:
 	enum

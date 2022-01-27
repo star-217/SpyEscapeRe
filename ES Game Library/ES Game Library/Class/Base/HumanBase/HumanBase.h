@@ -1,7 +1,14 @@
+/**
+ * @file  HumanBase.cpp
+ * @brief キャラクターの基底クラス
+ * @author 星寛文
+ * @date 2022/01/27
+ */
+
 #pragma once
 
 #include "../../../ESGLib.h"
-#include "../Move/Move.h"
+#include "../ConstantList.h"
 
 class HumanBase {
 public:
@@ -9,19 +16,17 @@ public:
 	virtual void Initialize() = 0;
 	virtual void Update() {};
 	virtual void Draw() {};
+	//当たり判定が返ってきた時の処理
 	virtual void OnCollisionEnter(std::string tag) {};
+	//CheckMoveクラスから知らせが来た時の処理
 	virtual void DoMove(HumanBase* human) {};
-
+	
 	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
 	Vector3 GetPosition() { return _pos; }
 	Rect GetCollision() { return _collision; }
 	std::string GetTag() { return _tag; }
 
 protected:
-
-	const float CHARA_SIZE_X = 50.0f;
-	const float CHARA_SIZE_Y = 70.0f;
-	const float FIX_POS_Y = 20.0f;
 
 	Vector3 _pos;
 	std::string _tag;

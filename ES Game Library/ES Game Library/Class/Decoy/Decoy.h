@@ -1,8 +1,16 @@
+/**
+ * @file  Decoy.h
+ * @brief デコイ(NPC)クラス
+ * @author 星寛文
+ * @date 2022/01/27
+ */
+
 #pragma once
 
 #include "../../ESGLib.h"
 #include "../Threatmap/Threatmap.h"
 #include "../Base/HumanBase/HumanBase.h"
+#include "../Base/ConstantList.h"
 
 class Decoy : public HumanBase
 {
@@ -16,8 +24,7 @@ public:
 	void OnCollisionEnter(std::string tag) override {};
 	void DoMove(HumanBase* human) override;
 
-	void SetSpyPos(Vector3 pos) { _spy_pos = pos; }
-	void SetTrackerPos(Vector3 pos) { _tracker_pos = pos; }
+	void SetPosDataInit(HumanBase* human) { _threatmap->SetPosData(human); }
 
 	void Move();
 	void SetDecoyPos(Vector3 pos) { _pos = pos; }
@@ -30,25 +37,12 @@ private:
 	void FixDirection();
 	void Animetion();
 
-	enum class Direction
-	{
-		None,
-		Down,
-		Left,
-		Right,
-		Up,
-		Max
-	};
-
 	ThreatMap* _threatmap;
 	Vector3 _spy_pos;
 	Vector3 _tracker_pos;
 
 
 	SPRITE        _decoy;
-
-	//キャラの画像サイズ
-	const Vector2 CHARA_SIZE = Vector2(50, 70);
 
 	const int  SPEED = 5;
 	//上下左右の方向の値
@@ -73,16 +67,14 @@ private:
 	int _wait_count;
 	//ブロック単位移動のカウント
 	int _move_count;
-
+	//AIの計算の割合
 	float _ratio;
 
-	float _flame;
 	float _animetion_flame;
 
-	enum { PREV_MAX = 4 };	// 遡る歩数
+	// 遡る歩数
+	enum { PREV_MAX = 4 };
 	std::vector<Vector2> _old_pos;
 
 	std::vector<std::vector<float>> _threat_data;
-
-	FONT DefaultFont;
 };

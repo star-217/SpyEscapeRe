@@ -1,6 +1,13 @@
+/**
+ * @file  CheckMove.h
+ * @brief 特定のクラスが動いたことを調べるクラス
+ * @author 星寛文
+ * @date 2022/01/27
+ */
+
 #pragma once
 
-#include "../../Decoy/Decoy.h"
+#include "../../Base/HumanBase/HumanBase.h"
 
 class CheckMove {
 public:

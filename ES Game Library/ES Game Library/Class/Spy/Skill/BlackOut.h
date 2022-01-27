@@ -1,6 +1,6 @@
 /**
  * @file  BlackOut.h
- * @brief BlackOut.cppのヘッダーファイル
+ * @brief BlackOut.cpp
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -15,11 +15,10 @@ public:
 	BlackOut();
 	virtual ~BlackOut() {};
 
-	float Update();
-	void  Draw();
+	void  Update() override;
+	void  Draw() override;
 
 private:
 	SPRITE  _black;
 	Vector3 _position;
-	float   _alpha;
 };

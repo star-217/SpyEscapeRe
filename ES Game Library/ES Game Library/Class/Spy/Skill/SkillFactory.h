@@ -1,6 +1,6 @@
 /**
  * @file  SkillFactory.h
- * @brief Spyのスキルの生成をファクトリーパターンで
+ * @brief スキルの生成クラス
  * @author 星寛文
  * @date 2021/04/20
  */

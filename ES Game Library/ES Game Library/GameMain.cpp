@@ -14,7 +14,7 @@ bool GameMain::Initialize()
 	WindowTitle(_T("ES Game Library"));
 
 	constexpr int PLAYER_MAX = 2;
-	constexpr int DECOY_MAX = 1;
+	constexpr int DECOY_MAX = 6;
 
 	InputDevice.CreateGamePad(PLAYER_MAX);
 	DefaultFont = GraphicsDevice.CreateDefaultFont();
@@ -42,9 +42,9 @@ bool GameMain::Initialize()
 	startPos.erase(startPos.begin() + select);
 
 	_decoy->Initialize(DECOY_MAX);
-	_decoy->SetSpy(_spy);
-	_decoy->SetTracker(_tracker);
-	_decoy->SetDecoyPosition(startPos);
+	_decoy->SetOtherPositionInit(_spy);
+	_decoy->SetOtherPositionInit(_tracker);
+	_decoy->SetPosition(startPos);
 
 	_collision->AddListener(_spy->GetTag(), _spy);
 	_collision->AddListener(_tracker->GetTag(), _tracker);
@@ -75,9 +75,6 @@ int GameMain::Update()
 {
 	_spy->Update();
 	_tracker->Update();
-
-	_decoy->SetSpy(_spy);
-	_decoy->SetTracker(_tracker);
 	_decoy->Update();
 
 	_collision->CheckCollision("SPY","TRACKER");

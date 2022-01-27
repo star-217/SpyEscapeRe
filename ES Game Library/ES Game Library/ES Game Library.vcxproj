@@ -214,7 +214,7 @@
   <ItemGroup>
     <ClInclude Include="Class\Base\CheckMove\CheckMove.h" />
     <ClInclude Include="Class\Base\Collision\Collision.h" />
-    <ClInclude Include="Class\Base\FontData.h" />
+    <ClInclude Include="Class\Base\ConstantList.h" />
     <ClInclude Include="Class\Base\HumanBase\HumanBase.h" />
     <ClInclude Include="Class\Base\Move\Move.h" />
     <ClInclude Include="Class\Decoy\Decoy.h" />

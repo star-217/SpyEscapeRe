@@ -1,3 +1,10 @@
+/**
+ * @file  Threatmap.cpp
+ * @brief 脅威マップを生成するクラス
+ * @author 星寛文
+ * @date 2021/04/20
+ */
+
 #include "Threatmap.h"
 
 void ThreatMap::Initialize()
@@ -40,6 +47,13 @@ void ThreatMap::Draw()
 #endif
 }
 
+/**
+ * @fn
+ * デコイの挙動をAIで処理するための脅威マップを生成する関数です
+ * @param (ratio) 計算の比率 
+ * @param (old_pos) 過去にいた座標
+ * @return 生成した脅威マップを返す
+ */
 std::vector<std::vector<float>> ThreatMap::CreateTheatData(float ratio, std::vector<Vector2>& old_pos)
 {
 	const float ratio2 = 1.0f - ratio;

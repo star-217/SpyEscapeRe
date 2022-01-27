@@ -1,6 +1,6 @@
 /**
  * @file  Invisible.h
- * @brief Invisible.cppのヘッダーファイル
+ * @brief 透明化スキルクラス
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -15,11 +15,12 @@ public:
 	Invisible();
 	virtual ~Invisible() {};
 
-	float Update();
+	void  Update() override;
 	void  Draw() {};
 
+
 private:
-	float _alpha;
+
 	bool  _flag;
 	int	  _time;
 };

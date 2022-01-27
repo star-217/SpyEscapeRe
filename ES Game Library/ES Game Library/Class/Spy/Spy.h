@@ -1,3 +1,10 @@
+/**
+ * @file  Spy.h
+ * @brief ì¶Ç∞ÇÈë§ÇÃÉNÉâÉX
+ * @author êØä∞ï∂
+ * @date 2021/04/20
+ */
+
 #pragma once
 
 #include "../../ESGLib.h"
@@ -13,13 +20,13 @@ public:
 	Spy() {};
 	virtual ~Spy() {}
 
-	void SetStartPos(Vector3& pos) { _pos = pos; }
 	void Initialize() override;
 	void Update() override;
 	void Draw() override;
 	void OnCollisionEnter(std::string tag) override;
 	void DoMove(HumanBase* human) override {};
 
+	void SetStartPos(Vector3& pos) { _pos = pos; }
 	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
 
 private:
@@ -37,19 +44,9 @@ private:
 	SPRITE _win;
 	SPRITE _lose;
 
-	enum
-	{
-		DEFAULT,
-		WIN,
-		LOSE
-	};
+	const int SPEED = 5.0f;
 
-	const int _chara_size_width = 50.0f;
-	const int _chara_size_height = 70.0f;
-	const int _fix_pos_y  = 20.0f;
-	const int _speed = 5.0f;
-
-	int _state;
+	SpyState _state;
 	int _direction;
 	int _player_count;
 

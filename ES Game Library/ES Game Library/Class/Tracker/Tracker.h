@@ -1,6 +1,6 @@
 /**
  * @file  Tracker.h
- * @brief Tracker.cppのヘッダーファイル
+ * @brief 鬼側のクラス
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -11,6 +11,7 @@
 #include "../Base/HumanBase/HumanBase.h"
 #include "../Base/CheckMove/CheckMove.h"
 #include "../Map/Map.h"
+#include "TrackerState/TrackerState.h"
 
 class Tracker : public HumanBase
 {
@@ -26,16 +27,12 @@ public:
 
 
 	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
-	void Attack();
+	void MoveCollision();
+
+	//攻撃していないとき
+	void Default() { _collision = Rect(0, 0, 0, 0); };
 
 private:
-	enum class TrackerState
-	{
-		Default,
-		Win,
-		Lose,
-		Attack
-	};
 
 	void StunTime();
 	void Animetion();
@@ -45,14 +42,12 @@ private:
 
 	Move* _move;
 	CheckMove* _check_move;
+	TrackerState* _ctracker_state;
 
-	TrackerState		 _tracker_state;
-	Move::Direction			 _direc;
+	TrackerState::State		 _tracker_state;
+	TrackerState::State		 _old_tracker_state;
 
-	SPRITE _tracker;
-	SPRITE _tracker_win;
-	SPRITE _tracker_lose;
-	SPRITE _tracker_attack;
+	Direction			_direc;
 
 	Rect	_collision;
 

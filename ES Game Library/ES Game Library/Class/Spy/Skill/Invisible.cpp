@@ -1,21 +1,19 @@
 /**
  * @file  Invisible.cpp
- * @brief Spyのスキル　透明化
+ * @brief 透明化スキルクラス
  * @author 星寛文
  * @date 2021/04/20
  */
 #include "Invisible.h"
 #include <algorithm>
 
-Invisible::Invisible() : _time(0.0f), _flag(false), _alpha(0.0f)
+Invisible::Invisible() : _time(0.0f), _flag(false)
 {
 
 }
 
-float Invisible::Update()
+void Invisible::Update()
 {
-	if (!_flag)
-		return false;
 
 	constexpr float alpha_speed =  20.0f;
 	constexpr float max_time    = 120.0f;
@@ -30,6 +28,5 @@ float Invisible::Update()
 		_time  = 0.0f;
 	}
 
-	return _alpha;
 }
 

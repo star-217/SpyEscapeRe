@@ -23,7 +23,7 @@ SkillState::SkillState() :
 	std::shuffle(std::begin(_skil_box), std::end(_skil_box), engine);
 }
 
-float SkillState::Update()
+void SkillState::Update()
 {
 	return _state->Update();
 }
@@ -48,6 +48,11 @@ void SkillState::ChangeState(SkillBase* state)
 {
 	delete this->_state;
 	this->_state = state;
+}
+
+float SkillState::GetAlpfa()
+{
+	return _state->GetAlpfa();
 }
 
 

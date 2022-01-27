@@ -1,6 +1,6 @@
 /**
  * @file  SkillBase.h
- * @brief Spyのスキルのベース
+ * @brief スキルの基底クラス
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -14,9 +14,12 @@ public:
 	SkillBase() = default;
 	virtual ~SkillBase() {};
 
-	virtual float Update() = 0;
+	virtual void Update() = 0;
 	virtual void Draw()    = 0;
 
-private:
+	virtual float GetAlpfa() { return _alpha; }
+
+protected:
+	float _alpha;
 
 };

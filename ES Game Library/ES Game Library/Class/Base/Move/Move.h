@@ -1,6 +1,6 @@
 /**
  * @file  Move.h
- * @brief Move.cppのヘッダーファイル
+ * @brief コントローラの移動プログラム
  * @author 星寛文
  * @date 2021/04/20
  */
@@ -8,6 +8,7 @@
 
 #include "../../../ESGLib.h"
 #include "../../Map/Map.h"
+#include "../../Base/ConstantList.h"
 
 
 class Move
@@ -16,25 +17,19 @@ public:
 	Move() {};
 	virtual ~Move() {}
 
-	enum class Direction //キャラが進む方向
-	{
-		None,
-		Down,
-		Left,
-		Right,
-		Up
-	};
-
 	void      Initialize();
 	Vector3   MovePostion(Vector3 pos, float speed,int pad_number);
-	Direction GetDirection() const { return _direction; }
+	void PadDirection(Vector3 pos, int pad_number);
 
+	Direction GetDirection() const { return _direction; }
 	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
 	bool GetMoveCmp() { return _flag; }
+	GamePadState GetPad() { return _pad; }
 
 private:
-	const int MAXBLOCKCOUNT = 50;
 	const int BLOCK_SIZE = 50;
+
+	GamePadState _pad;
 
 	Direction _pad_direction;
 	Direction _direction;
