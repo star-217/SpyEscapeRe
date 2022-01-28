@@ -7,32 +7,35 @@
 
 #include "Decoy.h"
 
-Decoy::Decoy()
+Decoy::Decoy() : _threatmap(nullptr),_decoy(0),_move_pattern(Direction::None),
+				_sprite_direction(0),_wait_count(0),_move_count(0),
+				_ratio(0),_animetion_flame(0)
 {
 }
 
+/**
+  * @fn
+  * 初期化
+  */
 void Decoy::Initialize()
 {
 	_threatmap = new ThreatMap();
 	_threatmap->Initialize();
 
 	_decoy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
-
-	_pos = Vector3_Zero;
 	_old_pos.assign(PREV_MAX, Vector2_Zero);
-	_move_pattern = Direction::None;
+	_move_count = BLOCK_SIZE; //50ドット単位のブロック
 
-	_animetion_flame = 0;
-	_sprite_direction = 0;
-	_move_count = 50; //50ドット単位のブロック
-	_tag = "DECOY";
+	_threat_data = _threatmap->CreateTheatData(_ratio, _old_pos);
 
 }
 
+/**
+  * @fn
+  * 更新処理
+  */
 void Decoy::Update()
-{
-	constexpr float BLOCK_SIZE = 50.0f;
-	
+{	
 	_threatmap->Update();
 	//脅威マップを1ブロック単位で更新
 	if (_move_count >= BLOCK_SIZE) {
@@ -40,14 +43,18 @@ void Decoy::Update()
 	}
 
 	Move();
-	_collision = Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE.x, _pos.y + CHARA_SIZE.y);
 	Animetion();
+	_collision = Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE.x, _pos.y + CHARA_SIZE.y);
 
 }
 
+/**
+  * @fn
+  * 描画
+  */
 void Decoy::Draw()
 {
-	SpriteBatch.Draw(*_decoy,Vector3(_pos.x, _pos.y - _fix_positon_y, _pos.z),
+	SpriteBatch.Draw(*_decoy,Vector3(_pos.x, _pos.y - FIX_POS_Y, _pos.z),
 					RectWH(CHARA_SIZE.x * _animetion_flame, CHARA_SIZE.y * _sprite_direction, CHARA_SIZE.x, CHARA_SIZE.y));
 }
 
@@ -68,7 +75,6 @@ void Decoy::DoMove(HumanBase* human)
  */
 void Decoy::Move()
 {
-	constexpr float BLOCK_SIZE = 50.0f;
 	if (_move_count >= BLOCK_SIZE) {
 		const int MX = (int)(_pos.x / BLOCK_SIZE);
 		const int MY = (int)(_pos.y / BLOCK_SIZE);
@@ -103,10 +109,10 @@ void Decoy::Move()
 
 	//移動処理
 	if (_move_pattern > Direction::None) {
-		_pos += _move_direction[(int)_move_pattern - 1] * SPEED;
+		_pos += _move_direction[(int)_move_pattern - 1] * CHARA_SPEED;
 		FixDirection();
 	}
-	_move_count += SPEED;
+	_move_count += CHARA_SPEED;
 }
 
 /**

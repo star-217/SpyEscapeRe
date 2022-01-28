@@ -6,6 +6,10 @@
  */
 #include "Move.h"
 
+ /**
+   * @fn
+   * ‰Šú‰»
+   */
 void Move::Initialize()
 {
 	_direction     = Direction::Down;

@@ -17,7 +17,7 @@
 class Spy : public HumanBase
 {
 public:
-	Spy() {};
+	Spy();
 	virtual ~Spy() {}
 
 	void Initialize() override;
@@ -26,7 +26,6 @@ public:
 	void OnCollisionEnter(std::string tag) override;
 	void DoMove(HumanBase* human) override {};
 
-	void SetStartPos(Vector3& pos) { _pos = pos; }
 	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
 
 private:
@@ -37,16 +36,13 @@ private:
 
 	Move* _move;
 	CheckMove* _check_move;
-
-	SkillState _skill;
+	SkillState* _skill;
+	SpyState _state;
 
 	SPRITE _spy;
 	SPRITE _win;
 	SPRITE _lose;
 
-	const int SPEED = 5.0f;
-
-	SpyState _state;
 	int _direction;
 	int _player_count;
 

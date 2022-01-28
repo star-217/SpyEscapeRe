@@ -6,12 +6,11 @@
  */
 #include "DecoyManager.h"
 
-DecoyManager::DecoyManager()
-{
-
-}
-
-
+/**
+  * @fn
+  * ‰Šú‰»
+  * @param (num_decoy) decoy‚Ì”
+  */
 void DecoyManager::Initialize(int num_decoy)
 {
 	std::vector<int>   waitCount = { 7, 10, 10, 10, 10, 10 };
@@ -26,6 +25,10 @@ void DecoyManager::Initialize(int num_decoy)
 	}
 }
 
+/**
+  * @fn
+  * XVˆ—
+  */
 void DecoyManager::Update()
 {
 	for (int i = 0; i < _decoy.size(); i++)
@@ -34,12 +37,25 @@ void DecoyManager::Update()
 	}
 }
 
+/**
+  * @fn
+  * •`‰æ
+  */
 void DecoyManager::Draw()
 {
 	for (int i = 0; i < _decoy.size(); i++)
 	{
 		_decoy[i]->Draw();
 	}
+}
+void DecoyManager::SetMapData(std::vector<cstring>& map_data)
+{
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->SetMapData(map_data);
+		_decoy[i]->ThreatMapDataInit();
+	}
+
 }
 /**
  * @fn
@@ -63,7 +79,15 @@ void DecoyManager::SetPosition(std::vector<Vector3>& positions)
 {
 	for (int i = 0; i < _decoy.size(); i++)
 	{
-		_decoy[i]->SetDecoyPos(positions[i]);
+		_decoy[i]->SetPosition(positions[i]);
+	}
+}
+
+void DecoyManager::SetTag(std::string tag)
+{
+	for (int i = 0; i < _decoy.size(); i++)
+	{
+		_decoy[i]->SetTag(tag);
 	}
 }
 

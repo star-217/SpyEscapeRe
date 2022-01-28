@@ -6,7 +6,7 @@ class DefaultState : public TrackerStateBase {
 
 public:
 	DefaultState();
-	~DefaultState() {};
+	virtual ~DefaultState() {};
 
 	void Initialize(TCHAR* file_name) override;
 	void Update() override;

@@ -12,14 +12,16 @@
 class DecoyManager
 {
 public:
-	DecoyManager();
+	DecoyManager() {};
 	virtual ~DecoyManager() {};
 
 	void Initialize(int num_decoy);
 	void Update();
 	void Draw();
+	void SetMapData(std::vector<cstring>& map_data);
 	void SetOtherPositionInit(HumanBase* human);
 	void SetPosition(std::vector<Vector3>& positions);
+	void SetTag(std::string tag);
 
 	//DecoyƒNƒ‰ƒX‚ğæ‚éŠÖ”
 	std::vector<Decoy*> GetBase() { return _decoy; }

@@ -14,7 +14,7 @@
 class ThreatMap
 {
 public:
-	ThreatMap() {};
+	ThreatMap();
 	virtual ~ThreatMap() {};
 
 	void Initialize();
@@ -29,6 +29,7 @@ public:
 			_tracker_pos = human->GetPosition();
 	}
 
+	void SetMapdata(std::vector<cstring> map_data) { _map_data = map_data; }
 	std::vector<std::vector<float>> CreateTheatData(float ratio, std::vector<Vector2>& old_pos);
 
 private:
@@ -44,6 +45,7 @@ private:
 	Vector3 _tracker_pos;
 
 	//‰ß‹‚ÌÀ•W
+	const int PREV_MAX = 3;
 	int _prev_mx;
 	int _prev_my;
 

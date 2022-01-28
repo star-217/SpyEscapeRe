@@ -12,6 +12,10 @@ Map::Map() : _bg(nullptr), _wallhide(nullptr)
 {
 }
 
+/**
+  * @fn
+  * ‰Šú‰»
+  */
 void Map::Initialize()
 {
 	_bg       = GraphicsDevice.CreateSpriteFromFile(_T("deza.png"));
@@ -31,6 +35,10 @@ void Map::Initialize()
 
 }
 
+/**
+  * @fn
+  * •`‰æ
+  */
 void Map::Draw()
 {
 

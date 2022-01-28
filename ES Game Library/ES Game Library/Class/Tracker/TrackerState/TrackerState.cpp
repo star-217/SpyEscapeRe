@@ -15,6 +15,8 @@ void TrackerState::Initialize()
 	_attack_state->Initialize(_T("punch.png"));
 	_win_state->Initialize(_T("oniwin.png"));
 	_lose_state->Initialize(_T("onilose.png"));
+
+	_state = _default_state;
 }
 
 /**

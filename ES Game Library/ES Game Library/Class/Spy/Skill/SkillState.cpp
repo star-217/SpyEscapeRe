@@ -23,11 +23,19 @@ SkillState::SkillState() :
 	std::shuffle(std::begin(_skil_box), std::end(_skil_box), engine);
 }
 
+/**
+  * @fn
+  * XVˆ—
+  */
 void SkillState::Update()
 {
 	return _state->Update();
 }
 
+/**
+  * @fn
+  * •`‰æ
+  */
 void SkillState::Draw()
 {
 	_state->Draw();

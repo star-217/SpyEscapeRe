@@ -6,7 +6,7 @@ class WinState : public TrackerStateBase {
 
 public:
 	WinState();
-	~WinState() {};
+	virtual ~WinState() {};
 
 	void Initialize(TCHAR* file_name) override;
 	void Update() override;

@@ -12,6 +12,10 @@ Invisible::Invisible() : _time(0.0f), _flag(false)
 
 }
 
+/**
+  * @fn
+  * XVˆ—
+  */
 void Invisible::Update()
 {
 

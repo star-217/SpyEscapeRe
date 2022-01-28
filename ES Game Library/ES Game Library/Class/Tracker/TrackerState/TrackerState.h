@@ -19,9 +19,12 @@ public:
 	void	Initialize();
 	void	Update();
 	void	Draw(Vector3& pos, int dir);
-	TrackerStateBase*   ChangeState(State state);
+
+	TrackerStateBase* ChangeState(State state);
+	bool GetAnimetionFinish() { return _state->AnimetionFinish(); }
 
 private:
+
 	TrackerStateBase* _state;
 
 	DefaultState*	_default_state;

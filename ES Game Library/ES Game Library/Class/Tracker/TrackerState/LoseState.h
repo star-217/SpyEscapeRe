@@ -6,7 +6,7 @@ class LoseState : public TrackerStateBase {
 
 public:
 	LoseState();
-	~LoseState() {};
+	virtual ~LoseState() {};
 
 	void Initialize(TCHAR* file_name) override;
 	void Update() override;

@@ -6,12 +6,21 @@
  */
 
 #include "Threatmap.h"
+ /**
+   * @fn
+   * コンストラクタ
+   */
+ThreatMap::ThreatMap() : _prev_mx(0),_prev_my(0),_default_font(nullptr)
+{
 
+}
+ /**
+   * @fn
+   * 初期化
+   */
 void ThreatMap::Initialize()
 {
 	_default_font = GraphicsDevice.CreateDefaultFont();
-	_prev_mx	  = 0;
-	_prev_my	  = 0;
 
 	auto dataSizeY = _map_data.size();
 
@@ -26,20 +35,28 @@ void ThreatMap::Initialize()
 
 }
 
+/**
+  * @fn
+  * 更新処理
+  */
 void ThreatMap::Update()
 {
 	_threat_data_spy = CreateDistanceMap(_spy_pos);
 	_threat_data_tracker = CreateDistanceMap(_tracker_pos);
 }
 
+/**
+  * @fn
+  * 描画
+  */
 void ThreatMap::Draw()
 {
 #ifdef _DEBUG
-	for (int y = 0; y < 18; y++) {
-		for (int x = 0; x < _threat_data_tracker[y].size(); x++)
+	for (int y = 0; y < _threat_data_spy.size(); y++) {
+		for (int x = 0; x < _threat_data_spy[y].size(); x++)
 		{
 			SpriteBatch.DrawString(
-				_default_font, Vector2(50 * x, 50 * y), Color(255, 0, 0),
+				_default_font, Vector2(BLOCK_SIZE * x, BLOCK_SIZE * y), Color(255, 0, 0),
 				_T("%.4f"), _threat_data_spy[y][x]
 			);
 		}
@@ -61,7 +78,7 @@ std::vector<std::vector<float>> ThreatMap::CreateTheatData(float ratio, std::vec
 	for (int y = 0; y < _map_data.size(); y++) {
 		for (int x = 0; x < _map_data[y].size(); x++) {
 			_threat_data[y][x] = _threat_data_spy[y][x] * ratio + _threat_data_tracker[y][x] * ratio2;
-			for (int i = 3; i > 0; i--) {
+			for (int i = PREV_MAX; i >= 0; i--) {
 				_threat_data[old_pos[i].x][old_pos[i].y] = 0;//直前に通った場所にいかないようにするため
 			}
 		}
@@ -82,17 +99,17 @@ std::vector<std::vector<float>> ThreatMap::CreateDistanceMap(Vector3 pos)
 	std::vector<std::vector<float>> distanceMap;
 	distanceMap.resize(_map_data.size());
 
-	int mx = (int)(pos.x / 50);
-	int my = (int)(pos.y / 50);
+	int mx = (int)(pos.x / BLOCK_SIZE);
+	int my = (int)(pos.y / BLOCK_SIZE);
 	//脅威マップ
 	if (mx != _prev_mx || my != _prev_my) {
 		float max = FLT_MIN;
 		float min = FLT_MAX;
-		for (int y = 0; y < 18; y++) {
+		for (int y = 0; y < _map_data.size(); y++) {
 			distanceMap[y].assign(_map_data[y].size(), 0);
 			for (int x = 0; x < _map_data[y].size(); x++) {
 				if (_map_data[y][x] ==  ' ' || _map_data[y][x] == '%' ) {
-					distanceMap[y][x] = Vector3_Distance(pos, Vector3(x * 50, y * 50, 0));
+					distanceMap[y][x] = Vector3_Distance(pos, Vector3(x * BLOCK_SIZE, y * BLOCK_SIZE, 0));
 					if (max < distanceMap[y][x])
 					{
 						max = distanceMap[y][x];

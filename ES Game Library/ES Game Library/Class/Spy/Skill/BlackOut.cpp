@@ -12,6 +12,10 @@ BlackOut::BlackOut() :	_black(GraphicsDevice.CreateSpriteFromFile(_T("skill.png"
 {
 }
 
+/**
+  * @fn
+  * çXêVèàóù
+  */
 void BlackOut::Update()
 {
 	constexpr float alpha_speed = 0.008f;
@@ -21,6 +25,10 @@ void BlackOut::Update()
 
 }
 
+/**
+  * @fn
+  * ï`âÊ
+  */
 void BlackOut::Draw()
 {
 	SpriteBatch.Draw(*_black, _position, _alpha);

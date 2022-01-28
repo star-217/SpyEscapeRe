@@ -25,7 +25,6 @@ public:
 	void OnCollisionEnter(std::string tag) override;
 	void DoMove(HumanBase* human) override {};
 
-
 	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
 	void MoveCollision();
 
@@ -35,10 +34,6 @@ public:
 private:
 
 	void StunTime();
-	void Animetion();
-	void WinAnimetion();
-	void LoseAnimetion();
-	void AttackAnimetion();
 
 	Move* _move;
 	CheckMove* _check_move;
@@ -51,12 +46,7 @@ private:
 
 	Rect	_collision;
 
-	float	_tracker_spd;
 	float	_stun_time;
-	float	_tracker_flame_x;
-	float	_win_flame;
-	float	_lose_flame;
-	float   _attack_flame;
 
 	bool	_stun_flag;
 

@@ -22,6 +22,9 @@ public:
 	virtual void DoMove(HumanBase* human) {};
 	
 	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
+	void SetTag(std::string tag) { _tag = tag; }
+	void SetPosition(Vector3 pos) { _pos = pos; }
+
 	Vector3 GetPosition() { return _pos; }
 	Rect GetCollision() { return _collision; }
 	std::string GetTag() { return _tag; }

@@ -5,8 +5,8 @@
 class AttackState: public TrackerStateBase {
 
 public:
-	AttackState();
-	~AttackState() {};
+	AttackState() {};
+	virtual ~AttackState() {};
 
 	void Initialize(TCHAR* file_name) override;
 	void Update() override;

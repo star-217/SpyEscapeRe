@@ -1,8 +1,5 @@
 #include "AttackState.h"
 
-AttackState::AttackState()
-{
-}
 /**
   * @fn
   * ‰Šú‰»

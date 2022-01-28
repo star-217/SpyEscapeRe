@@ -25,6 +25,7 @@ bool GameMain::Initialize()
 							Vector3(1250, 150, 0), Vector3( 850, 700, 0),
 							Vector3(  50, 750, 0), Vector3(1500, 200, 0),
 							Vector3(1500, 500, 0) };
+	Vector3 TrackerPos = Vector3(1500, 800, 0);
 
 	_map = new Map();
 	_spy = new Spy();
@@ -35,16 +36,25 @@ bool GameMain::Initialize()
 
 
 	_map->Initialize();
+
 	_tracker->Initialize();
+	_tracker->SetPosition(TrackerPos);
+	_tracker->SetTag("TRACKER");
+	_tracker->SetMapData(_map->GetMapData());
 
 	_spy->Initialize();
-	_spy->SetStartPos(startPos[select]);
+	_spy->SetPosition(startPos[select]);
+	_spy->SetTag("SPY");
+	_spy->SetMapData(_map->GetMapData());
+
 	startPos.erase(startPos.begin() + select);
 
 	_decoy->Initialize(DECOY_MAX);
 	_decoy->SetOtherPositionInit(_spy);
 	_decoy->SetOtherPositionInit(_tracker);
 	_decoy->SetPosition(startPos);
+	_decoy->SetTag("DECOY");
+	_decoy->SetMapData(_map->GetMapData());
 
 	_collision->AddListener(_spy->GetTag(), _spy);
 	_collision->AddListener(_tracker->GetTag(), _tracker);

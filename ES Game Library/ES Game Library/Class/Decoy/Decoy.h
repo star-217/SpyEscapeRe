@@ -24,16 +24,14 @@ public:
 	void OnCollisionEnter(std::string tag) override {};
 	void DoMove(HumanBase* human) override;
 
-	void SetPosDataInit(HumanBase* human) { _threatmap->SetPosData(human); }
-
-	void Move();
-	void SetDecoyPos(Vector3 pos) { _pos = pos; }
 	void SetWaitCount(int& wait_count) { _wait_count = wait_count; }
 	void SetPriorityRatio(float& ratio) { _ratio = ratio; }
-
+	void SetPosDataInit(HumanBase* human) { _threatmap->SetPosData(human); }
+	void ThreatMapDataInit() { _threatmap->SetMapdata(_map_data); }
 
 private:
 
+	void Move();
 	void FixDirection();
 	void Animetion();
 
@@ -41,10 +39,8 @@ private:
 	Vector3 _spy_pos;
 	Vector3 _tracker_pos;
 
-
 	SPRITE        _decoy;
 
-	const int  SPEED = 5;
 	//上下左右の方向の値
 	const Vector3 _move_direction[4] =
 	{
@@ -53,9 +49,6 @@ private:
 		 Vector3_Right,
 		 -Vector3_Up
 	};	// 4方向ぶん
-
-	//キャラのポジションy軸修正値
-	const float _fix_positon_y = 20.0f;
 
 	//移動方向のenumclass
 	Direction _move_pattern;
