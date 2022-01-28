@@ -45,7 +45,7 @@ void SkillState::Draw()
  * @detail コンストラクタ配列の中身をシャッフルして
  *		   先頭からスキルを出すようにする。
  */
-void SkillState::RandomSkil()
+void SkillState::RandomSkill()
 {
 
 	ChangeState(_factory.Create(_skil_box[_skil_count]));

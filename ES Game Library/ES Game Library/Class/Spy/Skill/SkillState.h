@@ -18,7 +18,7 @@ public:
 
 	void   Update();
 	void   Draw();
-	void   RandomSkil();
+	void   RandomSkill();
 	void   ChangeState(SkillBase* state);
 
 	float GetAlpfa();

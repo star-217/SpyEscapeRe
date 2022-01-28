@@ -5,13 +5,14 @@
  * @date 2021/04/20
  */
 #include "Tracker.h"
+#include "../Base/CheckMove/CheckMove.h"
 
  /**
    * @fn
    * コンストラクタ
    */
 Tracker::Tracker() :_collision(Rect(0,0,0,0)),_stun_time(0.0f),_stun_flag(false),
-					_move(nullptr), _check_move(nullptr),_ctracker_state(nullptr),
+					_move(nullptr),_ctracker_state(nullptr),
 					_tracker_state(TrackerState::State::Default),_old_tracker_state(TrackerState::State::Default),
 					_direc(Direction::None)
 {

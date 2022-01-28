@@ -9,7 +9,6 @@
 #include "../../ESGLib.h"
 #include "../Base/Move/Move.h"
 #include "../Base/HumanBase/HumanBase.h"
-#include "../Base/CheckMove/CheckMove.h"
 #include "../Map/Map.h"
 #include "TrackerState/TrackerState.h"
 
@@ -25,18 +24,14 @@ public:
 	void OnCollisionEnter(std::string tag) override;
 	void DoMove(HumanBase* human) override {};
 
-	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
-	void MoveCollision();
+private:
 
 	//çUåÇÇµÇƒÇ¢Ç»Ç¢Ç∆Ç´
 	void Default() { _collision = Rect(0, 0, 0, 0); };
-
-private:
-
+	void MoveCollision();
 	void StunTime();
 
 	Move* _move;
-	CheckMove* _check_move;
 	TrackerState* _ctracker_state;
 
 	TrackerState::State		 _tracker_state;

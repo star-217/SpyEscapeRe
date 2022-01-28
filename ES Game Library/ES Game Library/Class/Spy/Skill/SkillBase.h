@@ -11,7 +11,7 @@
 class SkillBase
 {
 public:
-	SkillBase() = default;
+	SkillBase() : _alpha(false) {};
 	virtual ~SkillBase() {};
 
 	virtual void Update() = 0;

@@ -12,7 +12,6 @@
 #include "../Base/Move/Move.h"
 #include "../Map/Map.h"
 #include "../Base/HumanBase/HumanBase.h"
-#include "../Base/CheckMove/CheckMove.h"
 
 class Spy : public HumanBase
 {
@@ -26,8 +25,6 @@ public:
 	void OnCollisionEnter(std::string tag) override;
 	void DoMove(HumanBase* human) override {};
 
-	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
-
 private:
 
 	void Animetion();
@@ -35,7 +32,6 @@ private:
 	void LoseAnimetion();
 
 	Move* _move;
-	CheckMove* _check_move;
 	SkillState* _skill;
 	SpyState _state;
 

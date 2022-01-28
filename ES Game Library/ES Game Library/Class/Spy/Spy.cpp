@@ -5,12 +5,13 @@
  * @date 2021/04/20
  */
 #include "Spy.h"
+#include "../Base/CheckMove/CheckMove.h"
 
  /**
    * @fn
    * コンストラクタ
    */
-Spy::Spy() : _move(nullptr),_check_move(nullptr),_skill(nullptr),
+Spy::Spy() : _move(nullptr),_skill(nullptr),
 			_spy(0),_win(0),_lose(0),_state(SpyState::Default),
 			_direction(0),_player_count(0),_animetion_flame(0),
 			_win_flame(0),_lose_flame(0),_invisible_alpha(0)
@@ -61,7 +62,7 @@ void Spy::Update()
 
 	//スキル使用
 	if (key.IsPressed(Keys_Enter)) {
-		_skill->RandomSkil();
+		_skill->RandomSkill();
 	}
 }
 

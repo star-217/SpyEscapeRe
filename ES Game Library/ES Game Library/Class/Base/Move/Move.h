@@ -14,12 +14,11 @@
 class Move
 {
 public:
-	Move() {};
+	Move();
 	virtual ~Move() {}
 
 	void      Initialize();
 	Vector3   MovePostion(Vector3 pos, float speed,int pad_number);
-	void PadDirection(Vector3 pos, int pad_number);
 
 	Direction GetDirection() const { return _direction; }
 	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
@@ -27,7 +26,7 @@ public:
 	GamePadState GetPad() { return _pad; }
 
 private:
-	const int BLOCK_SIZE = 50;
+	void PadDirection(Vector3 pos, int pad_number);
 
 	GamePadState _pad;
 

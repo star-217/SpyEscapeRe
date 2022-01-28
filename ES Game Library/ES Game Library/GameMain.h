@@ -7,6 +7,7 @@
 #include "Class/Map/Map.h"
 #include "Class/Sound/Sound.h"
 #include "Class/Decoy/DecoyManager.h"
+#include "Class/Base/CheckMove/CheckMove.h"
 #include "Class/Base/Collision/Collision.h"
 
 class GameMain : public CGameScene {
@@ -61,8 +62,8 @@ private:
 
 private:
 	// •Ï”éŒ¾
-	Tracker*   _tracker;
-	Spy*       _spy;
+	HumanBase*   _tracker;
+	HumanBase*       _spy;
 	DecoyManager* _decoy;
 	Collision* _collision;
 	CheckMove* _check_move;

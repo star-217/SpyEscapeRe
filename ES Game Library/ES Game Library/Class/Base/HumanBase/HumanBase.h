@@ -10,6 +10,8 @@
 #include "../../../ESGLib.h"
 #include "../ConstantList.h"
 
+class CheckMove;
+
 class HumanBase {
 public:
 
@@ -24,6 +26,7 @@ public:
 	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
 	void SetTag(std::string tag) { _tag = tag; }
 	void SetPosition(Vector3 pos) { _pos = pos; }
+	void SetCheckMoveClass(CheckMove* check_move) { _check_move = check_move; }
 
 	Vector3 GetPosition() { return _pos; }
 	Rect GetCollision() { return _collision; }
@@ -31,6 +34,7 @@ public:
 
 protected:
 
+	CheckMove* _check_move;
 	Vector3 _pos;
 	std::string _tag;
 	Rect _collision;

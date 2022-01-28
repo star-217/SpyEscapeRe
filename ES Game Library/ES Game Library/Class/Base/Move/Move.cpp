@@ -6,14 +6,18 @@
  */
 #include "Move.h"
 
- /**
+Move::Move() : _pad_direction(Direction::None),_direction(Direction::None),
+			   _count(0),_flag(false)
+{
+}
+
+/**
    * @fn
    * èâä˙âª
    */
 void Move::Initialize()
 {
 	_direction     = Direction::Down;
-	_pad_direction = Direction::None;
 }
 
 /**
