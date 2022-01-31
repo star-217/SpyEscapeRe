@@ -35,7 +35,8 @@ private:
 	void FixDirection();
 	void Animetion();
 
-	ThreatMap* _threatmap;
+	std::unique_ptr<ThreatMap> _threatmap;
+
 	Vector3 _spy_pos;
 	Vector3 _tracker_pos;
 

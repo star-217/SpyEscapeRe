@@ -6,17 +6,17 @@
   */
 void TrackerState::Initialize()
 {
-	_default_state = new DefaultState();
-	_attack_state = new AttackState();
-	_win_state = new WinState();
-	_lose_state = new LoseState();
+	_default_state =std::make_unique<DefaultState>();
+	_attack_state = std::make_unique<AttackState>();
+	_win_state = std::make_unique<WinState>();
+	_lose_state = std::make_unique<LoseState>();
 
 	_default_state->Initialize(_T("oni2.png"));
 	_attack_state->Initialize(_T("punch.png"));
 	_win_state->Initialize(_T("oniwin.png"));
 	_lose_state->Initialize(_T("onilose.png"));
 
-	_state = _default_state;
+	_state = _default_state.get();
 }
 
 /**
@@ -47,21 +47,21 @@ void TrackerState::Draw(Vector3& pos, int dir)
   * ステートの切り替え
   * @param (state) 鬼のステート
   */
-TrackerStateBase* TrackerState::ChangeState(TrackerState::State state)
+TrackerStateBase* TrackerState::ChangeState(State state)
 {
 	switch (state)
 	{
 	case TrackerState::State::Default:
-		_state = _default_state;
+		_state = _default_state.get();
 		break;
 	case TrackerState::State::Win:
-		_state = _win_state;
+		_state = _win_state.get();
 		break;
 	case TrackerState::State::Lose:
-		_state = _lose_state;
+		_state = _lose_state.get();
 		break;
 	case TrackerState::State::Attack:
-		_state = _attack_state;
+		_state = _attack_state.get();
 		break;
 	default:
 		break;

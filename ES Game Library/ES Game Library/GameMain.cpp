@@ -27,12 +27,12 @@ bool GameMain::Initialize()
 							Vector3(1500, 500, 0) };
 	Vector3 TrackerPos = Vector3(1500, 800, 0);
 
-	_map = new Map();
-	_spy = new Spy();
-	_tracker = new Tracker();
-	_decoy = new DecoyManager();
-	_collision = new Collision();
-	_check_move = new CheckMove();
+	_map = std::make_unique<Map>();
+	_spy = std::make_unique<Spy>();
+	_tracker = std::make_unique<Tracker>();
+	_decoy = std::make_unique<DecoyManager>();
+	_collision = std::make_unique<Collision>();
+	_check_move = std::make_unique<CheckMove>();
 
 
 	_map->Initialize();
@@ -50,21 +50,21 @@ bool GameMain::Initialize()
 	startPos.erase(startPos.begin() + select);
 
 	_decoy->Initialize(DECOY_MAX);
-	_decoy->SetOtherPositionInit(_spy);
-	_decoy->SetOtherPositionInit(_tracker);
+	_decoy->SetOtherPositionInit(_spy.get());
+	_decoy->SetOtherPositionInit(_tracker.get());
 	_decoy->SetPosition(startPos);
 	_decoy->SetTag("DECOY");
 	_decoy->SetMapData(_map->GetMapData());
 
-	_collision->AddListener(_spy->GetTag(), _spy);
-	_collision->AddListener(_tracker->GetTag(), _tracker);
+	_collision->AddListener(_spy->GetTag(), _spy.get());
+	_collision->AddListener(_tracker->GetTag(), _tracker.get());
 	for (int i = 0; i < _decoy->GetBase().size(); i++) {
 		_collision->AddListener(_decoy->GetBase()[i]->GetTag(), _decoy->GetBase()[i]);
 		_check_move->AddListener(_decoy->GetBase()[i]);
 	}
 
-	_spy->SetCheckMoveClass(_check_move);
-	_tracker->SetCheckMoveClass(_check_move);
+	_spy->SetCheckMoveClass(_check_move.get());
+	_tracker->SetCheckMoveClass(_check_move.get());
 
 	return true;
 }
@@ -107,10 +107,12 @@ void GameMain::Draw()
 	GraphicsDevice.Clear(Color_CornflowerBlue);
 	GraphicsDevice.BeginScene();
 	SpriteBatch.Begin();
+
 	_map->Draw();
 	_tracker->Draw();
 	_spy->Draw();
 	_decoy->Draw();
+
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();

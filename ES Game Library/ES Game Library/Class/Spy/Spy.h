@@ -12,6 +12,7 @@
 #include "../Base/Move/Move.h"
 #include "../Map/Map.h"
 #include "../Base/HumanBase/HumanBase.h"
+#include "SpyState/SpyState.h"
 
 class Spy : public HumanBase
 {
@@ -27,24 +28,13 @@ public:
 
 private:
 
-	void Animetion();
-	void WinAnimetion();
-	void LoseAnimetion();
-
-	Move* _move;
-	SkillState* _skill;
-	SpyState _state;
-
-	SPRITE _spy;
-	SPRITE _win;
-	SPRITE _lose;
+	std::unique_ptr<Move>		_move;
+	std::unique_ptr<SkillState> _skill;
+	std::unique_ptr<SpyState>	_state;
 
 	int _direction;
 	int _player_count;
 
-	float _animetion_flame;
-	float _win_flame;
-	float _lose_flame;
 	float _invisible_alpha;
 
 	Vector3 _old_pos;

@@ -7,7 +7,7 @@
 
 #include "Decoy.h"
 
-Decoy::Decoy() : _threatmap(nullptr),_decoy(0),_move_pattern(Direction::None),
+Decoy::Decoy() :_decoy(0),_move_pattern(Direction::None),
 				_sprite_direction(0),_wait_count(0),_move_count(0),
 				_ratio(0),_animetion_flame(0)
 {
@@ -19,7 +19,7 @@ Decoy::Decoy() : _threatmap(nullptr),_decoy(0),_move_pattern(Direction::None),
   */
 void Decoy::Initialize()
 {
-	_threatmap = new ThreatMap();
+	_threatmap  =  std::make_unique<ThreatMap>();
 	_threatmap->Initialize();
 
 	_decoy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
@@ -35,7 +35,7 @@ void Decoy::Initialize()
   * 更新処理
   */
 void Decoy::Update()
-{	
+{
 	_threatmap->Update();
 	//脅威マップを1ブロック単位で更新
 	if (_move_count >= BLOCK_SIZE) {

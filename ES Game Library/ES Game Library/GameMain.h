@@ -62,11 +62,11 @@ private:
 
 private:
 	// •Ï”éŒ¾
-	HumanBase*   _tracker;
-	HumanBase*       _spy;
-	DecoyManager* _decoy;
-	Collision* _collision;
-	CheckMove* _check_move;
-	Map* _map;
+	std::unique_ptr<HumanBase>		_tracker;
+	std::unique_ptr<HumanBase>      _spy;
+	std::unique_ptr<DecoyManager>	_decoy;
+	std::unique_ptr<Collision>		_collision;
+	std::unique_ptr<CheckMove>		_check_move;
+	std::unique_ptr<Map>			_map;
 
 };

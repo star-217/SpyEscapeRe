@@ -122,6 +122,10 @@
     <ClCompile Include="Class\Spy\Skill\Invisible.cpp" />
     <ClCompile Include="Class\Spy\Skill\SkillState.cpp" />
     <ClCompile Include="Class\Spy\Spy.cpp" />
+    <ClCompile Include="Class\Spy\SpyState\SpyDefaultState.cpp" />
+    <ClCompile Include="Class\Spy\SpyState\SpyLoseState.cpp" />
+    <ClCompile Include="Class\Spy\SpyState\SpyState.cpp" />
+    <ClCompile Include="Class\Spy\SpyState\SpyWinState.cpp" />
     <ClCompile Include="Class\Threatmap\Threatmap.cpp" />
     <ClCompile Include="Class\Tracker\Tracker.cpp" />
     <ClCompile Include="Class\Tracker\TrackerState\AttackState.cpp" />
@@ -232,6 +236,11 @@
     <ClInclude Include="Class\Spy\Skill\SkillFactory.h" />
     <ClInclude Include="Class\Spy\Skill\SkillState.h" />
     <ClInclude Include="Class\Spy\Spy.h" />
+    <ClInclude Include="Class\Spy\SpyState\SpyDefaultState.h" />
+    <ClInclude Include="Class\Spy\SpyState\SpyLoseState.h" />
+    <ClInclude Include="Class\Spy\SpyState\SpyState.h" />
+    <ClInclude Include="Class\Spy\SpyState\SpyStateBase.h" />
+    <ClInclude Include="Class\Spy\SpyState\SpyWinState.h" />
     <ClInclude Include="Class\Threatmap\Threatmap.h" />
     <ClInclude Include="Class\Tracker\Tracker.h" />
     <ClInclude Include="Class\Tracker\TrackerState\AttackState.h" />

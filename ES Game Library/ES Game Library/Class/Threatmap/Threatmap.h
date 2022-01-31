@@ -21,7 +21,7 @@ public:
 	void Update();
 	void Draw();
 
-	void SetPosData(HumanBase* human) 
+	void SetPosData(HumanBase* human)
 	{
 		if (human->GetTag() == "SPY")
 			_spy_pos = human->GetPosition();

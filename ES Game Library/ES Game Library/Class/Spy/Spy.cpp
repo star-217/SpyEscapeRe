@@ -12,9 +12,7 @@
    * コンストラクタ
    */
 Spy::Spy() : _move(nullptr),_skill(nullptr),
-			_spy(0),_win(0),_lose(0),_state(SpyState::Default),
-			_direction(0),_player_count(0),_animetion_flame(0),
-			_win_flame(0),_lose_flame(0),_invisible_alpha(0)
+			_direction(0),_player_count(0),_invisible_alpha(0)
 {
 
 }
@@ -24,17 +22,16 @@ Spy::Spy() : _move(nullptr),_skill(nullptr),
    */
 void Spy::Initialize()
 {
-	_spy = GraphicsDevice.CreateSpriteFromFile(_T("spy.png"));
-	_win = GraphicsDevice.CreateSpriteFromFile(_T("playerwin.png"));
-	_lose = GraphicsDevice.CreateSpriteFromFile(_T("playerdown.png"));
 
 	//アルファ値なので初期は１
 	_invisible_alpha = 1.0f;
 
-	_move = new Move();
-	_move->Initialize();
+	_state = std::make_unique<SpyState>();
+	_move = std::make_unique<Move>();
+	_skill = std::make_unique<SkillState>();
 
-	_skill = new SkillState();
+	_state->Initialize();
+	_move->Initialize();
 
 }
 
@@ -48,7 +45,8 @@ void Spy::Update()
 
 	_pos			    = _move->MovePostion(_pos,CHARA_SPEED,0);
 	_skill->Update();
-	_invisible_alpha = _skill->GetAlpfa();
+	_state->Update();
+	_invisible_alpha	= _skill->GetAlpfa();
 	_direction			= (int)_move->GetDirection();
 	_collision			= Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE.x, _pos.y + CHARA_SIZE.y);
 
@@ -58,10 +56,9 @@ void Spy::Update()
 		_check_move->Notify(this);
 	}
 
-	Animetion();
-
 	//スキル使用
-	if (key.IsPressed(Keys_Enter)) {
+	if (key.IsPressed(Keys_Enter))
+	{
 		_skill->RandomSkill();
 	}
 }
@@ -76,56 +73,7 @@ void Spy::Draw()
 	const Vector3 _draw_spy_pos = Vector3(_pos.x, _pos.y - FIX_POS_Y, 0.0f);
 
 	_skill->Draw();
-	switch (_state) {
-	case SpyState::Default:
-		SpriteBatch.Draw(*_spy, _draw_spy_pos, RectWH(CHARA_SIZE.x * (int)_animetion_flame, _direction * CHARA_SIZE.y, CHARA_SIZE.x, CHARA_SIZE.y), _invisible_alpha);
-		break;
-	case SpyState::Win:
-		SpriteBatch.Draw(*_win, _draw_spy_pos, RectWH(CHARA_SIZE.x * (int)_win_flame, 0, CHARA_SIZE.x, CHARA_SIZE.y));
-		break;
-	case SpyState::Lose:
-		SpriteBatch.Draw(*_lose, _draw_spy_pos, RectWH(CHARA_SIZE.x * (int)_lose_flame, 0, CHARA_SIZE.x, CHARA_SIZE.y));
-		break;
-	}
-}
-
-/**
-  * @fn
-  * (通常)連番画像アニメーション
-  */
-void Spy::Animetion()
-{
-	constexpr int animetion_flame_max = 40;
-
-	_animetion_flame = int(_animetion_flame + 1) % animetion_flame_max;
-}
-
-/**
-  * @fn
-  * (勝利時)連番画像アニメーション
-  */
-void Spy::WinAnimetion()
-{
-	constexpr float flame_speed	= 0.8f;
-	constexpr int max_flame		= 50;
-
-	_win_flame += flame_speed;
-	_win_flame = max(_win_flame, max_flame);
-
-}
-
-/**
-  * @fn
-  * (敗北時)連番画像アニメーション
-  */
-void Spy::LoseAnimetion()
-{
-	constexpr float flame_speed	= 0.8f;
-	constexpr int max_flame		= 30;
-
-	_lose_flame += flame_speed;
-	_lose_flame = max(_lose_flame, max_flame);
-
+	_state->Draw(_draw_spy_pos,_direction,_invisible_alpha);
 }
 
 /**
@@ -135,6 +83,7 @@ void Spy::LoseAnimetion()
   */
 void Spy::OnCollisionEnter(std::string tag)
 {
-	if(tag == "TRACKER")
-		_state = SpyState::Lose;
+	if (tag == "TRACKER")
+		_state->ChangeState(SpyState::State::Lose);
+
 }

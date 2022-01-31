@@ -127,6 +127,9 @@
     <Filter Include="ソース ファイル\Class\Tracker\TrackerState">
       <UniqueIdentifier>{8c2b209a-f212-42fc-b13d-59ad5c417ede}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Class\Spy\SpyState">
+      <UniqueIdentifier>{06334c1a-4a6b-425e-8d93-995652147fe4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -324,6 +327,18 @@
     </ClCompile>
     <ClCompile Include="Class\Tracker\TrackerState\TrackerState.cpp">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Spy\SpyState\SpyState.cpp">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Spy\SpyState\SpyWinState.cpp">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Spy\SpyState\SpyDefaultState.cpp">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClCompile>
+    <ClCompile Include="Class\Spy\SpyState\SpyLoseState.cpp">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -552,6 +567,21 @@
     </ClInclude>
     <ClInclude Include="Class\Tracker\TrackerState\TrackerState.h">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Spy\SpyState\SpyState.h">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Spy\SpyState\SpyStateBase.h">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Spy\SpyState\SpyWinState.h">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Spy\SpyState\SpyDefaultState.h">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
+    </ClInclude>
+    <ClInclude Include="Class\Spy\SpyState\SpyLoseState.h">
+      <Filter>ソース ファイル\Class\Spy\SpyState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

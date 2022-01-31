@@ -32,7 +32,7 @@ private:
 	};
 
 	SkillBase*   _state;
-	SkillFactory _factory;
+	std::unique_ptr<SkillFactory> _factory;
 
 	int          _skil_box[SKILL_MAX];
 	int          _skil_count;

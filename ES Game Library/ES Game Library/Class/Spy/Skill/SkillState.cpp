@@ -21,6 +21,7 @@ SkillState::SkillState() :
 	std::random_device seed_gen;
 	std::mt19937 engine(seed_gen());
 	std::shuffle(std::begin(_skil_box), std::end(_skil_box), engine);
+	_factory = std::make_unique<SkillFactory>();
 }
 
 /**
@@ -48,7 +49,7 @@ void SkillState::Draw()
 void SkillState::RandomSkill()
 {
 
-	ChangeState(_factory.Create(_skil_box[_skil_count]));
+	ChangeState(_factory->Create(_skil_box[_skil_count]));
 	_skil_count++;
 }
 

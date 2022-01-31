@@ -31,18 +31,15 @@ private:
 	void MoveCollision();
 	void StunTime();
 
-	Move* _move;
-	TrackerState* _ctracker_state;
+	std::unique_ptr<Move> _move;
+	std::unique_ptr<TrackerState> _ctracker_state;
 
 	TrackerState::State		 _tracker_state;
 	TrackerState::State		 _old_tracker_state;
 
 	Direction			_direc;
 
-	Rect	_collision;
-
 	float	_stun_time;
-
 	bool	_stun_flag;
 
 };

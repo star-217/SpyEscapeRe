@@ -27,10 +27,10 @@ private:
 
 	TrackerStateBase* _state;
 
-	DefaultState*	_default_state;
-	AttackState*	_attack_state;
-	WinState*		_win_state;
-	LoseState*		_lose_state;
+	std::unique_ptr<DefaultState>	_default_state;
+	std::unique_ptr<AttackState>	_attack_state;
+	std::unique_ptr<WinState>		_win_state;
+	std::unique_ptr<LoseState>		_lose_state;
 
 
 };

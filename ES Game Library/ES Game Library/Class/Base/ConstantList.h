@@ -26,10 +26,3 @@ enum class Direction //ƒLƒƒƒ‰‚ªi‚Ş•ûŒü
 	Right,
 	Up
 };
-
-enum class SpyState
-{
-	Default,
-	Win,
-	Lose
-};

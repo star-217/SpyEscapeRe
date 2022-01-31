@@ -11,7 +11,7 @@
    * @fn
    * コンストラクタ
    */
-Tracker::Tracker() :_collision(Rect(0,0,0,0)),_stun_time(0.0f),_stun_flag(false),
+Tracker::Tracker() :_stun_time(0.0f),_stun_flag(false),
 					_move(nullptr),_ctracker_state(nullptr),
 					_tracker_state(TrackerState::State::Default),_old_tracker_state(TrackerState::State::Default),
 					_direc(Direction::None)
@@ -25,16 +25,15 @@ Tracker::Tracker() :_collision(Rect(0,0,0,0)),_stun_time(0.0f),_stun_flag(false)
   */
 void Tracker::Initialize()
 {
-	_tracker_state = TrackerState::State::Default;
-
-	_collision = Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE.x, _pos.y + CHARA_SIZE.y);
+	//攻撃時以外当たらないように画面外へ
+	_collision = Rect(-1,-1,-1,-1);
 
 	_direc			 = Direction::Down;
 
-	_move = new Move();
-	_move->Initialize();
+	_move = std::make_unique<Move>();
+	_ctracker_state = std::make_unique<TrackerState>();
 
-	_ctracker_state = new TrackerState();
+	_move->Initialize();
 	_ctracker_state->Initialize();
 
 }
@@ -48,7 +47,8 @@ void Tracker::Update()
 	KeyboardBuffer key = Keyboard->GetBuffer();
 	_pos = _move->MovePostion(_pos, CHARA_SPEED,1);
 	_direc = _move->GetDirection();
-	
+	MoveCollision();
+
 	//移動が完了したらCheckMoveクラスに通知する
 	if (_move->GetMoveCmp())
 	{
@@ -64,8 +64,6 @@ void Tracker::Update()
 	{
 		_tracker_state = TrackerState::State::Attack;
 	}
-
-	MoveCollision();
 
 	if(_tracker_state != _old_tracker_state)
 	{
@@ -117,7 +115,8 @@ void Tracker::MoveCollision()
 	}
 	else
 	{
-		_collision = Rect(0,0,0,0);
+		//攻撃していないときは画面外に
+		_collision = Rect(-1,-1,-1,-1);
 	}
 }
 
@@ -128,7 +127,14 @@ void Tracker::MoveCollision()
   */
 void Tracker::OnCollisionEnter(std::string tag)
 {
-	if(tag == "DECOY")
+	if (tag == "DECOY")
+	{
 		_stun_flag = true;
+	}
+
+	if (tag == "SPY")
+	{
+		_ctracker_state->ChangeState(TrackerState::State::Win);
+	}
 }
 

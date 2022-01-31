@@ -22,7 +22,7 @@ public:
 	virtual void OnCollisionEnter(std::string tag) {};
 	//CheckMoveƒNƒ‰ƒX‚©‚ç’m‚ç‚¹‚ª—ˆ‚½‚Ìˆ—
 	virtual void DoMove(HumanBase* human) {};
-	
+
 	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
 	void SetTag(std::string tag) { _tag = tag; }
 	void SetPosition(Vector3 pos) { _pos = pos; }
