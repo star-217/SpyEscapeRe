@@ -36,7 +36,7 @@ void Spy::Initialize()
 }
 
 /**
-  * @fn
+  * @fnh
   * XVˆ—
   */
 void Spy::Update()
@@ -46,7 +46,7 @@ void Spy::Update()
 	_pos			    = _move->MovePostion(_pos,CHARA_SPEED,0);
 	_skill->Update();
 	_state->Update();
-	_invisible_alpha	= _skill->GetAlpfa();
+	_invisible_alpha	= _skill->GetAlpha();
 	_direction			= (int)_move->GetDirection();
 	_collision			= Rect(_pos.x, _pos.y, _pos.x + CHARA_SIZE.x, _pos.y + CHARA_SIZE.y);
 

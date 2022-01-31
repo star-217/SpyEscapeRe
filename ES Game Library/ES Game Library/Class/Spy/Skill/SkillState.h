@@ -21,7 +21,7 @@ public:
 	void   RandomSkill();
 	void   ChangeState(SkillBase* state);
 
-	float GetAlpfa();
+	float GetAlpha();
 
 private:
 	enum

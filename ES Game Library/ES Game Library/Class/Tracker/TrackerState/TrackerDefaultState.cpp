@@ -1,14 +1,10 @@
-#include "DefaultState.h"
-
-DefaultState::DefaultState()
-{
-}
+#include "TrackerDefaultState.h"
 
 /**
   * @fn
   * 初期化
   */
-void DefaultState::Initialize(TCHAR* file_name)
+void TrackerDefaultState::Initialize(TCHAR* file_name)
 {
 	_sprite = GraphicsDevice.CreateSpriteFromFile(file_name);
 }
@@ -17,7 +13,7 @@ void DefaultState::Initialize(TCHAR* file_name)
   * @fn
   * 更新処理
   */
-void DefaultState::Update()
+void TrackerDefaultState::Update()
 {
 	constexpr int max_flame = 40;
 
@@ -30,7 +26,7 @@ void DefaultState::Update()
   * @param (pos) 鬼のポジション
   * @param (dir) 向いている方向
   */
-void DefaultState::Draw(Vector3& pos, int& dir)
+void TrackerDefaultState::Draw(Vector3& pos, int& dir)
 {
 	SpriteBatch.Draw(
 		*_sprite, Vector3(pos.x, pos.y - FIX_POS_Y, pos.z),

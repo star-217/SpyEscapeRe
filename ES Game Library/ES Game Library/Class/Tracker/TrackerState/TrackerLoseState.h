@@ -2,11 +2,11 @@
 
 #include "TrackerStateBase.h"
 
-class DefaultState : public TrackerStateBase {
+class TrackerLoseState : public TrackerStateBase {
 
 public:
-	DefaultState();
-	virtual ~DefaultState() {};
+	TrackerLoseState() {};
+	virtual ~TrackerLoseState() {};
 
 	void Initialize(TCHAR* file_name) override;
 	void Update() override;

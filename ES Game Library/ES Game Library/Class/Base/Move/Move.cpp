@@ -6,6 +6,11 @@
  */
 #include "Move.h"
 
+
+ /**
+   * @fn
+   * コンストラクタ
+   */
 Move::Move() : _pad_direction(Direction::None),_direction(Direction::None),
 			   _count(0),_flag(false)
 {

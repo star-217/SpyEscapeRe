@@ -11,13 +11,13 @@
 class SkillBase
 {
 public:
-	SkillBase() : _alpha(false) {};
+	SkillBase() : _alpha(1) {};
 	virtual ~SkillBase() {};
 
 	virtual void Update() = 0;
 	virtual void Draw()    = 0;
 
-	virtual float GetAlpfa() { return _alpha; }
+	float GetAlpha() { return _alpha; }
 
 protected:
 	float _alpha;
