@@ -313,16 +313,16 @@
     <ClCompile Include="Class\Base\CheckMove\CheckMove.cpp">
       <Filter>ソース ファイル\Class\Base\Observer</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Tracker\TrackerState\LoseState.cpp">
+    <ClCompile Include="Class\Tracker\TrackerState\TrackerLoseState.cpp">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Tracker\TrackerState\WinState.cpp">
+    <ClCompile Include="Class\Tracker\TrackerState\TrackerWinState.cpp">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Tracker\TrackerState\AttackState.cpp">
+    <ClCompile Include="Class\Tracker\TrackerState\TrackerAttackState.cpp">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClCompile>
-    <ClCompile Include="Class\Tracker\TrackerState\DefaultState.cpp">
+    <ClCompile Include="Class\Tracker\TrackerState\TrackerDefaultState.cpp">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClCompile>
     <ClCompile Include="Class\Tracker\TrackerState\TrackerState.cpp">
@@ -553,16 +553,16 @@
     <ClInclude Include="Class\Tracker\TrackerState\TrackerStateBase.h">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Tracker\TrackerState\DefaultState.h">
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerDefaultState.h">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Tracker\TrackerState\LoseState.h">
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerLoseState.h">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Tracker\TrackerState\WinState.h">
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerWinState.h">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClInclude>
-    <ClInclude Include="Class\Tracker\TrackerState\AttackState.h">
+    <ClInclude Include="Class\Tracker\TrackerState\TrackerAttackState.h">
       <Filter>ソース ファイル\Class\Tracker\TrackerState</Filter>
     </ClInclude>
     <ClInclude Include="Class\Tracker\TrackerState\TrackerState.h">

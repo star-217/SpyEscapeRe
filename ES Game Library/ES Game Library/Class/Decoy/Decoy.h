@@ -10,7 +10,6 @@
 #include "../../ESGLib.h"
 #include "../Threatmap/Threatmap.h"
 #include "../Base/HumanBase/HumanBase.h"
-#include "../Base/ConstantList.h"
 
 class Decoy : public HumanBase
 {

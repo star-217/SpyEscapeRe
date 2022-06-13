@@ -8,6 +8,11 @@
 
 #include "Map.h"
 
+
+ /**
+   * @fn
+   * コンストラクタ
+   */
 Map::Map() : _bg(nullptr), _wallhide(nullptr)
 {
 }

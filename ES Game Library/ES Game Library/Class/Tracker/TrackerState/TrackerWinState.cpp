@@ -1,14 +1,10 @@
-#include "LoseState.h"
-
-LoseState::LoseState()
-{
-}
+#include "TrackerWinState.h"
 
 /**
   * @fn
   * 初期化
   */
-void LoseState::Initialize(TCHAR* file_name)
+void TrackerWinState::Initialize(TCHAR* file_name)
 {
 	_sprite = GraphicsDevice.CreateSpriteFromFile(file_name);
 }
@@ -17,10 +13,10 @@ void LoseState::Initialize(TCHAR* file_name)
   * @fn
   * 更新処理
   */
-void LoseState::Update()
+void TrackerWinState::Update()
 {
 	constexpr int flame_speed = 0.8f;
-	constexpr int flame_max = 30.0f;
+	constexpr int flame_max = 50.0f;
 
 	_flame += flame_speed;
 	_flame = max(_flame, flame_max);
@@ -32,7 +28,7 @@ void LoseState::Update()
   * @param (pos) 鬼のポジション
   * @param (dir) 向いている方向
   */
-void LoseState::Draw(Vector3& pos, int& dir)
+void TrackerWinState::Draw(Vector3& pos, int& dir)
 {
 	SpriteBatch.Draw(
 		*_sprite, Vector3(pos.x, pos.y - FIX_POS_Y, pos.z),

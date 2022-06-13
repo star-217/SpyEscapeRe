@@ -1,10 +1,10 @@
-#include "AttackState.h"
+#include "TrackerAttackState.h"
 
 /**
   * @fn
   * 初期化
   */
-void AttackState::Initialize(TCHAR* file_name)
+void TrackerAttackState::Initialize(TCHAR* file_name)
 {
 	_sprite = GraphicsDevice.CreateSpriteFromFile(file_name);
 }
@@ -13,7 +13,7 @@ void AttackState::Initialize(TCHAR* file_name)
   * @fn
   * 更新処理
   */
-void AttackState::Update()
+void TrackerAttackState::Update()
 {
 	constexpr int flame_speed = 1.0f;
 	constexpr int flame_max = 50.0f;
@@ -32,7 +32,7 @@ void AttackState::Update()
   * @param (pos) 鬼のポジション
   * @param (dir) 向いている方向
   */
-void AttackState::Draw(Vector3& pos, int& dir)
+void TrackerAttackState::Draw(Vector3& pos, int& dir)
 {
 	SpriteBatch.Draw(
 		*_sprite, Vector3(pos.x, pos.y - FIX_POS_Y, pos.z),

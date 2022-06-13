@@ -10,6 +10,10 @@
 #include <algorithm>
 #include <random>
 
+ /**
+   * @fn
+   * コンストラクタ
+   */
 SkillState::SkillState() :
 	_skil_box{},
 	_skil_count(0),
@@ -53,15 +57,24 @@ void SkillState::RandomSkill()
 	_skil_count++;
 }
 
+/**
+  * @fn
+  * ステートを切り替える
+  * @param (state) 変えたいステート
+  */
 void SkillState::ChangeState(SkillBase* state)
 {
 	delete this->_state;
 	this->_state = state;
 }
 
-float SkillState::GetAlpfa()
+/**
+  * @fn
+  * アルファ値を取得
+  */
+float SkillState::GetAlpha()
 {
-	return _state->GetAlpfa();
+	return _state->GetAlpha();
 }
 
 

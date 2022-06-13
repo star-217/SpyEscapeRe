@@ -2,11 +2,11 @@
 
 #include "TrackerStateBase.h"
 
-class AttackState: public TrackerStateBase {
+class TrackerAttackState: public TrackerStateBase {
 
 public:
-	AttackState() {};
-	virtual ~AttackState() {};
+	TrackerAttackState() {};
+	virtual ~TrackerAttackState() {};
 
 	void Initialize(TCHAR* file_name) override;
 	void Update() override;

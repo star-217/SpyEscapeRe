@@ -1,15 +1,24 @@
 #include "TrackerState.h"
 
+
+/**
+  * @fn
+  * コンストラクタ
+  */
+TrackerState::TrackerState() : _state(nullptr)
+{
+}
+
 /**
   * @fn
   * 初期化
   */
 void TrackerState::Initialize()
 {
-	_default_state =std::make_unique<DefaultState>();
-	_attack_state = std::make_unique<AttackState>();
-	_win_state = std::make_unique<WinState>();
-	_lose_state = std::make_unique<LoseState>();
+	_default_state =std::make_unique<TrackerDefaultState>();
+	_attack_state = std::make_unique<TrackerAttackState>();
+	_win_state = std::make_unique<TrackerWinState>();
+	_lose_state = std::make_unique<TrackerLoseState>();
 
 	_default_state->Initialize(_T("oni2.png"));
 	_attack_state->Initialize(_T("punch.png"));

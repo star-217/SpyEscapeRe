@@ -1,12 +1,14 @@
 #pragma once
 
-#include "AttackState.h"
-#include "DefaultState.h"
-#include "WinState.h"
-#include "LoseState.h"
+#include "TrackerAttackState.h"
+#include "TrackerDefaultState.h"
+#include "TrackerWinState.h"
+#include "TrackerLoseState.h"
 
 class TrackerState {
 public:
+	TrackerState();
+	~TrackerState() {};
 
 	enum class State
 	{
@@ -27,10 +29,10 @@ private:
 
 	TrackerStateBase* _state;
 
-	std::unique_ptr<DefaultState>	_default_state;
-	std::unique_ptr<AttackState>	_attack_state;
-	std::unique_ptr<WinState>		_win_state;
-	std::unique_ptr<LoseState>		_lose_state;
+	std::unique_ptr<TrackerDefaultState>	_default_state;
+	std::unique_ptr<TrackerAttackState>	_attack_state;
+	std::unique_ptr<TrackerWinState>		_win_state;
+	std::unique_ptr<TrackerLoseState>		_lose_state;
 
 
 };

@@ -7,6 +7,11 @@
 #include "Invisible.h"
 #include <algorithm>
 
+
+ /**
+   * @fn
+   * コンストラクタ
+   */
 Invisible::Invisible() : _time(0.0f), _flag(false)
 {
 

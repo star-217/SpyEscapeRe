@@ -7,6 +7,11 @@
 
 #include "Decoy.h"
 
+
+ /**
+   * @fn
+   * コンストラクタ
+   */
 Decoy::Decoy() :_decoy(0),_move_pattern(Direction::None),
 				_sprite_direction(0),_wait_count(0),_move_count(0),
 				_ratio(0),_animetion_flame(0)

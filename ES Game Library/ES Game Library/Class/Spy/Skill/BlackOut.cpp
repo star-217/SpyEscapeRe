@@ -7,6 +7,11 @@
 #include "BlackOut.h"
 #include <algorithm>
 
+
+ /**
+   * @fn
+   * コンストラクタ
+   */
 BlackOut::BlackOut() :	_black(GraphicsDevice.CreateSpriteFromFile(_T("skill.png"))),
 						_position(0.0f, 0.0f, -10.0f)
 {
