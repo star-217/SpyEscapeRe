@@ -10,7 +10,7 @@
  /**
   * @fn
   * 知らせたいクラスを登録する
-  * @param (human) 動いたことを知らせたいクラス 
+  * @param (human) 動いたことを知らせたいクラス
   */
 void CheckMove::AddListener(HumanBase* human)
 {

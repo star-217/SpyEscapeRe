@@ -30,8 +30,8 @@ void Move::Initialize()
  * @return キャラクターのポジションを返す
  * @detail
  */
-Vector3 Move::MovePostion(Vector3 pos,float speed,int pad_number)
-{	
+Vector3 Move::MovePostion(Vector3 pos, const float speed, const int pad_number)
+{
 	//キャラの移動、移動制限
 	auto _count_clamp = [&](const int delta)
 	{

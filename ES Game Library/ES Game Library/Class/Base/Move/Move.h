@@ -18,10 +18,10 @@ public:
 	virtual ~Move() {}
 
 	void      Initialize();
-	Vector3   MovePostion(Vector3 pos, float speed,int pad_number);
+	Vector3   MovePostion(Vector3 pos, const float speed, const int pad_number);
 
 	Direction GetDirection() const { return _direction; }
-	void SetMapData(std::vector<cstring>& map_data) { _map_data = map_data; }
+	void SetMapData(const std::vector<cstring>& map_data) { _map_data = map_data; }
 	bool GetMoveCmp() { return _flag; }
 	GamePadState GetPad() { return _pad; }
 

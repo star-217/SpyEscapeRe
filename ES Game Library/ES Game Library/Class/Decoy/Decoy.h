@@ -24,8 +24,8 @@ public:
 	void OnCollisionEnter(std::string tag) override {};
 	void DoMove(HumanBase* human) override;
 
-	void SetWaitCount(int& wait_count) { _wait_count = wait_count; }
-	void SetPriorityRatio(float& ratio) { _ratio = ratio; }
+	void SetWaitCount(const int& wait_count) { _wait_count = wait_count; }
+	void SetPriorityRatio(const float& ratio) { _ratio = ratio; }
 	void SetPosDataInit(HumanBase* human) { _threatmap->SetPosData(human); }
 	void ThreatMapDataInit() { _threatmap->SetMapdata(_map_data); }
 
